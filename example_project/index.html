@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HamroStay AI Distribution Suite</title>
+    
+    <!-- Tailwind Play CDN & Material Icons -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#944931",
+              "primary-container": "#d67d61",
+              secondary: "#526442",
+              "secondary-container": "#d2e6bc",
+              tertiary: "#79573f",
+              "tertiary-container": "#b48c71",
+              "background-cream": "#F9F7F2",
+              "surface-warm": "#F1EDE4",
+              "clay-muted": "#B58D72",
+              "on-surface": "#181c1d",
+              "on-surface-variant": "#54433e",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#576846",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#ebeeef",
+              "secondary-fixed-dim": "#b9cda4",
+              "secondary-fixed": "#d5e9bf",
+              "primary-fixed-dim": "#ffb59e",
+              "primary-fixed": "#ffdbd0",
+              background: "#f7fafb"
+            },
+            fontFamily: {
+              headline: ["Playfair Display", "Georgia", "serif"],
+              body: ["Inter", "system-ui", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
