@@ -395,6 +395,17 @@
     color: var(--crimson);
     word-break: break-all;
   }
+  .dl-card .dl-status {
+    margin-top: 8px;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--olive);
+    min-height: 22px;
+    transition: opacity 0.2s;
+  }
+  .dl-card.is-downloading { pointer-events: none; opacity: 0.85; }
+  .dl-card.is-downloading .dl-status { color: var(--ink-soft); }
+  .dl-card.dl-error .dl-status { color: var(--crimson); }
 
   /* ============== BIG BUTTONS ============== */
   .btn-big {
@@ -678,18 +689,24 @@
 
   <div class="download-grid">
     <a href="https://raw.githubusercontent.com/indranildchandra/google-agentic-product-harness/refs/heads/main/install_scripts/setup-node-win.ps1"
-       class="dl-card" target="_blank" rel="noopener" download="setup-node-win.ps1">
+       class="dl-card"
+       data-filename="setup-node-win.ps1"
+       target="_blank" rel="noopener">
       <div class="dl-icon">🪟</div>
       <div class="dl-title">Windows</div>
       <div class="dl-sub">PowerShell script</div>
       <div class="dl-file">setup-node-win.ps1</div>
+      <div class="dl-status"></div>
     </a>
     <a href="https://raw.githubusercontent.com/indranildchandra/google-agentic-product-harness/refs/heads/main/install_scripts/setup-node-linux-mac.sh"
-       class="dl-card" target="_blank" rel="noopener" download="setup-node-linux-mac.sh">
+       class="dl-card"
+       data-filename="setup-node-linux-mac.sh"
+       target="_blank" rel="noopener">
       <div class="dl-icon">🍎 🐧</div>
       <div class="dl-title">macOS / Linux</div>
       <div class="dl-sub">Shell script</div>
       <div class="dl-file">setup-node-linux-mac.sh</div>
+      <div class="dl-status"></div>
     </a>
   </div>
 
@@ -1214,7 +1231,52 @@ Project Console: https://console.firebase.google.com/project/.../overview
     });
   })();
 
-  // Copy buttons
+  // Download cards: fetch the file and force a real download.
+  // The plain `download` attribute is ignored by browsers when the file
+  // is on a different origin (raw.githubusercontent.com), so we fetch the
+  // bytes, wrap them in a blob (same-origin), and trigger the download
+  // from that blob URL instead.
+  document.querySelectorAll('.dl-card').forEach(card => {
+    card.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const url      = card.getAttribute('href');
+      const filename = card.dataset.filename || 'download';
+      const status   = card.querySelector('.dl-status');
+
+      card.classList.add('is-downloading');
+      card.classList.remove('dl-error');
+      if (status) status.textContent = 'Downloading…';
+
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        // Release the blob URL after a tick — Firefox needs it to live
+        // long enough for the click to register.
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
+
+        if (status) status.textContent = '✓ Downloaded ' + filename;
+      } catch (err) {
+        card.classList.add('dl-error');
+        if (status) {
+          status.innerHTML = 'Download failed — <a href="' + url +
+            '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">open the raw file</a> and save manually.';
+        }
+        console.error('Download failed:', err);
+      } finally {
+        card.classList.remove('is-downloading');
+      }
+    });
+  });
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const pre = btn.parentElement.querySelector('pre.code');
