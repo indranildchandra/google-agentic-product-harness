@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Agent Files
+CLAUDE.md
+GEMINI.md
+.claude/
+.gemini/
+.agents/
