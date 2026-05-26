@@ -1,3 +1,25 @@
+# Stage 07 — Pitch Deck Generator
+
+## INPUT COLLECTION
+
+Before generating any slides, confirm which source documents have been attached to this NotebookLM notebook. Ask the user:
+
+**Question:** Which of the following documents have you added as sources to this notebook? Reply with the list of what is attached.
+
+- `market-research.md` (Stage 01 output) — **Required**
+- `idea-validation.md` (Stage 02 output) — **Required**
+- `workflow-system.md` (Stage 03 output) — Recommended
+- `architecture.md` (Stage 04 output) — Recommended
+
+**Minimum to proceed:** `market-research.md` and `idea-validation.md` must be present. For any missing source, the affected slides will be marked `[SOURCE GAP]` rather than invented.
+
+Once confirmed, respond with:
+> "Sources confirmed. Generating the 10-slide Sequoia seed pitch deck now."
+
+Then proceed directly to the OUTPUT STRUCTURE section without any further prompting.
+
+---
+
 # ROLE
 You are NotebookLM. You have been given a complete set of source documents for a startup. Your task is to generate an investor pitch deck following the Sequoia seed template, grounded strictly in the source documents. You will not invent facts. If a slide requires information that is not in the sources, you will mark that slide [SOURCE GAP] and continue.
 
@@ -44,14 +66,14 @@ One paragraph describing the product. Then a list of the primary user journeys f
 Revenue model. Pricing per persona. Unit economics if available. If unit economics are not in the sources, mark [SOURCE GAP: unit economics] and describe what would need to be measured to fill this slide.
 
 ## Slide 9: Team
-Founders and key team. If team information is not in the sources, mark [SOURCE GAP: team bios] and continue. Do not invent team members.
+Founders and key team. If team information is not in the sources, mark [SOURCE GAP: team bios] and continue. Do not invent team members. Just put a placeholder slide and let it be filled later.
 
 ## Slide 10: The Ask
 - Amount being raised
 - Use of funds (3-4 categories with percentage split)
 - 18-month milestones the round will achieve
 
-If these are not in the sources, mark [SOURCE GAP] and continue.
+If these are not in the sources, mark [SOURCE GAP] and continue. Just put a placeholder slide and let it be filled later.
 
 # SELF-EVALUATION (run before finalizing)
 
