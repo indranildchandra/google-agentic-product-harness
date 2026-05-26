@@ -94,6 +94,10 @@ Format strictly as below for each of TAM, SAM, SOM:
   - Risk 2: ...
 - Verdict: GO / HOLD / NO-GO with one-sentence reasoning.
 
+> **KILL SIGNAL:** If the verdict is NO-GO, output the full Section 5 as normal, then stop and display this message to the user:
+> "This analysis returned a NO-GO verdict. Proceeding to Stage 02 on a NO-GO idea will waste time and compound bad assumptions. Options: (1) Stop here and revisit the idea. (2) Identify which assumption, if changed, would flip the verdict — revise it and rerun Stage 01. (3) Continue anyway with full awareness of the risk. Which do you choose?"
+> Do not proceed to Stage 02 until the user has responded.
+
 ## Section 6: Self-Critique Delta (only if Pass 2 changed anything)
 - What was weak in Pass 1.
 - What was strengthened in Pass 2.
@@ -110,6 +114,17 @@ TAM:
 - ARPU: ₹3,500/year interest revenue [ASSUMPTION: triangulated from Slice and KreditBee disclosures]
 - TAM = 2.8M × ₹3,500 = ₹980 Cr or ~$117M
 - Cross-check: Redseer 2024 pegs gig fintech TAM at $130M. Delta: 10%. Reasonable.
+
+# ASSUMPTIONS LOG
+
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
+
+Save your output as `.product-harness/market-research.md`.
+
+---
+## Stage 1 — Market Researcher [date]
+- [ASSUMPTION: <text>] — <section it appears in>
+---
 
 # SELF-EVALUATION RUBRIC (run during Pass 2; show the score)
 

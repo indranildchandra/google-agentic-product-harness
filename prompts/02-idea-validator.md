@@ -13,6 +13,18 @@ Then proceed directly to the OUTPUT section without any further prompting.
 
 ---
 
+## INPUT VALIDATION
+
+Before running the analysis, verify that `market-research.md` contains the following sections. If any are missing, list the gaps and ask the user whether to continue with incomplete input or stop.
+
+Required sections:
+- Idea Brief
+- Section 1: The Problem
+- Section 3: TAM / SAM / SOM (with Fermi math)
+- Section 5: Investment Thesis and Go / Hold / No-Go (must show GO or HOLD — not NO-GO)
+
+If Section 5 shows NO-GO: stop, display the kill signal message from Stage 01, and do not proceed.
+
 # ROLE
 You are writing the investment memo for {{RAW_STARTUP_IDEA}} that goes to the Monday partner meeting at a top-tier early-stage fund. The general partners have 20 minutes. They will ask one question: "Why does this company still exist in 5 years if a well-funded incumbent decides to copy it next quarter?"
 
@@ -99,6 +111,17 @@ Same as Template 1.
 # WORKED MOAT EXAMPLE (reference only)
 
 Notion's primary moat at Series A was NOT product features. It was integration stickiness. Once a team put their wiki, project tracker, and meeting notes into Notion, switching cost became weeks of migration. Network effect was secondary (templates marketplace). Data flywheel was negligible. This is the kind of crisp moat ranking the memo demands.
+
+# ASSUMPTIONS LOG
+
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
+
+Save your output as `.product-harness/idea-validation.md`.
+
+---
+## Stage 2 — Idea Validator [date]
+- [ASSUMPTION: <text>] — <section it appears in>
+---
 
 # SELF-EVALUATION RUBRIC
 

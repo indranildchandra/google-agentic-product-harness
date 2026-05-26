@@ -85,3 +85,21 @@ Check each:
 - Slide 5 includes the cross-check against published industry estimate
 
 If any check fails, revise before output.
+
+# INVESTOR FEEDBACK LOOP
+
+After the pitch deck is delivered and investor feedback is received, do not treat each piece of feedback as a deck problem. Most investor objections are upstream spec problems.
+
+For each piece of feedback, identify which stage owns the challenged assumption:
+
+| Investor objection | Upstream owner | Return to |
+|---|---|---|
+| TAM is too small or wrong | market-research.md §3 | Stage 01 |
+| Target user is wrong | market-research.md §2 | Stage 01 |
+| No real moat | idea-validation.md §3 | Stage 02 |
+| Competition was missed | idea-validation.md §2 | Stage 02 |
+| Product is unclear | workflow-system.md §1 | Stage 03 |
+| Team slide is weak | n/a — fill the SOURCE GAP | Stage 08 |
+| Market timing unclear | market-research.md §4 | Stage 01 |
+
+When returning to an upstream stage, bring the investor's exact words as an additional input. Update the affected `.md` file, then re-run all downstream stages that depend on it. The changelog and assumptions log will need updating too.

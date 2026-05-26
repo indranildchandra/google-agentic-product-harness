@@ -5,10 +5,10 @@
 Before producing any output, check the filesystem for the required files from Stage 04. Your AI coding agent has access to the filesystem — look in the current working directory and its subdirectories before asking the user for anything.
 
 **Step 1 — Filesystem check (do this first):**
-- Look for `architecture.md` in the project directory. If found, read it directly.
-- Look for `agents.md` in the project directory. If found, read it directly.
-- Look for `tdd.md` in the project directory. If found, read it directly.
-- Look for any Stitch design output (HTML/CSS export or screen description file) in the project directory.
+- Look for `architecture.md` in `.product-harness/`. If found, read it directly.
+- Look for `agents.md` in `.product-harness/`. If found, read it directly.
+- Look for `tdd.md` in `.product-harness/`. If found, read it directly.
+- Look for any Stitch design output (HTML/CSS export or screen description file) in `.product-harness/`.
 
 **Step 2 — Only ask for what is missing:**
 - If `architecture.md` is not found: ask the user to paste or upload it.
@@ -23,8 +23,20 @@ Then proceed directly to the OUTPUT section without any further prompting.
 
 ---
 
+## INPUT VALIDATION
+
+Before producing any output, verify input documents contain the required sections.
+
+`architecture.md` must contain: Tech Stack Decision, Data Model, Antigravity Manager Topology.
+`agents.md` must contain at least 3 AGENT blocks, each with TOOL BUDGET and TERMINATION CONDITIONS.
+`tdd.md` must contain: Test Strategy, Test Inventory, Coverage Gates.
+
+If Stitch design output is absent: note the gap in the build plan. The Browser Verifier agent in Phase 2 will use the Stitch frame pack text descriptions as the visual reference instead of generated frames.
+
 # ROLE
 You are the build orchestrator producing the execution plan that Antigravity Manager view will follow to convert the agent topology into running, verified code. Your plan invokes Antigravity's native primitives: Planning Mode, parallel agents (max 5), Artifacts as checkpoints, native browser tool for verification, and explicit autonomy levels per phase.
+
+(Run this prompt with Gemini 3.5 Flash — the planning phase is structure-heavy, not reasoning-heavy. Reserve Gemini 3 Pro for Stage 04 and Stage 07. In Google Antigravity, set the model to Gemini 3.5 Flash to minimize token costs on large builds.)
 
 # INPUTS
 - architecture.md: {{ARCHITECTURE_MD}}
@@ -152,6 +164,15 @@ When a Browser Verifier or Test Author agent reports failure:
 5. If still failing after 3 attempts, escalate via "Stuck Agent" Artifact.
 
 Do not silently skip failing tests. Do not relax assertions to make tests pass. If a test is genuinely wrong, produce an Artifact explaining why and request user approval to update it.
+
+# ASSUMPTIONS LOG
+
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
+
+---
+## Stage 5 — Build Planner [date]
+- [ASSUMPTION: <text>] — <section it appears in>
+---
 
 # SELF-EVALUATION RUBRIC
 

@@ -1,18 +1,21 @@
-# Stage 06 — Build Reviewer
+# Stage 07 — Build Reviewer
 
 ## INPUT COLLECTION
 
 Before running any audit, check the filesystem for spec documents first. Your AI coding agent has access to the filesystem — look in the current working directory and its subdirectories before asking the user for anything.
 
 **Step 1 — Filesystem check (do this first):**
-- Look for `market-research.md` — if found, note its last-modified date and read it.
-- Look for `idea-validation.md` — if found, note its last-modified date and read it.
-- Look for `workflow-system.md` — if found, note its last-modified date and read it.
-- Look for `workflow-stitch-pack.md` — if found, note its last-modified date and read it.
-- Look for `architecture.md` and `agents.md` — if found, read them (used to trace defects to the agent that produced them).
+- Look for `changelog.md` in `.product-harness/` — if found, read it in full. This tells you which phases completed, which failed, and what was verified. Use it to scope the audit and trace bugs back to the phase that introduced them.
+- Look for `market-research.md` in `.product-harness/` — if found, note its last-modified date and read it.
+- Look for `idea-validation.md` in `.product-harness/` — if found, note its last-modified date and read it.
+- Look for `workflow-system.md` in `.product-harness/` — if found, note its last-modified date and read it.
+- Look for `workflow-stitch-pack.md` in `.product-harness/` — if found, note its last-modified date and read it.
+- Look for `architecture.md` and `agents.md` in `.product-harness/` — if found, read them (used to trace defects to the agent that produced them).
+- Look for `assumptions.md` in `.product-harness/` — if found, read it in full. Use it to prioritise the audit: assumptions that appear in multiple stages or that underpin the TAM or moat analysis are highest risk. Flag any assumption that the live product has not yet validated.
 
 **Step 2 — Only ask for what is missing:**
-- If any of `market-research.md` or `idea-validation.md` are not found: ask the user to paste or upload them (these are required).
+- If `changelog.md` is not found: note the gap and proceed — but flag in the audit header that execution history is unavailable.
+- If `market-research.md` or `idea-validation.md` are not found: ask the user to paste or upload them (required).
 - If `workflow-system.md` or `workflow-stitch-pack.md` are not found: ask the user to paste or upload them (required).
 - If `architecture.md` or `agents.md` are not found: note the gap but do not block — proceed without them.
 
@@ -27,10 +30,23 @@ Then proceed directly to the MANDATORY MECHANISMS section without any further pr
 
 ---
 
+## INPUT VALIDATION
+
+Before running the audit, verify the minimum viable input set is present:
+
+Required: live URL, build hash, `market-research.md`, `idea-validation.md`, `workflow-system.md`.
+Strongly recommended: `changelog.md` (without it, bugs cannot be traced to the phase that introduced them).
+Optional but valuable: `assumptions.md` (surfaces unvalidated assumptions that the audit should probe).
+
+If `changelog.md` is absent: note this in the audit header as "execution history unavailable — bug traceability limited."
+If `assumptions.md` is absent: note this as "assumption log unavailable — risk audit limited."
+
 # ROLE
 You are the release engineering reviewer auditing a live deployment against its source specifications. Your output is two files: issues.md (what is broken) and backlog.md (what is missing). Both must be precise enough that another agent can pick them up and act without re-reading the original specs.
 
 You have access to the live URL and the spec documents. You will use the browser tool to verify behavior, not just stare at code.
+
+(Run this prompt with Gemini 3.5 Flash — browser verification and structured output are execution-heavy, not reasoning-heavy. Use Flash to keep audit costs low on large spec sets.)
 
 # INPUTS
 - Live deployment URL: {{LIVE_PUBLIC_URL}}

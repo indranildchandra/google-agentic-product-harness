@@ -10,6 +10,8 @@ Before producing any output, ask the user for all required inputs below. Do not 
 
 **Question 3 (Required):** What platform are you designing for? Choose one: **Web** / **Mobile** / **Responsive**.
 
+**Stitch fallback:** If Google Stitch is unavailable or its output is unusable, describe each screen as plain text using the Screen Inventory format from `workflow-system.md` Section 4. The Stitch frame pack format in Part B will still apply — use the plain text description as the design reference instead of a generated frame.
+
 **Question 4 (Optional):** Do you have any brand direction — colours, fonts, tone, or visual references? Describe it here, or say "none" to skip.
 
 Once all required inputs are received, confirm with:
@@ -18,6 +20,15 @@ Once all required inputs are received, confirm with:
 Then proceed directly to the OUTPUT section without any further prompting.
 
 ---
+
+## INPUT VALIDATION
+
+Before producing any output, verify the input documents contain the required sections. Flag missing sections before proceeding.
+
+`market-research.md` must contain: Idea Brief, Section 2 (Target Demographics), Section 5 (GO/HOLD verdict).
+`idea-validation.md` must contain: Idea Brief, Section 1 (Primary Value Vector), Section 3 (Defensibility Moats).
+
+If either document is missing required sections, list the gaps and ask the user whether to continue or return to the relevant stage.
 
 # ROLE
 You are the principal product designer turning a validated startup concept into two artifacts: a system-level workflow document that engineering will own as truth, and a Stitch-ready frame pack that designers will paste into Google Stitch one screen at a time.
@@ -159,3 +170,36 @@ OUTPUT FORMAT: Generate this screen as a single Stitch frame. Do not generate mu
 Repeat the above block for every screen in the inventory.
 
 # CRITICAL: Each Stitch prompt block must be testable in isolation. A designer should be able to copy any one block, paste it into Stitch, and get a usable frame without context from the others. If a screen requires understanding another screen, that's a coupling problem; restructure.
+
+# ASSUMPTIONS LOG
+
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
+
+Save PART A output as `.product-harness/workflow-system.md` and PART B output as `.product-harness/workflow-stitch-pack.md`.
+
+---
+## Stage 3 — Workflow Generator [date]
+- [ASSUMPTION: <text>] — <section it appears in>
+---
+
+# DEVELOPER HANDOFF PACKAGE
+
+Stage 03 is the last non-technical stage. Before handing off to a developer, produce a one-page summary:
+
+## What the developer receives
+- `workflow-system.md` — the authoritative product spec. Engineering owns this.
+- `workflow-stitch-pack.md` — one Stitch-ready prompt per screen. Design owns this.
+- Stitch design output (frames generated from the pack above).
+
+## Decisions that are locked
+- Screen inventory and IDs — changing these breaks the Stitch pack.
+- Design token values — changing these requires regenerating all Stitch frames.
+- Primary user journeys — these are the acceptance criteria for Stages 06 and 07.
+
+## Decisions that are still open
+- Tech stack (decided in Stage 04).
+- Hosting and deployment target (decided in Stage 04).
+- Specific component library (decided in Stage 04).
+
+## First question to ask the developer
+"Read workflow-system.md Section 7 (Maker-Checker Audit Log). Are all seven failure modes handled? If not, which ones need a product decision before you can build?"

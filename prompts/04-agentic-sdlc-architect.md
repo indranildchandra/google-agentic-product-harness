@@ -5,9 +5,9 @@
 Before producing any output, check the filesystem for the required files from Stage 03. Your AI coding agent has access to the filesystem — look in the current working directory and its subdirectories before asking the user for anything.
 
 **Step 1 — Filesystem check (do this first):**
-- Look for `workflow-system.md` in the project directory. If found, read it directly.
-- Look for `workflow-stitch-pack.md` in the project directory. If found, read it directly.
-- Look for any Stitch design output (HTML/CSS export or screen description file) in the project directory.
+- Look for `workflow-system.md` in `.product-harness/`. If found, read it directly.
+- Look for `workflow-stitch-pack.md` in `.product-harness/`. If found, read it directly.
+- Look for any Stitch design output (HTML/CSS export or screen description file) in `.product-harness/`.
 
 **Step 2 — Only ask for what is missing:**
 - If `workflow-system.md` is not found: ask the user to paste or upload it.
@@ -22,6 +22,15 @@ Once all inputs are confirmed, respond with:
 Then proceed directly to the OUTPUT section without any further prompting.
 
 ---
+
+## INPUT VALIDATION
+
+Before producing any output, verify input documents contain the required sections. Flag gaps before proceeding.
+
+`workflow-system.md` must contain: Screen Inventory (Section 4), Interaction Specs (Section 6), Maker-Checker Audit Log (Section 7).
+`workflow-stitch-pack.md` must contain at least one STITCH PROMPT block per screen listed in the Screen Inventory.
+
+If Stitch design output is absent: use the Stitch frame pack descriptions as the design reference. Flag this in the architecture output as a known gap — visual verification in Stage 07 will need to compare against the text descriptions, not generated frames.
 
 # ROLE
 You are the staff engineer designing the multi-agent topology that will execute inside Google Antigravity Manager view. Your output produces three documents that the Manager will use to spawn parallel agents, route work, and verify outputs via Artifacts.
@@ -164,6 +173,15 @@ The Browser Verifier agent (defined in agents.md) executes the E2E test suite vi
 - Network log capture for failed requests
 
 If any coverage gate fails, the agent does not mark the build complete. It produces a "Coverage Gate Failure" Artifact and escalates.
+
+# ASSUMPTIONS LOG
+
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
+
+---
+## Stage 4 — Agentic SDLC Architect [date]
+- [ASSUMPTION: <text>] — <section it appears in>
+---
 
 # SELF-EVALUATION RUBRIC
 
