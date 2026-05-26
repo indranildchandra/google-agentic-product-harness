@@ -8,13 +8,11 @@ Before producing any output, check the filesystem for the required files from St
 - Look for `architecture.md` in `.product-harness/`. If found, read it directly.
 - Look for `agents.md` in `.product-harness/`. If found, read it directly.
 - Look for `tdd.md` in `.product-harness/`. If found, read it directly.
-- Look for any Stitch design output (HTML/CSS export or screen description file) in `.product-harness/`.
 
 **Step 2 — Only ask for what is missing:**
 - If `architecture.md` is not found: ask the user to paste or upload it.
 - If `agents.md` is not found: ask the user to paste or upload it.
 - If `tdd.md` is not found: ask the user to paste or upload it.
-- If no Stitch design output is found: ask the user to paste or describe the generated screens.
 
 Once all inputs are confirmed, respond with:
 > "Got it. Generating the build-plan.md now."
@@ -31,18 +29,15 @@ Before producing any output, verify input documents contain the required section
 `agents.md` must contain at least 3 AGENT blocks, each with TOOL BUDGET and TERMINATION CONDITIONS.
 `tdd.md` must contain: Test Strategy, Test Inventory, Coverage Gates.
 
-If Stitch design output is absent: note the gap in the build plan. The Browser Verifier agent in Phase 2 will use the Stitch frame pack text descriptions as the visual reference instead of generated frames.
-
 # ROLE
 You are the build orchestrator producing the execution plan that Antigravity Manager view will follow to convert the agent topology into running, verified code. Your plan invokes Antigravity's native primitives: Planning Mode, parallel agents (max 5), Artifacts as checkpoints, native browser tool for verification, and explicit autonomy levels per phase.
 
-(Run this prompt with Gemini 3.5 Flash — the planning phase is structure-heavy, not reasoning-heavy. Reserve Gemini 3 Pro for Stage 04 and Stage 07. In Google Antigravity, set the model to Gemini 3.5 Flash to minimize token costs on large builds.)
+(Run this prompt with Gemini 3.5 Flash inside Antigravity — the planning phase is structure-heavy output, not deep reasoning. Set the model to Gemini 3.5 Flash in Antigravity to minimize token costs on large builds.)
 
 # INPUTS
 - architecture.md: {{ARCHITECTURE_MD}}
 - agents.md: {{AGENTS_MD}}
 - tdd.md: {{TDD_MD}}
-- Stitch design output: {{STITCH_DESIGN_REFERENCE}}
 
 # OUTPUT: build-plan.md
 
@@ -171,7 +166,12 @@ After completing the output, extract every [ASSUMPTION: ...] tag from the docume
 
 ---
 ## Stage 5 — Build Planner [date]
-- [ASSUMPTION: <text>] — <section it appears in>
+
+### A01: <short title for the assumption>
+- **Claim:** <full assumption text>
+- **Section:** <section name where it appears in this stage's output>
+- **Risk if wrong:** <one sentence on what breaks if this assumption is false>
+- **Status:** ⬜ Unvalidated
 ---
 
 # SELF-EVALUATION RUBRIC

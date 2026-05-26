@@ -123,7 +123,12 @@ Save your output as `.product-harness/market-research.md`.
 
 ---
 ## Stage 1 — Market Researcher [date]
-- [ASSUMPTION: <text>] — <section it appears in>
+
+### A01: <short title for the assumption>
+- **Claim:** <full assumption text>
+- **Section:** <section name where it appears in this stage's output>
+- **Risk if wrong:** <one sentence on what breaks if this assumption is false>
+- **Status:** ⬜ Unvalidated
 ---
 
 # SELF-EVALUATION RUBRIC (run during Pass 2; show the score)

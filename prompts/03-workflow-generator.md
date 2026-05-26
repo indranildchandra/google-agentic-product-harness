@@ -179,7 +179,12 @@ Save PART A output as `.product-harness/workflow-system.md` and PART B output as
 
 ---
 ## Stage 3 — Workflow Generator [date]
-- [ASSUMPTION: <text>] — <section it appears in>
+
+### A01: <short title for the assumption>
+- **Claim:** <full assumption text>
+- **Section:** <section name where it appears in this stage's output>
+- **Risk if wrong:** <one sentence on what breaks if this assumption is false>
+- **Status:** ⬜ Unvalidated
 ---
 
 # DEVELOPER HANDOFF PACKAGE

@@ -4,15 +4,15 @@
 
 Before producing any output, check the filesystem for the required files from Stage 03. Your AI coding agent has access to the filesystem — look in the current working directory and its subdirectories before asking the user for anything.
 
-**Step 1 — Filesystem check (do this first):**
+**Step 1 — Filesystem and MCP check (do this first):**
 - Look for `workflow-system.md` in `.product-harness/`. If found, read it directly.
 - Look for `workflow-stitch-pack.md` in `.product-harness/`. If found, read it directly.
-- Look for any Stitch design output (HTML/CSS export or screen description file) in `.product-harness/`.
+- Check if the **Stitch MCP server** is configured in Antigravity. If it is, fetch the Design DNA directly: `List my Stitch projects`, then `fetch Design DNA from <project name>`. This gives you design tokens, layout metadata, and component specs — no file export needed. If MCP is not configured, look for a Stitch design output file (HTML/CSS export or screen description) in `.product-harness/`.
 
 **Step 2 — Only ask for what is missing:**
 - If `workflow-system.md` is not found: ask the user to paste or upload it.
 - If `workflow-stitch-pack.md` is not found: ask the user to paste or upload it.
-- If no Stitch design output is found: ask the user to paste or describe the generated screens.
+- If neither MCP nor a design file is available: ask the user to paste or describe the generated screens, or set up the Stitch MCP following the [codelab](https://codelabs.developers.google.com/design-to-code-with-antigravity-stitch#0).
 
 **Question (always ask):** Do you have any tech stack constraints? (e.g. "must use React", "backend must be Firebase", "no TypeScript"). Say "none" if not.
 
@@ -37,10 +37,14 @@ You are the staff engineer designing the multi-agent topology that will execute 
 
 You know that Antigravity supports up to 5 parallel agents, each in its own workspace with its own context. Agents produce Artifacts (verifiable deliverables: plans, code diffs, screenshots, browser recordings) that the developer reviews asynchronously. The browser tool is native and can navigate, click, fill forms, and capture screenshots.
 
+The Stitch Design DNA (design tokens, layout metadata, component specs) is available directly via the Stitch MCP server configured in Antigravity — you do not need a manual file export. Fetch it with `fetch Design DNA from Stitch` when you need visual reference.
+
+(Run this prompt with Gemini 3.5 Flash inside Antigravity — architecture and agent contract generation is structure-heavy output, not deep reasoning. Flash keeps token costs low on large spec sets.)
+
 # INPUTS
 - workflow-system.md: {{WORKFLOW_SYSTEM_MD}}
 - workflow-stitch-pack.md: {{WORKFLOW_STITCH_PACK_MD}}
-- Stitch design output (HTML/CSS or Figma export): {{STITCH_DESIGN_REFERENCE}}
+- Stitch Design DNA (via MCP or HTML/CSS export fallback): {{STITCH_DESIGN_REFERENCE}}
 - Tech stack constraints (if any): {{STACK_CONSTRAINTS}}
 
 # OUTPUT
@@ -180,7 +184,12 @@ After completing the output, extract every [ASSUMPTION: ...] tag from the docume
 
 ---
 ## Stage 4 — Agentic SDLC Architect [date]
-- [ASSUMPTION: <text>] — <section it appears in>
+
+### A01: <short title for the assumption>
+- **Claim:** <full assumption text>
+- **Section:** <section name where it appears in this stage's output>
+- **Risk if wrong:** <one sentence on what breaks if this assumption is false>
+- **Status:** ⬜ Unvalidated
 ---
 
 # SELF-EVALUATION RUBRIC

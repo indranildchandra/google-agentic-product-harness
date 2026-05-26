@@ -8,7 +8,7 @@ A Google-native agentic prompt harness for first-time founders. Eight sequential
 
 This harness is a structured sequence of prompts, not a codebase. Each prompt is a standalone agent instruction designed to produce a specific artifact that feeds the next stage. Run them in order. Each prompt tells you which model to use and what inputs it needs.
 
-**The artifact chain:** every stage produces one or more `.md` files. Those files are the exact content you paste or upload when the next stage asks for its inputs. Nothing is lost between stages — the chain is self-contained. Stages 01–05 also append any `[ASSUMPTION]` tags they produce to a shared `assumptions.md`, which Stage 07 reads before auditing to surface compounding risk across the full pipeline.
+**The artifact chain:** every stage produces one or more `.md` files. Those files are the exact content you paste or upload when the next stage asks for its inputs. Nothing is lost between stages — the chain is self-contained. Stages 01–05 also append any `[ASSUMPTION]` tags they produce to a shared `.product-harness/assumptions.md`, which Stage 07 reads before auditing to surface compounding risk across the full pipeline.
 
 **Who this is for:** stages 01–03 are accessible to any founder — no coding required. Stages 04–07 use Google Antigravity (Google's autonomous multi-agent coding environment) and produce agent definitions, architecture specs, test suites, and a running codebase — you will need a technical co-founder or developer to run and verify those outputs. Stage 08 is back to non-technical: it runs inside NotebookLM.
 
@@ -21,11 +21,11 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 | 01 | [Market Researcher](prompts/01-market-researcher.md) | Gemini 3.1 Pro | Raw idea, target geography, target audience | `market-research.md` — TAM/SAM/SOM, personas, tailwinds/headwinds, GO/HOLD/NO-GO verdict |
 | 02 | [Idea Validator](prompts/02-idea-validator.md) | Gemini 3.1 Pro | `market-research.md` | `idea-validation.md` — competitive matrix, moat analysis, pre-mortem, defensibility score |
 | 03 | [Workflow Generator](prompts/03-workflow-generator.md) | Gemini 3.1 Pro | `market-research.md` + `idea-validation.md` | `workflow-system.md` (architecture truth) + `workflow-stitch-pack.md` (one Stitch prompt per screen) |
-| 04 | [Agentic SDLC Architect](prompts/04-agentic-sdlc-architect.md) | Gemini 3.1 Pro | `workflow-system.md` + `workflow-stitch-pack.md` + Stitch design output | `architecture.md` + `agents.md` + `tdd.md` |
+| 04 | [Agentic SDLC Architect](prompts/04-agentic-sdlc-architect.md) | Gemini 3.5 Flash (Antigravity) | `workflow-system.md` + `workflow-stitch-pack.md` + Stitch Design DNA (via MCP) | `architecture.md` + `agents.md` + `tdd.md` |
 | 05 | [Build Planner](prompts/05-build-planner.md) | Gemini 3.5 Flash (Antigravity Planning Mode) | `architecture.md` + `agents.md` + `tdd.md` + Stitch design output | `build-plan.md` — phased execution plan for Antigravity Manager view |
 | 06 | [Build Executor](prompts/06-build-executor.md) | Gemini 3.5 Flash (Antigravity) | `build-plan.md` + all Stage 04 files | Running codebase + `changelog.md` — live record of what was built, phase by phase |
 | 07 | [Build Reviewer](prompts/07-build-reviewer.md) | Gemini 3.5 Flash + browser tool | Live deployment URL + `changelog.md` + all upstream `.md` files | `issues.md` + `backlog.md` — severity-triaged bugs and feedable next-sprint backlog |
-| 08 | [Pitch Deck Generator](prompts/08-pitch-deck-generator.md) | NotebookLM | All upstream `.md` files as sources | 10-slide investor pitch deck following the Sequoia seed template |
+| 08 | [Pitch Deck Generator](prompts/08-pitch-deck-generator.md) | NotebookLM | All upstream `.md` files as sources | 10-slide investor pitch deck following the [Sequoia seed template](https://www.sequoiacap.com/article/writing-a-business-plan/) |
 
 ---
 
@@ -57,17 +57,20 @@ Your startup idea
                    ▼
      ┌──────────────────────────────────────────────────────┐
      │   GOOGLE STITCH                                      │
-     │   Paste frame prompts · Export UI / Connect MCP      │
+     │   Paste frame prompts · Design DNA generated         │
      └─────────────────┬────────────────────────────────────┘
-        ╔══════════════╧══════════╗
-        ║   HAND OFF TO DEVELOPER ║
-        ╚══════════════╤══════════╝
+                       │  Stitch MCP auto-ingests Design DNA
+        ╔══════════════╧════════════════════════╗
+        ║   HAND OFF TO DEVELOPER               ║
+        ║   Install Stitch MCP in Antigravity   ║
+        ║   Verify bridge · paste API key       ║
+        ╚══════════════╤════════════════════════╝
                        │
                        ▼
-┌───────────────────────────────────────────────────────┐
-│ 04  AGENTIC SDLC ARCHITECT             Gemini 3.1 Pro │
-│     Agent Topology · Data Model · TDD Spec            │
-└──────────────────┬────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│ 04  AGENTIC SDLC ARCHITECT  Gemini 3.5 Flash (Antigravity)   │
+│     Architecture · Agent Topology · TDD Spec                 │
+└──────────────────┬───────────────────────────────────────────┘
                    │
                    ▼
 ┌──────────────────────────────────────────────────────┐
@@ -83,7 +86,7 @@ Your startup idea
                    │
                    ▼
 ┌───────────────────────────────────────────────────────┐
-│ 07  BUILD REVIEWER       Gemini 3.5 Flash + browser  │
+│ 07  BUILD REVIEWER       Gemini 3.5 Flash + browser   │
 │     Live Audit · issues.md · backlog.md               │
 └──────────────────┬────────────────────────────────────┘
                    │
@@ -104,10 +107,13 @@ Your startup idea
 
 ### Prerequisites
 
-- Access to Gemini 3.1 Pro (for stages 01–07)
+- Access to Gemini 3.1 Pro (for stages 01–03)
+- Access to Gemini 3.5 Flash (for stages 04–07)
 - Access to Google Antigravity (for stages 04–07)
 - Access to NotebookLM (for stage 08)
 - Access to Google Stitch (for stage 03 design output)
+- A Stitch API key (for MCP bridge between Stitch and Antigravity at Stage 04) — see [codelab](https://codelabs.developers.google.com/design-to-code-with-antigravity-stitch#0)
+- Node.js 24.x (required for Antigravity stages 04–07) — see `install_scripts/` or open [installation-guide.html](installation-guide.html) for the full interactive setup walkthrough
 
 ### Step-by-step
 
@@ -117,16 +123,28 @@ Your startup idea
 4. **Save the output** into `.product-harness/` in your project directory (e.g. `.product-harness/market-research.md`). This keeps all generated artifacts in one folder that can be excluded from production deployments via `.gitignore` or CI/CD ignore rules.
 5. **The next stage reads it automatically** — stages 04–07 check `.product-harness/` first and only ask if a file is missing.
 
-Stages 01–03 are linear and synchronous — run them in Gemini chat one at a time. Stages 04–05 can run as parallel agents inside Antigravity Manager view. Stage 06 executes sequentially phase by phase and logs each step to `.product-harness/changelog.md`.
+Before running stages 04–07 in Antigravity, ensure Node.js 24.x is installed. Run `install_scripts/setup-node-linux-mac.sh` (macOS/Linux) or `install_scripts/setup-node-win.ps1` (Windows) — each script detects an existing install and skips if already on Node 24.
+
+Stages 01–03 are linear and synchronous — run them in Gemini chat one at a time. Stages 04–07 run inside Antigravity. Stages 04–05 can run as parallel agents inside Antigravity Manager view. Stage 06 executes sequentially phase by phase and logs each step to `.product-harness/changelog.md`.
+
+### Stitch → Antigravity MCP bridge (between Stage 03 and Stage 04)
+
+Stage 03 produces `workflow-stitch-pack.md` — a set of frame prompts you paste into [Google Stitch](https://stitch.withgoogle.com/) to generate high-fidelity UI screens. Instead of manually exporting assets, the **Stitch MCP server** lets Antigravity fetch the Design DNA (design tokens, layout metadata, component specs) directly from your Stitch project. Follow the [Google Codelab: Design-to-Code with Antigravity and Stitch](https://codelabs.developers.google.com/design-to-code-with-antigravity-stitch#0) to set this up — the steps are:
+
+1. In Google Stitch, go to **Profile → Stitch settings → API key → Create key**. Copy and store the key securely.
+2. Open Antigravity IDE. Press **CMD+E** (Mac) or **CTRL+E** (Windows) to open Agent Manager → **MCP Servers**.
+3. Open the MCP store via the `...` dropdown. Search **"Stitch"** → **Install** → paste your API key when prompted.
+4. Verify the bridge: type `List my Stitch projects.` in the Agent chat. If it returns your project name, the connection is live.
+5. Stage 04 agents can now call `fetch Design DNA` and Antigravity will pull layout, tokens, and component metadata straight from Stitch — no manual export needed.
 
 ### Model settings
 
 | Stage | Temperature | Thinking budget | Grounding |
 |-------|-------------|-----------------|-----------|
-| 01, 02, 04 | 0.4 | High | Google Search on |
-| 03, 05 | 0.4 | Medium | — |
-| 06 | — | — | Antigravity execution environment |
-| 07 | — | — | Gemini 3.5 Flash + browser tool |
+| 01, 02 | 0.4 | High | Google Search on |
+| 03 | 0.4 | Medium | — |
+| 04, 05, 06 | — | — | Antigravity execution environment (Gemini 3.5 Flash) |
+| 07 | — | — | Antigravity browser tool (Gemini 3.5 Flash) |
 | 08 | 0.7 | — | NotebookLM sources |
 
 ---
@@ -151,11 +169,11 @@ Stages 01–03 are linear and synchronous — run them in Gemini chat one at a t
 
 **Input validation at every boundary.** Stages 02–07 open by checking that incoming documents have all required sections. Missing sections are flagged before any analysis runs — not discovered halfway through.
 
-**Assumptions are aggregated.** Every `[ASSUMPTION]` tag produced across stages 01–05 is appended to a shared `assumptions.md`. Stage 07 reads this before auditing to identify which assumptions the live product has not yet validated.
+**Assumptions are aggregated.** Every `[ASSUMPTION]` tag produced across stages 01–05 is appended to `.product-harness/assumptions.md` using a structured format: assumption ID, claim, source section, risk level (High / Medium / Low), and validation status (⬜ Unvalidated by default). Stage 07 reads this file before auditing and updates the status of each assumption against live behavior.
 
 **Developer handoff is explicit.** Stage 03 ends with a one-page handoff package: what the developer receives, which decisions are locked, which are still open, and the first question they should ask.
 
-**Feedback loop closes the cycle.** Stage 08 ends with a structured investor-feedback routing table — each objection maps back to the upstream stage that owns the challenged assumption, so the pipeline can be re-entered cleanly rather than patching the deck.
+**Feedback loop closes the cycle.** Stage 08 ends with a structured investor-feedback routing table — each objection maps back to the upstream stage that owns the challenged assumption, so the pipeline can be re-entered cleanly rather than patching the deck. The pitch structure follows the [Sequoia seed template](https://www.sequoiacap.com/article/writing-a-business-plan/) — Sequoia's publicly documented framework covering Purpose, Problem, Solution, Why Now, Market, Competition, Business Model, Team, Financials, and Vision.
 
 **Portable.** The grounding and structured-output mechanics map to Claude (`web_search` + structured output) and GPT (function calling + browsing). Stages 04–06 are Antigravity-native but can be run manually with Cursor / Claude Code as well with minor modifications.
 
@@ -173,6 +191,14 @@ prompts/                        # The eight prompt templates
   06-build-executor.md
   07-build-reviewer.md
   08-pitch-deck-generator.md
+
+install_scripts/                # Node.js 24.x setup for Antigravity sessions
+  setup-node-linux-mac.sh       # macOS / Linux: installs nvm + Node 24, patches PATH
+  setup-node-win.ps1            # Windows: installs Node 24 LTS MSI, refreshes env vars
+
+installation-guide.html         # Interactive setup guide (open in browser) — covers Antigravity
+                                #   install, Node.js setup via scripts, Firebase project creation,
+                                #   Firebase CLI login, firebase init, build and deploy to Hosting
 
 .product-harness/                # Generated at runtime — add to .gitignore or CI exclude list
   market-research.md            # Stage 01 output
@@ -193,4 +219,4 @@ prompts/                        # The eight prompt templates
 
 ## License
 
-MIT
+[MIT](LICENSE)
