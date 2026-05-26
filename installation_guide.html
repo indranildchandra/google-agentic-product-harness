@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Antigravity + Firebase · Train The Trainers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     Friendly Classroom Aesthetic - warm paper, hand-drawn vibe
+     ========================================================= */
+  :root {
+    --paper:        #FBF4E4;
+    --paper-deep:   #F3E7C9;
+    --ink:          #2A1F14;
+    --ink-soft:     #5C4B36;
+    --crimson:      #C2410C;
+    --crimson-deep: #9A2D08;
+    --mustard:      #D4A017;
+    --olive:        #5A6B2F;
+    --teal:         #2C7A7B;
+    --sky:          #4A7BA6;
+    --berry:        #8B3A62;
+    --chalk:        #FFF8E7;
+    --shadow:       rgba(60, 40, 20, 0.12);
+    --shadow-strong: rgba(60, 40, 20, 0.25);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(212, 160, 23, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(194, 65, 12, 0.06) 0%, transparent 40%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0 0.08 0 0 0 0.06 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    color: var(--ink);
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ============== HEADER ============== */
+  header.hero {
+    position: relative;
+    padding: 80px 24px 60px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 3px dashed var(--ink-soft);
+  }
+  header.hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(180deg, transparent 0, transparent 39px, rgba(74, 123, 166, 0.15) 39px, rgba(74, 123, 166, 0.15) 40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  header.hero > * { position: relative; z-index: 1; }
+  .doodle-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: var(--chalk);
+    padding: 6px 20px;
+    border-radius: 40px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    transform: rotate(-3deg);
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 24px;
+  }
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 1.05;
+    margin: 0 0 12px;
+    color: var(--ink);
+    letter-spacing: -1px;
+  }
+  h1.title .accent {
+    color: var(--crimson);
+    font-style: italic;
+    position: relative;
+    display: inline-block;
+  }
+  h1.title .accent::after {
+    content: "";
+    position: absolute;
+    left: -4px; right: -4px; bottom: 4px;
+    height: 12px;
+    background: var(--mustard);
+    opacity: 0.45;
+    z-index: -1;
+    border-radius: 8px;
+    transform: skew(-8deg);
+  }
+  .subtitle {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--ink-soft);
+    margin: 0 auto 32px;
+    max-width: 700px;
+  }
+  .hero-meta {
+    display: inline-flex;
+    gap: 32px;
+    padding: 14px 28px;
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--mustard);
+    font-size: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 8px; }
+
+  /* ============== LAYOUT ============== */
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ============== TABLE OF CONTENTS ============== */
+  .toc {
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+    box-shadow: 6px 6px 0 var(--olive);
+    position: relative;
+  }
+  .toc::before {
+    content: "📋";
+    position: absolute;
+    top: -18px; left: 24px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-size: 28px;
+  }
+  .toc h2 {
+    font-family: 'Fraunces', serif;
+    margin: 0 0 16px;
+    font-size: 26px;
+    color: var(--ink);
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 22px;
+    columns: 2;
+    column-gap: 32px;
+  }
+  .toc li {
+    margin-bottom: 8px;
+    break-inside: avoid;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px dotted var(--ink-soft);
+    transition: all 0.2s;
+  }
+  .toc a:hover {
+    color: var(--crimson);
+    border-bottom-style: solid;
+  }
+  @media (max-width: 600px) { .toc ol { columns: 1; } }
+
+  /* ============== SECTIONS ============== */
+  section.chapter {
+    margin: 0 0 64px;
+    position: relative;
+  }
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 3px wavy var(--ink-soft);
+    border-bottom-style: dashed;
+  }
+  .chapter-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--crimson);
+    color: var(--chalk);
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 800;
+    border-radius: 50%;
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: rotate(-5deg);
+    flex-shrink: 0;
+  }
+  .chapter-num.green { background: var(--olive); }
+  .chapter-num.teal  { background: var(--teal); }
+  .chapter-num.berry { background: var(--berry); }
+  h2.chapter-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 0;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin: 32px 0 12px;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h3 .step-pill {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--chalk);
+    background: var(--mustard);
+    padding: 2px 12px;
+    border-radius: 30px;
+    font-weight: 600;
+    line-height: 1.4;
+    transform: rotate(-2deg);
+  }
+
+  p { margin: 0 0 14px; }
+
+  /* ============== CALLOUTS ============== */
+  .callout {
+    border-left: 5px solid var(--mustard);
+    background: rgba(212, 160, 23, 0.1);
+    padding: 16px 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 20px 0;
+    position: relative;
+  }
+  .callout.warn  { border-left-color: var(--crimson); background: rgba(194, 65, 12, 0.08); }
+  .callout.tip   { border-left-color: var(--olive);   background: rgba(90, 107, 47, 0.08); }
+  .callout.info  { border-left-color: var(--sky);     background: rgba(74, 123, 166, 0.08); }
+  .callout strong {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ============== OS TABS ============== */
+  .os-tabs {
+    margin: 24px 0;
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 4px 4px 0 var(--shadow-strong);
+  }
+  .tab-buttons {
+    display: flex;
+    background: var(--paper-deep);
+    border-bottom: 2px solid var(--ink);
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    border-right: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { background: rgba(212, 160, 23, 0.15); color: var(--ink); }
+  .tab-btn.active {
+    background: var(--chalk);
+    color: var(--crimson);
+    box-shadow: inset 0 -3px 0 var(--crimson);
+  }
+  .tab-panel { display: none; padding: 20px 24px; }
+  .tab-panel.active { display: block; }
+
+  /* ============== CODE BLOCKS ============== */
+  .code-wrap {
+    position: relative;
+    margin: 16px 0;
+  }
+  pre.code {
+    background: #1F1A12;
+    color: #F5E9C9;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 18px 20px;
+    padding-right: 100px;
+    border-radius: 10px;
+    overflow-x: auto;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--mustard);
+    margin: 0;
+    white-space: pre;
+  }
+  pre.code .cmt   { color: #8B7E5C; font-style: italic; }
+  pre.code .kw    { color: #E89C3C; }
+  pre.code .str   { color: #A8C97D; }
+  pre.code .flag  { color: #6AB7C9; }
+  pre.code .prompt{ color: #E36B5C; user-select: none; }
+
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--mustard);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .copy-btn:hover { background: var(--crimson); color: var(--chalk); }
+  .copy-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+  .copy-btn.copied { background: var(--olive); color: var(--chalk); }
+
+  code.inline {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--paper-deep);
+    color: var(--crimson-deep);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.92em;
+    font-weight: 500;
+    border: 1px solid rgba(60, 40, 20, 0.15);
+  }
+
+  /* ============== DOWNLOAD CARD ============== */
+  .download-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) { .download-grid { grid-template-columns: 1fr; } }
+  .dl-card {
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+  }
+  .dl-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+  .dl-card .dl-icon { font-size: 36px; margin-bottom: 8px; }
+  .dl-card .dl-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .dl-card .dl-sub { font-size: 13px; color: var(--ink-soft); }
+  .dl-card .dl-file {
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--crimson);
+    word-break: break-all;
+  }
+
+  /* ============== BIG BUTTONS ============== */
+  .btn-big {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--crimson);
+    color: var(--chalk);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all 0.15s;
+  }
+  .btn-big:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn-big.alt { background: var(--olive); }
+  .btn-big.alt2 { background: var(--teal); }
+
+  /* ============== ILLUSTRATIONS ============== */
+  .illustration {
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 14px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 4px 4px 0 var(--shadow-strong);
+  }
+  .illustration svg { max-width: 100%; height: auto; }
+  .illustration .caption {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  /* ============== LISTS ============== */
+  ol.steps, ul.bullets {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: stepcounter;
+  }
+  ol.steps li {
+    counter-increment: stepcounter;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 14px;
+    min-height: 38px;
+  }
+  ol.steps li::before {
+    content: counter(stepcounter);
+    position: absolute;
+    left: 0; top: 0;
+    width: 36px; height: 36px;
+    background: var(--mustard);
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  ul.bullets li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 8px;
+  }
+  ul.bullets li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--olive);
+    font-weight: 800;
+    font-size: 18px;
+  }
+
+  /* ============== INTERACTIVE CLI PREVIEW ============== */
+  .cli-prompt-list {
+    background: var(--chalk);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    box-shadow: 4px 4px 0 var(--shadow-strong);
+  }
+  .cli-prompt-list dt {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--crimson-deep);
+    margin-top: 14px;
+  }
+  .cli-prompt-list dt:first-child { margin-top: 0; }
+  .cli-prompt-list dd {
+    margin: 4px 0 0;
+    padding-left: 16px;
+    border-left: 3px solid var(--mustard);
+    color: var(--ink-soft);
+  }
+  .cli-prompt-list dd code { font-weight: 600; color: var(--ink); }
+
+  /* ============== FOOTER ============== */
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    color: var(--ink-soft);
+    border-top: 3px dashed var(--ink-soft);
+    margin-top: 60px;
+  }
+  footer .heart {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--crimson);
+  }
+
+  /* ============== DECORATIVE STICKERS ============== */
+  .sticker {
+    display: inline-block;
+    background: var(--mustard);
+    color: var(--ink);
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    padding: 2px 14px;
+    border-radius: 20px;
+    transform: rotate(-3deg);
+    border: 2px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    margin: 0 4px;
+  }
+
+  /* ============== PRINT-FRIENDLY ============== */
+  @media print {
+    body { background: white; font-size: 12pt; }
+    .copy-btn, .tab-buttons { display: none; }
+    .tab-panel { display: block !important; border-top: 1px dashed #999; padding-top: 12px; }
+    .tab-panel::before { content: attr(data-os) " — "; font-weight: bold; }
+    pre.code { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="doodle-badge">✨ Train The Trainers · 2026 ✨</div>
+  <h1 class="title">Building with <span class="accent">Antigravity</span><br/>&amp; Firebase</h1>
+  <p class="subtitle">A hands-on guide to go from zero → deployed React app in one session</p>
+  <div class="hero-meta">
+    <span>📦 React + Vite</span>
+    <span>🚀 Antigravity 2.0</span>
+    <span>🔥 Firebase Hosting</span>
+    <span>⏱️ ~3 hours</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============== TOC ============== -->
+<nav class="toc">
+  <h2>What we'll do today</h2>
+  <ol>
+    <li><a href="#antigravity">Install Antigravity 2.0</a></li>
+    <li><a href="#nodejs">Install Node.js (with a script!)</a></li>
+    <li><a href="#run-script">Run the setup script</a></li>
+    <li><a href="#verify">Verify your install</a></li>
+    <li><a href="#firebase-project">Create a Firebase project</a></li>
+    <li><a href="#firebase-cli">Install &amp; log in to Firebase CLI</a></li>
+    <li><a href="#firebase-init">Initialize Firebase in your app</a></li>
+    <li><a href="#deploy">Build &amp; deploy 🎉</a></li>
+  </ol>
+</nav>
+
+<!-- ============== PART A: SETUP ============== -->
+
+<!-- ===== 1. ANTIGRAVITY ===== -->
+<section class="chapter" id="antigravity">
+  <div class="chapter-header">
+    <div class="chapter-num">1</div>
+    <h2 class="chapter-title">Install Antigravity 2.0</h2>
+  </div>
+
+  <p>Antigravity is Google's agent-first IDE — it's where we'll write our React app. It runs on macOS, Windows, and Linux.</p>
+
+  <div class="illustration" aria-hidden="true">
+    <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.2" fill="#5C4B36" opacity="0.25"/>
+        </pattern>
+      </defs>
+      <rect width="600" height="180" fill="url(#dots)"/>
+      <!-- Laptop -->
+      <g transform="translate(200,30)">
+        <rect x="0" y="0" width="200" height="120" rx="10" fill="#FFF8E7" stroke="#2A1F14" stroke-width="3"/>
+        <rect x="10" y="10" width="180" height="95" rx="4" fill="#1F1A12"/>
+        <circle cx="100" cy="57" r="20" fill="none" stroke="#E89C3C" stroke-width="3"/>
+        <circle cx="100" cy="57" r="8" fill="#E89C3C"/>
+        <path d="M 80 57 Q 100 30 120 57" stroke="#A8C97D" stroke-width="2.5" fill="none"/>
+        <rect x="-15" y="120" width="230" height="10" rx="4" fill="#FFF8E7" stroke="#2A1F14" stroke-width="3"/>
+      </g>
+      <!-- Sparkles -->
+      <text x="100" y="60" font-family="Caveat" font-size="40" fill="#C2410C">✦</text>
+      <text x="470" y="100" font-family="Caveat" font-size="32" fill="#D4A017">✦</text>
+      <text x="80" y="140" font-family="Caveat" font-size="26" fill="#5A6B2F">✦</text>
+      <text x="490" y="40" font-family="Caveat" font-size="28" fill="#2C7A7B">✦</text>
+    </svg>
+    <div class="caption">"Open it. Stare at it lovingly. Then close it. We'll come back."</div>
+  </div>
+
+  <h3><span class="step-pill">Step 1.1</span> Download from the official site</h3>
+  <p>Head to the Antigravity download page and grab the installer that matches your operating system.</p>
+
+  <p style="text-align:center; margin: 28px 0;">
+    <a href="https://antigravity.google/download" class="btn-big" target="_blank" rel="noopener">
+      🪐 Download Antigravity 2.0 →
+    </a>
+  </p>
+
+  <div class="callout info">
+    <strong>Pick the right build</strong>
+    <p>On the download page you'll see options for <code class="inline">macOS Apple Silicon</code>, <code class="inline">macOS Intel</code>, <code class="inline">Windows x64</code>, <code class="inline">Windows ARM64</code>, and <code class="inline">Linux x64/ARM64</code>. If you're unsure which Mac you have, click the Apple menu → <em>About This Mac</em>.</p>
+  </div>
+
+  <h3><span class="step-pill">Step 1.2</span> Install it</h3>
+  <div class="os-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="ag-win">🪟 Windows</button>
+      <button class="tab-btn" data-tab="ag-mac">🍎 macOS</button>
+      <button class="tab-btn" data-tab="ag-linux">🐧 Linux</button>
+    </div>
+    <div class="tab-panel active" id="ag-win" data-os="Windows">
+      <ol class="steps">
+        <li>Double-click the downloaded <code class="inline">.exe</code> file.</li>
+        <li>If Windows SmartScreen warns you, click <strong>More info</strong> → <strong>Run anyway</strong>.</li>
+        <li>Click through the installer (defaults are fine). Add to PATH if asked.</li>
+        <li>Launch <em>Antigravity</em> from the Start menu when done.</li>
+      </ol>
+    </div>
+    <div class="tab-panel" id="ag-mac" data-os="macOS">
+      <ol class="steps">
+        <li>Open the downloaded <code class="inline">.dmg</code>.</li>
+        <li>Drag the <strong>Antigravity</strong> icon into the <strong>Applications</strong> folder.</li>
+        <li>Open Applications → right-click Antigravity → <strong>Open</strong> (only needed the first time, to bypass Gatekeeper).</li>
+      </ol>
+    </div>
+    <div class="tab-panel" id="ag-linux" data-os="Linux">
+      <ol class="steps">
+        <li>Extract the downloaded <code class="inline">.tar.gz</code> archive to a folder of your choice (e.g. <code class="inline">~/apps/antigravity</code>).</li>
+        <li>From a terminal, navigate into that folder and run <code class="inline">./antigravity</code>.</li>
+        <li>Optional: create a desktop entry so you can launch it from your app menu.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>Sign in with Google</strong>
+    <p>The first time you open Antigravity, sign in with your personal Google account. You get free access to start.</p>
+  </div>
+</section>
+
+<!-- ===== 2. NODE.JS ===== -->
+<section class="chapter" id="nodejs">
+  <div class="chapter-header">
+    <div class="chapter-num green">2</div>
+    <h2 class="chapter-title">Install Node.js (the easy way)</h2>
+  </div>
+
+  <p>React + Vite needs <strong>Node.js</strong> to run. We've written little scripts that check what you already have, install Node.js <strong>24.x</strong> if needed, set environment variables, and verify everything works — all in one go.</p>
+
+  <div class="callout">
+    <strong>Why a script?</strong>
+    <p>So we don't lose 30 minutes of class time troubleshooting PATH variables on twenty different laptops. 😅</p>
+  </div>
+
+  <h3><span class="step-pill">Step 2.1</span> Download the script for your OS</h3>
+
+  <div class="download-grid">
+    <a href="https://raw.githubusercontent.com/indranildchandra/google-agentic-product-harness/main/install_scripts/setup-node.ps1"
+       class="dl-card" target="_blank" rel="noopener" download="setup-node.ps1">
+      <div class="dl-icon">🪟</div>
+      <div class="dl-title">Windows</div>
+      <div class="dl-sub">PowerShell script</div>
+      <div class="dl-file">setup-node.ps1</div>
+    </a>
+    <a href="https://raw.githubusercontent.com/indranildchandra/google-agentic-product-harness/main/install_scripts/setup-node.sh"
+       class="dl-card" target="_blank" rel="noopener" download="setup-node.sh">
+      <div class="dl-icon">🍎 🐧</div>
+      <div class="dl-title">macOS / Linux</div>
+      <div class="dl-sub">Shell script</div>
+      <div class="dl-file">setup-node.sh</div>
+    </a>
+  </div>
+
+  <div class="callout info">
+    <strong>What the script actually does</strong>
+    <ul class="bullets" style="margin-top:8px;">
+      <li>Checks if Node.js is already installed (and if it's the 24.x line).</li>
+      <li>If missing or wrong version: downloads and installs Node.js 24 (LTS).</li>
+      <li>Sets up <code class="inline">PATH</code> so <code class="inline">node</code> and <code class="inline">npm</code> work from any terminal.</li>
+      <li>Verifies the install by running <code class="inline">node -v</code> and <code class="inline">npm -v</code>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 3. RUN THE SCRIPT ===== -->
+<section class="chapter" id="run-script">
+  <div class="chapter-header">
+    <div class="chapter-num teal">3</div>
+    <h2 class="chapter-title">Run the setup script</h2>
+  </div>
+
+  <p>Find the file you just downloaded (probably in your <em>Downloads</em> folder), then follow the steps for your OS below.</p>
+
+  <div class="os-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="run-win">🪟 Windows</button>
+      <button class="tab-btn" data-tab="run-mac">🍎 macOS</button>
+      <button class="tab-btn" data-tab="run-linux">🐧 Linux</button>
+    </div>
+
+    <!-- Windows -->
+    <div class="tab-panel active" id="run-win" data-os="Windows">
+      <ol class="steps">
+        <li>Press <strong>Win key</strong> → type <strong>PowerShell</strong> → right-click → <strong>Run as Administrator</strong>. (Admin is needed because installing Node.js modifies system paths.)</li>
+        <li>Allow scripts for this session (one-time, only for this PowerShell window):
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">PS&gt;</span> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Navigate to where you saved the script (usually Downloads):
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">PS&gt;</span> cd $HOME\Downloads</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Run the script:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">PS&gt;</span> .\setup-node.ps1</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Wait for the green <code class="inline">[OK]</code> messages. When it says <em>"You're ready for the Antigravity session"</em>, you're done.</li>
+      </ol>
+
+      <div class="callout warn">
+        <strong>If you see "running scripts is disabled"</strong>
+        <p>That's the SmartScreen / execution policy stopping us. Step 2 above fixes it for the current window only — safe and reversible. After closing the window, your system goes back to normal.</p>
+      </div>
+    </div>
+
+    <!-- macOS -->
+    <div class="tab-panel" id="run-mac" data-os="macOS">
+      <ol class="steps">
+        <li>Open <strong>Terminal</strong> (Cmd+Space → type "Terminal" → Enter).</li>
+        <li>Navigate to Downloads:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> cd ~/Downloads</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Make the script executable:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> chmod +x setup-node.sh</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Run it:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> ./setup-node.sh</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>When you see <em>"You're ready for the Antigravity session"</em>, <strong>close the Terminal and open a brand-new one</strong> — that's what loads the new <code class="inline">PATH</code> for future commands.</li>
+      </ol>
+    </div>
+
+    <!-- Linux -->
+    <div class="tab-panel" id="run-linux" data-os="Linux">
+      <ol class="steps">
+        <li>Open a terminal (<strong>Ctrl+Alt+T</strong> on most distros).</li>
+        <li>Navigate to where you saved the script:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> cd ~/Downloads</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Make it executable:
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> chmod +x setup-node.sh</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Run it (no <code class="inline">sudo</code> needed — we use <code class="inline">nvm</code>, which installs Node into your home folder):
+          <div class="code-wrap">
+            <pre class="code"><span class="prompt">$</span> ./setup-node.sh</pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </li>
+        <li>Close the terminal and open a new one to pick up the updated environment.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. VERIFY ===== -->
+<section class="chapter" id="verify">
+  <div class="chapter-header">
+    <div class="chapter-num berry">4</div>
+    <h2 class="chapter-title">Verify your install</h2>
+  </div>
+
+  <p>Open a fresh terminal (PowerShell on Windows, Terminal on Mac/Linux) and run:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> node -v
+<span class="prompt">$</span> npm -v</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <p>You should see something like:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="cmt"># Example output</span>
+v24.3.0
+10.8.2</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <div class="callout tip">
+    <strong>The number should start with v24.</strong>
+    <p>If it doesn't (or if you get "command not found"), close every terminal window, open a fresh one, and try again. The script updates your PATH, but already-open terminals don't see those updates until they're restarted.</p>
+  </div>
+</section>
+
+<!-- ===========================================
+     PART B: FIREBASE
+     =========================================== -->
+
+<!-- ===== 5. FIREBASE PROJECT ===== -->
+<section class="chapter" id="firebase-project">
+  <div class="chapter-header">
+    <div class="chapter-num">5</div>
+    <h2 class="chapter-title">Create a Firebase project</h2>
+  </div>
+
+  <p>Firebase Hosting is Google's free static-site hosting. We'll create a project, enable Hosting, and connect it to our React app.</p>
+
+  <h3><span class="step-pill">Step 5.1</span> Open the Firebase console</h3>
+  <p>Visit <a href="https://console.firebase.google.com" target="_blank" rel="noopener">console.firebase.google.com</a> and sign in with the same Google account you'd like the project to live under.</p>
+
+  <h3><span class="step-pill">Step 5.2</span> Add a new project</h3>
+
+  <div class="illustration" aria-hidden="true">
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+      <rect width="600" height="220" fill="#FFF8E7" stroke="#2A1F14" stroke-width="2" rx="8"/>
+      <!-- Browser chrome -->
+      <rect x="0" y="0" width="600" height="32" fill="#F3E7C9"/>
+      <circle cx="16" cy="16" r="5" fill="#C2410C"/>
+      <circle cx="32" cy="16" r="5" fill="#D4A017"/>
+      <circle cx="48" cy="16" r="5" fill="#5A6B2F"/>
+      <rect x="80" y="8" width="380" height="16" rx="8" fill="#FBF4E4" stroke="#5C4B36"/>
+      <text x="92" y="20" font-family="JetBrains Mono" font-size="11" fill="#5C4B36">console.firebase.google.com</text>
+      <!-- Card grid -->
+      <g transform="translate(40,60)">
+        <rect width="150" height="120" rx="8" fill="#FBF4E4" stroke="#2A1F14" stroke-width="2" stroke-dasharray="5,4"/>
+        <text x="75" y="60" text-anchor="middle" font-family="Fraunces" font-size="42" fill="#C2410C">+</text>
+        <text x="75" y="95" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="700" fill="#2A1F14">Create a project</text>
+      </g>
+      <g transform="translate(210,60)">
+        <rect width="150" height="120" rx="8" fill="#FBF4E4" stroke="#5C4B36"/>
+        <rect x="20" y="20" width="110" height="14" rx="3" fill="#D4A017" opacity="0.5"/>
+        <rect x="20" y="42" width="80" height="10" rx="3" fill="#5C4B36" opacity="0.2"/>
+        <rect x="20" y="58" width="100" height="10" rx="3" fill="#5C4B36" opacity="0.2"/>
+        <circle cx="135" cy="100" r="10" fill="#5A6B2F"/>
+        <text x="135" y="105" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="700" fill="white">✓</text>
+      </g>
+      <g transform="translate(380,60)">
+        <rect width="150" height="120" rx="8" fill="#FBF4E4" stroke="#5C4B36"/>
+        <rect x="20" y="20" width="110" height="14" rx="3" fill="#2C7A7B" opacity="0.5"/>
+        <rect x="20" y="42" width="80" height="10" rx="3" fill="#5C4B36" opacity="0.2"/>
+        <rect x="20" y="58" width="100" height="10" rx="3" fill="#5C4B36" opacity="0.2"/>
+      </g>
+      <text x="115" y="205" text-anchor="middle" font-family="Caveat" font-size="20" fill="#C2410C">↑ click this one!</text>
+    </svg>
+    <div class="caption">The Firebase console — your project dashboard lives here.</div>
+  </div>
+
+  <ol class="steps">
+    <li>Click the <strong>"Create a project"</strong> tile (or <strong>"Add project"</strong> if you already have others).</li>
+    <li>Give it a memorable name — e.g. <code class="inline">teacher-workshop-2026</code>. Firebase appends a unique suffix automatically.</li>
+    <li>When asked about <strong>Google Analytics</strong>: you can disable it for this workshop (faster setup). Toggle it off and click <strong>Create project</strong>.</li>
+    <li>Wait ~30 seconds while Firebase provisions everything, then click <strong>Continue</strong>.</li>
+  </ol>
+
+  <h3><span class="step-pill">Step 5.3</span> Enable Firebase Hosting</h3>
+
+  <ol class="steps">
+    <li>In the left sidebar, expand <strong>Build</strong>, then click <strong>Hosting</strong>.</li>
+    <li>Click <strong>Get started</strong>.</li>
+    <li>You'll see a 3-step setup screen. The console gives you commands to run — <strong>we'll run them through our own scripts and the terminal</strong>, so just click <strong>Next</strong> through this wizard. (You can dismiss it; the actual work happens on your machine.)</li>
+  </ol>
+
+  <div class="illustration" aria-hidden="true">
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="600" height="200" fill="#FFF8E7" stroke="#2A1F14" stroke-width="2" rx="8"/>
+      <!-- Sidebar -->
+      <rect x="0" y="0" width="160" height="200" fill="#F3E7C9" stroke="#5C4B36"/>
+      <text x="20" y="30" font-family="Nunito" font-size="13" font-weight="700" fill="#2A1F14">Build</text>
+      <rect x="14" y="40" width="135" height="22" rx="4" fill="#C2410C" opacity="0.18"/>
+      <text x="24" y="56" font-family="Nunito" font-size="12" font-weight="700" fill="#C2410C">🔥 Hosting</text>
+      <text x="24" y="80" font-family="Nunito" font-size="12" fill="#5C4B36">Firestore</text>
+      <text x="24" y="100" font-family="Nunito" font-size="12" fill="#5C4B36">Functions</text>
+      <text x="24" y="120" font-family="Nunito" font-size="12" fill="#5C4B36">Authentication</text>
+      <text x="24" y="140" font-family="Nunito" font-size="12" fill="#5C4B36">Storage</text>
+      <!-- Main panel -->
+      <text x="190" y="40" font-family="Fraunces" font-size="20" font-weight="700" fill="#2A1F14">Firebase Hosting</text>
+      <rect x="190" y="60" width="380" height="60" rx="6" fill="#FBF4E4" stroke="#5C4B36"/>
+      <text x="210" y="85" font-family="Nunito" font-size="13" font-weight="700" fill="#2A1F14">Fast and secure hosting for your web app</text>
+      <text x="210" y="103" font-family="Nunito" font-size="11" fill="#5C4B36">Production-grade web content hosting in seconds.</text>
+      <rect x="190" y="140" width="130" height="38" rx="20" fill="#C2410C" stroke="#2A1F14" stroke-width="2"/>
+      <text x="255" y="164" text-anchor="middle" font-family="Nunito" font-size="14" font-weight="700" fill="#FFF8E7">Get started →</text>
+      <text x="350" y="165" font-family="Caveat" font-size="18" fill="#5A6B2F">← click here</text>
+    </svg>
+    <div class="caption">Build → Hosting → Get started</div>
+  </div>
+
+  <div class="callout">
+    <strong>Pro tip: write down your project ID</strong>
+    <p>Look at the top of your Firebase console — your project ID looks like <code class="inline">teacher-workshop-2026-a1b2c</code>. You'll need it in the next steps.</p>
+  </div>
+</section>
+
+<!-- ===== 6. FIREBASE CLI ===== -->
+<section class="chapter" id="firebase-cli">
+  <div class="chapter-header">
+    <div class="chapter-num green">6</div>
+    <h2 class="chapter-title">Install &amp; log in to Firebase CLI</h2>
+  </div>
+
+  <p>The Firebase CLI is a small command-line tool that talks to Firebase from your computer. We'll install it globally via npm — which works the same on every OS.</p>
+
+  <h3><span class="step-pill">Step 6.1</span> Install firebase-tools globally</h3>
+
+  <p>In a terminal (any OS), run:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> npm install -g firebase-tools</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <div class="callout info">
+    <strong>The <code class="inline">-g</code> flag</strong>
+    <p>That tells npm to install the package globally — meaning the <code class="inline">firebase</code> command will be available from any folder, not just one project.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>Permissions on macOS/Linux</strong>
+    <p>If you see <em>EACCES</em> errors, it usually means npm is trying to write to a system folder. Our setup script uses <strong>nvm</strong>, which puts Node in your home directory — so global installs should "just work" without <code class="inline">sudo</code>.</p>
+  </div>
+
+  <h3><span class="step-pill">Step 6.2</span> Verify the CLI works</h3>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> firebase --version</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <h3><span class="step-pill">Step 6.3</span> Log in to your Google account</h3>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> firebase login</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <p>This will:</p>
+  <ul class="bullets">
+    <li>Ask whether you want to share usage data (your call — saying "No" is fine).</li>
+    <li>Open your browser to the Google sign-in page.</li>
+    <li>Sign in with the <strong>same account</strong> you used to create the Firebase project.</li>
+    <li>Show "Success! Logged in as ..." in the terminal when done.</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>Sanity check</strong>
+    <p>Run <code class="inline">firebase projects:list</code> — you should see your workshop project in the list. If you do, the CLI and your account are talking. 🎉</p>
+  </div>
+</section>
+
+<!-- ===== 7. FIREBASE INIT ===== -->
+<section class="chapter" id="firebase-init">
+  <div class="chapter-header">
+    <div class="chapter-num teal">7</div>
+    <h2 class="chapter-title">Initialize Firebase in your React app</h2>
+  </div>
+
+  <p>By this point you should have a React + Vite app in Antigravity. If not, here's the one-liner to scaffold one:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> npm create vite@latest my-workshop-app -- --template react
+<span class="prompt">$</span> cd my-workshop-app
+<span class="prompt">$</span> npm install</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <h3><span class="step-pill">Step 7.1</span> Run <code class="inline">firebase init</code></h3>
+
+  <p>From the <strong>root of your React project</strong> (the folder with <code class="inline">package.json</code> in it), run:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> firebase init</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <h3><span class="step-pill">Step 7.2</span> Answer the prompts</h3>
+
+  <p>The CLI will ask you a series of questions. Here's exactly what to answer:</p>
+
+  <dl class="cli-prompt-list">
+    <dt>Which Firebase features do you want to set up?</dt>
+    <dd>Use the <strong>arrow keys</strong> to move, <strong>spacebar</strong> to select, then <strong>Enter</strong>. Select only: <code>◉ Hosting: Configure files for Firebase Hosting</code></dd>
+
+    <dt>Project Setup → Please select an option:</dt>
+    <dd>Pick <code>Use an existing project</code></dd>
+
+    <dt>Select a default Firebase project for this directory:</dt>
+    <dd>Choose the workshop project you created earlier (e.g. <code>teacher-workshop-2026-a1b2c</code>)</dd>
+
+    <dt>What do you want to use as your public directory?</dt>
+    <dd>Type <code>dist</code> — this is where Vite puts the built output. <strong>Don't accept the default <code>public</code>.</strong></dd>
+
+    <dt>Configure as a single-page app (rewrite all urls to /index.html)?</dt>
+    <dd>Type <code>y</code> — React Router and SPA navigation need this.</dd>
+
+    <dt>Set up automatic builds and deploys with GitHub?</dt>
+    <dd>Type <code>N</code> — we'll deploy manually from the terminal today.</dd>
+
+    <dt>File dist/index.html already exists. Overwrite?</dt>
+    <dd>If asked, type <code>N</code> — we want Vite's <code>index.html</code> to be used, not Firebase's template.</dd>
+  </dl>
+
+  <p>When the wizard finishes, you'll see two new files in your project root:</p>
+  <ul class="bullets">
+    <li><code class="inline">firebase.json</code> — hosting configuration</li>
+    <li><code class="inline">.firebaserc</code> — links this folder to your Firebase project</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Why <code class="inline">dist</code> and not <code class="inline">public</code>?</strong>
+    <p>Vite outputs your production build to <code class="inline">dist/</code>. The <code class="inline">public/</code> folder is for static assets that get copied in <em>as-is</em>. If you tell Firebase to deploy <code class="inline">public/</code>, your built React app won't be there — you'll deploy an empty index.html. Common mistake. ✋</p>
+  </div>
+</section>
+
+<!-- ===== 8. DEPLOY ===== -->
+<section class="chapter" id="deploy">
+  <div class="chapter-header">
+    <div class="chapter-num berry">8</div>
+    <h2 class="chapter-title">Build &amp; deploy 🎉</h2>
+  </div>
+
+  <p>Two commands. That's it.</p>
+
+  <h3><span class="step-pill">Step 8.1</span> Build the production bundle</h3>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> npm run build</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <p>This runs Vite's production build. When it finishes, you'll have a <code class="inline">dist/</code> folder full of optimized HTML, JS, and CSS.</p>
+
+  <h3><span class="step-pill">Step 8.2</span> Deploy to Firebase</h3>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="prompt">$</span> firebase deploy</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <p>Firebase uploads your <code class="inline">dist/</code> folder, configures hosting, and gives you a live URL. The output will look something like:</p>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="cmt">=== Deploying to 'teacher-workshop-2026-a1b2c'...</span>
+
+<span class="kw">i</span>  deploying hosting
+<span class="kw">i</span>  hosting[teacher-workshop-2026-a1b2c]: beginning deploy...
+<span class="kw">i</span>  hosting[teacher-workshop-2026-a1b2c]: found 8 files in dist
+<span class="kw">✔</span>  hosting[teacher-workshop-2026-a1b2c]: file upload complete
+<span class="kw">i</span>  hosting[teacher-workshop-2026-a1b2c]: finalizing version...
+<span class="kw">✔</span>  hosting[teacher-workshop-2026-a1b2c]: release complete
+
+<span class="kw">✔</span>  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/.../overview
+<span class="str">Hosting URL: https://teacher-workshop-2026-a1b2c.web.app</span></pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <p>Open that <strong>Hosting URL</strong> in your browser — your React app is live on the internet. 🌍</p>
+
+  <div class="illustration" aria-hidden="true">
+    <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Rocket -->
+      <g transform="translate(280,40)">
+        <path d="M 20 0 Q 40 30 40 70 L 40 100 L 0 100 L 0 70 Q 0 30 20 0 Z" fill="#C2410C" stroke="#2A1F14" stroke-width="3"/>
+        <circle cx="20" cy="40" r="8" fill="#FFF8E7" stroke="#2A1F14" stroke-width="2"/>
+        <path d="M 0 75 L -15 100 L 0 95 Z" fill="#D4A017" stroke="#2A1F14" stroke-width="2"/>
+        <path d="M 40 75 L 55 100 L 40 95 Z" fill="#D4A017" stroke="#2A1F14" stroke-width="2"/>
+        <!-- Flame -->
+        <path d="M 5 100 Q 20 130 35 100 Q 30 120 20 130 Q 10 120 5 100" fill="#E89C3C" stroke="#2A1F14" stroke-width="2"/>
+        <path d="M 12 105 Q 20 125 28 105" fill="#FFF8E7"/>
+      </g>
+      <!-- Sparkles -->
+      <text x="150" y="60" font-family="Caveat" font-size="40" fill="#D4A017">✦</text>
+      <text x="430" y="50" font-family="Caveat" font-size="34" fill="#5A6B2F">✦</text>
+      <text x="120" y="120" font-family="Caveat" font-size="28" fill="#2C7A7B">✦</text>
+      <text x="450" y="130" font-family="Caveat" font-size="32" fill="#8B3A62">✦</text>
+      <text x="200" y="160" font-family="Caveat" font-size="30" fill="#C2410C">You did it!</text>
+      <text x="380" y="160" font-family="Caveat" font-size="30" fill="#5A6B2F">🚀 Live!</text>
+    </svg>
+  </div>
+
+  <div class="callout tip">
+    <strong>Iterate &amp; redeploy</strong>
+    <p>Change your code in Antigravity → run <code class="inline">npm run build</code> → run <code class="inline">firebase deploy</code>. Same two commands every time. The URL stays the same.</p>
+  </div>
+
+  <h3><span class="step-pill">Bonus</span> Useful follow-up commands</h3>
+
+  <div class="code-wrap">
+    <pre class="code"><span class="cmt"># Preview locally before pushing</span>
+<span class="prompt">$</span> firebase emulators:start
+
+<span class="cmt"># Deploy only hosting (skip other Firebase products)</span>
+<span class="prompt">$</span> firebase deploy --only hosting
+
+<span class="cmt"># See what's currently deployed</span>
+<span class="prompt">$</span> firebase hosting:channel:list
+
+<span class="cmt"># Make a preview channel (shareable test URL)</span>
+<span class="prompt">$</span> firebase hosting:channel:deploy preview-branch-name</pre>
+    <button class="copy-btn">Copy</button>
+  </div>
+</section>
+
+<!-- ===== TROUBLESHOOTING ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">9</div>
+    <h2 class="chapter-title">If something breaks…</h2>
+  </div>
+
+  <div class="callout warn">
+    <strong>"node is not recognized" / "command not found"</strong>
+    <p>You're in a terminal that was open <em>before</em> Node was installed. Close it, open a new one. If it still fails on Windows, restart your computer.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>"firebase: command not found" after install</strong>
+    <p>Same fix — close the terminal, open a new one. On macOS/Linux, run <code class="inline">npm config get prefix</code> to see where global packages go, and make sure that path is on your PATH.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>The deployed URL shows a blank page</strong>
+    <p>You probably told Firebase to use <code class="inline">public</code> instead of <code class="inline">dist</code>. Open <code class="inline">firebase.json</code> and change <code class="inline">"public": "public"</code> to <code class="inline">"public": "dist"</code>, run <code class="inline">npm run build</code> again, then redeploy.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>The deployed URL shows the "Firebase Hosting setup complete" page</strong>
+    <p>That means Firebase's placeholder <code class="inline">index.html</code> got deployed instead of your React app. Delete the <code class="inline">dist/index.html</code> Firebase created during init, run <code class="inline">npm run build</code> to regenerate from your real source, and redeploy.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>"Error: HTTP Error: 403"</strong>
+    <p>Run <code class="inline">firebase logout</code>, then <code class="inline">firebase login --reauth</code>. Make sure the account you sign in with is the same one that owns the Firebase project.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p class="heart">Built with care for teachers learning to ship. ♥</p>
+  <p style="font-size:13px;">Antigravity 2.0 · React + Vite · Firebase Hosting · 2026</p>
+</footer>
+
+<script>
+  // OS tabs
+  document.querySelectorAll('.os-tabs').forEach(group => {
+    const buttons = group.querySelectorAll('.tab-btn');
+    const panels  = group.querySelectorAll('.tab-panel');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const target = group.querySelector('#' + btn.dataset.tab);
+        if (target) target.classList.add('active');
+      });
+    });
+  });
+
+  // Auto-pick OS tab on first load
+  (function autoSelectOSTabs() {
+    const ua = navigator.userAgent || '';
+    let osKey = null;
+    if (/Windows/i.test(ua))      osKey = 'win';
+    else if (/Mac/i.test(ua))     osKey = 'mac';
+    else if (/Linux/i.test(ua))   osKey = 'linux';
+    if (!osKey) return;
+    document.querySelectorAll('.os-tabs').forEach(group => {
+      const btn = group.querySelector(`.tab-btn[data-tab$="-${osKey}"]`);
+      if (btn && !btn.classList.contains('active')) btn.click();
+    });
+  })();
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pre = btn.parentElement.querySelector('pre.code');
+      if (!pre) return;
+      // Build clean text: strip the visual "PS>" / "$" prompts so copied
+      // commands paste cleanly into a terminal.
+      const text = Array.from(pre.childNodes).map(node => {
+        if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+        if (node.classList && node.classList.contains('prompt')) return '';
+        return node.textContent;
+      }).join('').replace(/^[ \t]+/gm, '').trim();
+
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
