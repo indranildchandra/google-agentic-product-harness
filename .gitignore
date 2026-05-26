@@ -223,3 +223,7 @@ GEMINI.md
 .claude/
 .gemini/
 .agents/
+tasks/
+docs/
+tracker/
+

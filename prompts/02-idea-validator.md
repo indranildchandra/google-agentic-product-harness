@@ -1,0 +1,94 @@
+# ROLE
+You are writing the investment memo for {{RAW_STARTUP_IDEA}} that goes to the Monday partner meeting at a top-tier early-stage fund. The general partners have 20 minutes. They will ask one question: "Why does this company still exist in 5 years if a well-funded incumbent decides to copy it next quarter?"
+
+Your memo answers that question or kills the deal.
+
+# INPUTS
+- Raw idea: {{RAW_STARTUP_IDEA}}
+- Market research document: {{MARKET_RESEARCH_MD}}
+
+# MANDATORY MECHANISMS
+
+1. Pre-mortem framing. For Section 4 (Vulnerability Analysis), do not ask "what could go wrong." Instead, write as if the company has already failed in 18 months. Reverse-engineer the three most likely failure modes. This produces sharper risk analysis than forward-looking risk listing.
+
+2. Force-ranked moat categorization. Section 1 asks for the value proposition vector. The model must commit to one primary category and at most one secondary, not list all of them. Quantitative threshold required for each claim (e.g., "10x time reduction means from 4 hours to under 24 minutes for the same task").
+
+3. Numerical defensibility score with breakdown. Final score is not a vibe. Each sub-dimension is scored explicitly.
+
+4. Two-pass structure. Same as Template 1: draft, critique against rubric, revise weak sections, show delta.
+
+# OUTPUT: idea-validation.md
+
+## Section 1: Primary Value Vector
+Commit to one primary category. At most one secondary. Each must include a quantitative threshold.
+
+- Time Asymmetry: reduces a <X-hour/day/week> task to <Y minutes>. Magnitude: <Xx faster>.
+- Cost Leadership: reduces unit cost from <₹X> to <₹Y>. Magnitude: <Xx cheaper>.
+- Unsolved Paradigm: solves <specific problem> that was technically impossible before <specific enabling technology, e.g., frontier LLMs, on-device transcription, sub-200ms speech-to-speech>.
+
+If you cannot commit to one primary category with a defensible threshold, write: "PRIMARY VECTOR UNDEFINED — return to problem definition." Do not proceed.
+
+## Section 2: Competitive Matrix
+Format as nested bullets, one block per competitor. Include status quo / manual workaround as a competitor.
+
+For each competitor:
+- Name and category (incumbent, fast-follower, indirect substitute, status quo)
+- Their current solution to the same user need (one sentence)
+- Their structural disadvantage that the proposed solution exploits
+- Switching cost from their solution to ours (Low / Medium / High) with reasoning
+- Time-to-copy if they decide to: <weeks/months/years>
+
+Minimum 4 competitors including status quo.
+
+## Section 3: Defensibility Moats
+Identify which of the following the product builds, with evidence:
+
+- Data flywheel: what proprietary data accumulates with usage, and how does that data improve the product specifically (not generically "we get better")
+- Network effects: same-side or cross-side, with the inflection-point user count if known
+- Integration stickiness: what becomes the system of record, and what would break if a user churned
+- Engineering or agentic optimization moat: what specific technical artifact (latency budget, eval harness, fine-tune dataset, agent topology) is hard to replicate
+
+For each present moat: rate strength as Strong / Moderate / Weak with reasoning. If no moat scores Strong, flag this as a yellow card.
+
+## Section 4: Pre-Mortem (Failure Reverse-Engineering)
+Imagine it is 18 months from now and the company has failed. Three most likely failure narratives, written in past tense as if reporting the autopsy:
+
+For each failure mode:
+- What killed them (one sentence)
+- Earliest leading indicator that this was happening (specific metric or behavior)
+- Mitigation that would have prevented it (specific action, not "iterate fast")
+
+## Section 5: Defensibility Score (force the math)
+Rate each dimension out of 10 with one-sentence justification:
+
+- Execution viability: <score>. Justification.
+- Market readiness: <score>. Justification.
+- Moat strength (weighted average of Section 3): <score>.
+- Founder-market fit (if known): <score>.
+- Capital efficiency vs comp companies: <score>.
+
+Total: <sum>/50.
+
+Verdict bands:
+- 40-50: Build it. Strong conviction.
+- 30-39: Build it but de-risk the lowest-scoring dimension first.
+- 20-29: Pre-commitment work required. Specify what would move the score above 30.
+- Under 20: Do not build. Specify what would have to be true about the world.
+
+## Section 6: Self-Critique Delta
+Same as Template 1.
+
+# WORKED MOAT EXAMPLE (reference only)
+
+Notion's primary moat at Series A was NOT product features. It was integration stickiness. Once a team put their wiki, project tracker, and meeting notes into Notion, switching cost became weeks of migration. Network effect was secondary (templates marketplace). Data flywheel was negligible. This is the kind of crisp moat ranking the memo demands.
+
+# SELF-EVALUATION RUBRIC
+
+Score /10 each:
+- Moat specificity: are moats named concretely or generically
+- Pre-mortem sharpness: are failure modes specific enough to be falsifiable
+- Competitive matrix completeness: status quo included, switching costs justified
+- Score defensibility: would a GP nod at each sub-score or push back
+- Conviction calibration: does the verdict match the evidence (no false confidence, no false hedging)
+
+Threshold: 40/50. Below that, revise.
