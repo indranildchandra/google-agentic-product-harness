@@ -3,90 +3,34 @@
 > Eight prompt templates that take a raw startup idea to a deployed, market-ready product — using Gemini, Google Antigravity, and NotebookLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Stages](https://img.shields.io/badge/Stages-8-blue)](#the-eight-stage-pipeline)
-[![Gemini](https://img.shields.io/badge/Gemini-3.1_Pro_·_3.5_Flash-4285F4?logo=google)](#model-settings)
-[![Antigravity](https://img.shields.io/badge/Google-Antigravity-EA4335?logo=google)](#how-to-run-it)
-[![NotebookLM](https://img.shields.io/badge/NotebookLM-Stage_08-34A853?logo=google)](#stage-08-outputs--notebooklm)
+[![Stages](https://img.shields.io/badge/Stages-8_Stages_Framework-blue)](#the-eight-stage-pipeline)
+[![Gemini](https://img.shields.io/badge/Gemini-Stages_01–03-4285F4?logo=google)](#model-settings)
+[![Antigravity](https://img.shields.io/badge/Google_Antigravity-Build-EA4335?logo=google)](#how-to-run-it)
+[![NotebookLM](https://img.shields.io/badge/NotebookLM-Pitch_Deck-34A853?logo=google)](#stage-08-outputs--notebooklm)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-HamroStay_AI_%E2%86%92-orange)](https://hamrostay-dist-8239.web.app/)
 
 > **New here?** Start with the interactive setup guide before running any prompts:
 > **[📋 Installation Guide →](https://indranildchandra.github.io/google-agentic-product-harness/installation-guide.html)**
 > Covers Antigravity installation, Node.js setup, Firebase project creation, and deploy — all in one page.
+>
+> **See the harness in action:** **[hamrostay-dist-8239.web.app](https://hamrostay-dist-8239.web.app/)** → 
+> A full end-to-end run of all eight stages against a real startup idea, vibe-coded in ~15 minutes using Antigravity.
+> **Desktop browser only** → the [Stitch project](https://stitch.withgoogle.com/projects/9198422885981226206) produces a mobile design, but the example app is a web version built for demonstration purposes and is not yet responsive.
 
 ---
 
 ## Table of contents
 
-- [See it live — HamroStay AI demo](#see-it-live--hamrostay-ai-demo)
 - [Quick start](#quick-start)
 - [What this is](#what-this-is)
 - [The eight-stage pipeline](#the-eight-stage-pipeline)
 - [Pipeline overview](#pipeline-overview)
 - [How to run it](#how-to-run-it)
 - [What makes these prompts different](#what-makes-these-prompts-different)
+- [Live Demo: HamroStay AI](#live-demo-hamrostay-ai)
 - [Repository structure](#repository-structure)
 - [Contributing](#contributing)
 - [License](#license)
-
----
-
-## See it live — HamroStay AI demo
-
-The `demo/` folder contains a complete end-to-end run of this harness against a real startup idea: **HamroStay AI**, a localized AI distribution engine that turns rural Nepali homestay hosts' voice notes into structured, AI-discoverable property listings.
-
-Every artifact below was produced by running the eight prompts in order — no manual editing between stages.
-
-| Stage | What happened | Live link |
-|---|---|---|
-| 01–03 | Market Researcher → Idea Validator → Workflow Generator in Gemini 3.1 Pro | [Gemini chat transcript](https://gemini.google.com/share/4a0c8ad17a67) |
-| 03 → Stitch | Pasted the six Stitch frame prompts into Google Stitch | [Live Stitch project](https://stitch.withgoogle.com/projects/9198422885981226206) |
-| 04–06 | Agentic SDLC Architect → Build Planner → Build Executor in Antigravity | `demo/example_project/` |
-| 07 | Build Reviewer run against the live deployment — issues and backlog generated | `demo/product_harness_artifacts/` |
-| 08 | All `.md` files uploaded to NotebookLM, Pitch Deck Generator run | [Pitch deck](https://docs.google.com/presentation/d/1tNHDM2Rez33Tm4qBRmsVdYZIBDZ-M8z6/view) |
-
-### Stitch mobile screens — generated from the frame prompts
-
-Six high-fidelity mobile screens produced by pasting `workflow-stitch-pack.md` prompts directly into [Google Stitch](https://stitch.withgoogle.com/projects/9198422885981226206). No manual design work.
-
-<table width="100%">
-<tr>
-<td align="center" valign="top" width="33%"><b>S01 — Auth Portal</b><br><img src="demo/stitch_mobile_design_artifacts/screen1/screen.png" alt="S01 — Unified Access Portal" width="100%"/></td>
-<td align="center" valign="top" width="33%"><b>S02 — Dashboard</b><br><img src="demo/stitch_mobile_design_artifacts/screen2/screen.png" alt="S02 — Core Infrastructure Hub" width="100%"/></td>
-<td align="center" valign="top" width="34%"><b>S03 — Audio Intake</b><br><img src="demo/stitch_mobile_design_artifacts/screen3/screen.png" alt="S03 — Localization Capture Terminal" width="100%"/></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><b>S04 — Processing State</b><br><img src="demo/stitch_mobile_design_artifacts/screen4/screen.png" alt="S04 — Pipeline Execution Monitor" width="100%"/></td>
-<td align="center" valign="top" width="33%"><b>S05 — Review Hub</b><br><img src="demo/stitch_mobile_design_artifacts/screen5/screen.png" alt="S05 — Semantic Asset Control Center" width="100%"/></td>
-<td align="center" valign="top" width="34%"><b>S06 — Distribution Status</b><br><img src="demo/stitch_mobile_design_artifacts/screen6/screen.png" alt="S06 — Global Index Integration Panel" width="100%"/></td>
-</tr>
-</table>
-
-**Design topology** — the token and component architecture underlying all six screens:
-
-![Design topology](demo/stitch_mobile_design_artifacts/technical_grounding/technical_grounding.png)
-
-### Stage 08 outputs — NotebookLM
-
-**Pitch deck** — 10 slides following the [Sequoia seed template](https://sequoiacap.com/article/writing-a-business-plan/), generated by uploading all upstream `.md` files as NotebookLM sources and running the Stage 08 prompt. No manual slide creation.
-
-[View the full pitch deck →](https://docs.google.com/presentation/d/1tNHDM2Rez33Tm4qBRmsVdYZIBDZ-M8z6/view)
-
-**Mind map** — auto-generated by NotebookLM from the same source set. Useful as a visual reference for the elevator pitch and for spotting how the market, moat, and product workflow connect across stages.
-
-![HamroStay AI — NotebookLM mind map](demo/notebooklm_artifacts/HamroStay%20AI%20-%20Mind%20Map.png)
-
-### Harness artifacts — the chain in full
-
-These are the exact files produced by stages 01–03. Each feeds the next stage with no edits.
-
-| File | Stage | What it contains |
-|---|---|---|
-| [demo_problem_statement.md](demo/demo_problem_statement.md) | Input | Raw startup idea submitted to Stage 01 |
-| [market-research.md](demo/product_harness_artifacts/market-research.md) | 01 | TAM $25.2M global / $864K Nepal SAM, 3 personas, GO verdict, 45/50 self-score |
-| [idea-validation.md](demo/product_harness_artifacts/idea-validation.md) | 02 | Competitive matrix (4 players), 4 defensibility moats, 3 pre-mortem failure modes, 42/50 defensibility score |
-| [workflow-system.md](demo/product_harness_artifacts/workflow-system.md) | 03 | Product persona, design token library, 2 user journeys, 6-screen inventory, interaction specs, maker-checker audit log, developer handoff package |
-| [workflow-stitch-pack.md](demo/product_harness_artifacts/workflow-stitch-pack.md) | 03 | Six Stitch frame prompts (S01–S06), each under 4500 chars, ready to paste into Google Stitch |
-| [assumptions.md](demo/product_harness_artifacts/assumptions.md) | 01–03 | 8 structured assumptions (A01–A08) with claim, section, risk-if-wrong, and validation status |
-| [geminichat-log.md](demo/geminichat-log.md) | 01–03 | Full Gemini chat transcript — raw responses and every self-critique pass |
 
 ---
 
@@ -123,7 +67,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 | 05 | [Build Planner](prompts/05-build-planner.md) | Gemini 3.5 Flash (Antigravity Planning Mode) | `architecture.md` + `agents.md` + `tdd.md` + Stitch design output | `build-plan.md` — phased execution plan for Antigravity Manager view |
 | 06 | [Build Executor](prompts/06-build-executor.md) | Gemini 3.5 Flash (Antigravity) | `build-plan.md` + all Stage 04 files | Running codebase + `changelog.md` — live record of what was built, phase by phase |
 | 07 | [Build Reviewer](prompts/07-build-reviewer.md) | Gemini 3.5 Flash + browser tool | Live deployment URL + `changelog.md` + all upstream `.md` files | `issues.md` + `backlog.md` — severity-triaged bugs and feedable next-sprint backlog |
-| 08 | [Pitch Deck Generator](prompts/08-pitch-deck-generator.md) | NotebookLM | All upstream `.md` files as sources | 10-slide investor pitch deck following the [Sequoia seed template](https://www.sequoiacap.com/article/writing-a-business-plan/) |
+| 08 | [Pitch Deck Generator](prompts/08-pitch-deck-generator.md) | NotebookLM | All upstream `.md` files as sources | 10-slide investor pitch deck following the [Sequoia seed template](https://sequoiacap.com/article/writing-a-business-plan/) |
 
 ---
 
@@ -205,13 +149,15 @@ Your startup idea
 
 ### Prerequisites
 
-- Access to Gemini 3.1 Pro (for stages 01–03)
-- Access to Gemini 3.5 Flash (for stages 04–07)
+- Access to Gemini 3.1 Pro or an equivalent deep research model (for stages 01–03)
+- Access to Gemini 3.5 Flash or an equivalent model supporting low, medium & high effort modes (for stages 04–07)
 - Access to Google Antigravity (for stages 04–07)
 - Access to NotebookLM (for stage 08)
 - Access to Google Stitch (for stage 03 design output)
 - A Stitch API key (for MCP bridge between Stitch and Antigravity at Stage 04) — see [codelab](https://codelabs.developers.google.com/design-to-code-with-antigravity-stitch#0)
 - Node.js 24.x (required for Antigravity stages 04–07) — see `install_scripts/` or open the [interactive setup guide](https://indranildchandra.github.io/google-agentic-product-harness/installation-guide.html) for the full walkthrough
+
+Note: The entire stack used in this harness supports freemium model and does not require any paid subscription to get started.
 
 ### Step-by-step
 
@@ -240,10 +186,10 @@ Stage 03 produces `workflow-stitch-pack.md` — a set of frame prompts you paste
 | Stage | Temperature | Thinking budget | Grounding |
 |-------|-------------|-----------------|-----------|
 | 01, 02 | 0.4 | High | Google Search on |
-| 03 | 0.4 | Medium | — |
-| 04, 05, 06 | — | — | Antigravity execution environment (Gemini 3.5 Flash) |
-| 07 | — | — | Antigravity browser tool (Gemini 3.5 Flash) |
-| 08 | 0.7 | — | NotebookLM sources |
+| 03 | 0.4 | Medium | None |
+| 04, 05, 06 | NA | Medium | Antigravity execution environment (Gemini 3.5 Flash) |
+| 07 | NA | NA | Antigravity Chrome dev browser tool |
+| 08 | NA | NA | NotebookLM sources |
 
 ---
 
@@ -271,9 +217,78 @@ Stage 03 produces `workflow-stitch-pack.md` — a set of frame prompts you paste
 
 **Developer handoff is explicit.** Stage 03 ends with a one-page handoff package: what the developer receives, which decisions are locked, which are still open, and the first question they should ask.
 
-**Feedback loop closes the cycle.** Stage 08 ends with a structured investor-feedback routing table — each objection maps back to the upstream stage that owns the challenged assumption, so the pipeline can be re-entered cleanly rather than patching the deck. The pitch structure follows the [Sequoia seed template](https://www.sequoiacap.com/article/writing-a-business-plan/).
+**Feedback loop closes the cycle.** Stage 08 ends with a structured investor-feedback routing table — each objection maps back to the upstream stage that owns the challenged assumption, so the pipeline can be re-entered cleanly rather than patching the deck. The pitch structure follows the [Sequoia seed template](https://sequoiacap.com/article/writing-a-business-plan/).
 
 **Portable.** The grounding and structured-output mechanics map to Claude (`web_search` + structured output) and GPT (function calling + browsing). Stages 04–06 are Antigravity-native but can be run manually with Cursor / Claude Code as well with minor modifications.
+
+---
+
+## Live Demo: HamroStay AI
+
+The `demo/` folder contains a complete end-to-end run of this harness against a real startup idea: **HamroStay AI**, a localized AI distribution engine that turns rural Nepali homestay hosts' voice notes into structured, AI-discoverable property listings.
+
+Every artifact below was produced by running the eight prompts in order — no manual editing between stages.
+
+| Stage | What happened | Live link |
+|---|---|---|
+| 01–03 | Market Researcher → Idea Validator → Workflow Generator in Gemini | [Gemini chat transcript](https://gemini.google.com/share/4a0c8ad17a67) · [Harness artifacts](demo/product_harness_artifacts/) |
+| 03 → Stitch | Pasted the six Stitch frame prompts into Google Stitch | [Live Stitch project](https://stitch.withgoogle.com/projects/9198422885981226206) |
+| 04–06 | Agentic SDLC Architect → Build Planner → Build Executor in Antigravity | `demo/example_project/` |
+| 07 | Build Reviewer run against the live deployment — issues and backlog generated | [hamrostay-dist-8239.web.app](https://hamrostay-dist-8239.web.app/) |
+| 08 | All `.md` files from `demo/product_harness_artifacts/` uploaded to NotebookLM, Pitch Deck Generator run | [Pitch deck](https://docs.google.com/presentation/d/1tNHDM2Rez33Tm4qBRmsVdYZIBDZ-M8z6/view) |
+
+### Stitch mobile screens — generated from the frame prompts
+
+Six high-fidelity mobile screens produced by pasting `workflow-stitch-pack.md` prompts directly into [Google Stitch](https://stitch.withgoogle.com/projects/9198422885981226206). No manual design work.
+
+<table width="100%">
+<tr>
+<td align="center" valign="top" width="33%"><b>S01 — Auth Portal</b><br><img src="demo/stitch_mobile_design_artifacts/screen1/screen.png" alt="S01 — Unified Access Portal" width="100%"/></td>
+<td align="center" valign="top" width="33%"><b>S02 — Dashboard</b><br><img src="demo/stitch_mobile_design_artifacts/screen2/screen.png" alt="S02 — Core Infrastructure Hub" width="100%"/></td>
+<td align="center" valign="top" width="34%"><b>S03 — Audio Intake</b><br><img src="demo/stitch_mobile_design_artifacts/screen3/screen.png" alt="S03 — Localization Capture Terminal" width="100%"/></td>
+</tr>
+<tr>
+<td align="center" valign="top" width="33%"><b>S04 — Processing State</b><br><img src="demo/stitch_mobile_design_artifacts/screen4/screen.png" alt="S04 — Pipeline Execution Monitor" width="100%"/></td>
+<td align="center" valign="top" width="33%"><b>S05 — Review Hub</b><br><img src="demo/stitch_mobile_design_artifacts/screen5/screen.png" alt="S05 — Semantic Asset Control Center" width="100%"/></td>
+<td align="center" valign="top" width="34%"><b>S06 — Distribution Status</b><br><img src="demo/stitch_mobile_design_artifacts/screen6/screen.png" alt="S06 — Global Index Integration Panel" width="100%"/></td>
+</tr>
+</table>
+
+**Design topology** — the token and component architecture underlying all six screens:
+
+![Design topology](demo/stitch_mobile_design_artifacts/technical_grounding/technical_grounding.png)
+
+### Stage 08 outputs — NotebookLM
+
+**Pitch deck** — 10 slides following the [Sequoia seed template](https://sequoiacap.com/article/writing-a-business-plan/), generated by uploading all upstream `.md` files as NotebookLM sources and running the Stage 08 prompt. No manual slide creation.
+
+[View the full pitch deck →](https://docs.google.com/presentation/d/1tNHDM2Rez33Tm4qBRmsVdYZIBDZ-M8z6/view)
+
+**Mind map** — auto-generated by NotebookLM from the same source set. Useful as a visual reference for the elevator pitch and for spotting how the market, moat, and product workflow connect across stages.
+
+![HamroStay AI — NotebookLM mind map](demo/notebooklm_artifacts/HamroStay%20AI%20-%20Mind%20Map.png)
+
+### Harness artifacts — the chain in full
+
+These are the exact files produced by stages 01–03. Each feeds the next stage with no edits.
+
+| File | Stage | What it contains |
+|---|---|---|
+| [demo_problem_statement.md](demo/demo_problem_statement.md) | Input | Raw startup idea submitted to Stage 01 |
+| [market-research.md](demo/product_harness_artifacts/market-research.md) | 01 | TAM $25.2M global / $864K Nepal SAM, 3 personas, GO verdict, 45/50 self-score |
+| [idea-validation.md](demo/product_harness_artifacts/idea-validation.md) | 02 | Competitive matrix (4 players), 4 defensibility moats, 3 pre-mortem failure modes, 42/50 defensibility score |
+| [workflow-system.md](demo/product_harness_artifacts/workflow-system.md) | 03 | Product persona, design token library, 2 user journeys, 6-screen inventory, interaction specs, maker-checker audit log, developer handoff package |
+| [workflow-stitch-pack.md](demo/product_harness_artifacts/workflow-stitch-pack.md) | 03 | Six Stitch frame prompts (S01–S06), each under 4500 chars, ready to paste into Google Stitch |
+| [assumptions.md](demo/product_harness_artifacts/assumptions.md) | 01–03 | 8 structured assumptions (A01–A08) with claim, section, risk-if-wrong, and validation status |
+| [geminichat-log.md](demo/geminichat-log.md) | 01–03 | Full Gemini chat transcript — raw responses and every self-critique pass |
+
+### Demo walkthrough
+
+<video src="demo/hamrostay-ai-demo.mp4" controls width="100%">
+  <a href="demo/hamrostay-ai-demo.mp4">Demo video</a>
+</video>
+
+> Desktop browser only — the app is a web-first demonstration and is not yet responsive on mobile.
 
 ---
 
@@ -301,6 +316,9 @@ docs/                               # GitHub Pages source — https://indranildc
 demo/                               # End-to-end worked example — HamroStay AI
   demo_problem_statement.md         # Raw startup idea fed into Stage 01
   geminichat-log.md                 # Gemini chat response transcript for stages 01–03
+  hamrostay-ai-demo.mp4             # Screen recording of the live web app
+
+  demo_artifacts/                   # Desktop web app screenshots
 
   product_harness_artifacts/        # Stage 01–03 outputs from the HamroStay AI run
     market-research.md              # Stage 01 output
