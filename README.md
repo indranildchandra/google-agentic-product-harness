@@ -1,6 +1,6 @@
-# google-agentic-product-harness
+# Google Agentic Product Harness
 
-> Eight prompt templates that take a raw startup idea to a deployed, market-ready product — using Gemini, Google Antigravity, and NotebookLM.
+Eight prompt templates that take a raw startup idea to a deployed, market-ready product — using Gemini, Google Antigravity, and NotebookLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Stages](https://img.shields.io/badge/Stages-8_Stages_Framework-blue)](#the-eight-stage-pipeline)
