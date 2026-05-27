@@ -286,6 +286,7 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 
 <img src="demo/demo_artifacts/hamrostay-ai-demo.gif" alt="HamroStay AI — demo walkthrough" width="100%"/>
 
+> GIF quality is reduced for inline preview. For the full-quality recording, download [hamrostay-ai-demo.mp4](demo/demo_artifacts/hamrostay-ai-demo.mp4).
 > Desktop browser only — the app is a web-first demonstration and is not yet responsive on mobile.
 
 ---
