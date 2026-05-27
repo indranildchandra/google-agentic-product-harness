@@ -37,8 +37,6 @@ Eight prompt templates that take a raw startup idea to a deployed, market-ready 
 
 ## Quick start
 
-> Stages 01–03 require only a browser. Stages 04–07 require a developer and Google Antigravity access.
-
 1. **Describe your idea**: open [Stage 01](prompts/01-market-researcher.md) in Gemini 3.1 Pro. Answer 3 questions. Get a full TAM/SAM/SOM analysis with a GO/HOLD/NO-GO verdict.
 2. **Validate it**: paste the Stage 01 output into [Stage 02](prompts/02-idea-validator.md). Get a competitive matrix, moat analysis, and defensibility score.
 3. **Design it**: paste both outputs into [Stage 03](prompts/03-workflow-generator.md). Get a screen inventory + Stitch-ready frame prompts. Paste them into [Google Stitch](https://stitch.withgoogle.com/) to generate high-fidelity UI screens.
