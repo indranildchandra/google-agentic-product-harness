@@ -39,11 +39,12 @@
 
 > Stages 01–03 require only a browser. Stages 04–07 require a developer and Google Antigravity access.
 
-1. **Describe your idea** — open [Stage 01](prompts/01-market-researcher.md) in Gemini 3.1 Pro. Answer 3 questions. Get a full TAM/SAM/SOM analysis with a GO/HOLD/NO-GO verdict.
-2. **Validate it** — paste the Stage 01 output into [Stage 02](prompts/02-idea-validator.md). Get a competitive matrix, moat analysis, and defensibility score.
-3. **Design it** — paste both outputs into [Stage 03](prompts/03-workflow-generator.md). Get a screen inventory + Stitch-ready frame prompts. Paste them into [Google Stitch](https://stitch.withgoogle.com/) to generate high-fidelity UI screens.
-4. **Build it** — hand the Stage 03 outputs and Stitch Design DNA to a developer running [Stages 04–06](prompts/) in Google Antigravity. Get a deployed React app with a phase-by-phase changelog.
-5. **Ship it** — run [Stage 07](prompts/07-build-reviewer.md) against the live URL for a severity-triaged bug report, then upload everything to NotebookLM and run [Stage 08](prompts/08-pitch-deck-generator.md) to generate the investor deck.
+1. **Describe your idea**: open [Stage 01](prompts/01-market-researcher.md) in Gemini 3.1 Pro. Answer 3 questions. Get a full TAM/SAM/SOM analysis with a GO/HOLD/NO-GO verdict.
+2. **Validate it**: paste the Stage 01 output into [Stage 02](prompts/02-idea-validator.md). Get a competitive matrix, moat analysis, and defensibility score.
+3. **Design it**: paste both outputs into [Stage 03](prompts/03-workflow-generator.md). Get a screen inventory + Stitch-ready frame prompts. Paste them into [Google Stitch](https://stitch.withgoogle.com/) to generate high-fidelity UI screens.
+4. **Build it**: hand the Stage 03 outputs and Stitch Design DNA to a developer running [Stages 04–06](prompts/) in Google Antigravity. Get a deployed React app with a phase-by-phase changelog.
+5. **Ship it**: run [Stage 07](prompts/07-build-reviewer.md) against the live URL for a severity-triaged bug report, then upload everything to NotebookLM and run [Stage 08](prompts/08-pitch-deck-generator.md) to generate the investor deck.
+6. **Present it**: upload all `.md` files from `.product-harness/` as NotebookLM sources and run [Stage 08](prompts/08-pitch-deck-generator.md). Get a 10-slide investor deck following the Sequoia seed template, grounded in your own research and build output.
 
 ---
 
