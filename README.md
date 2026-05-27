@@ -179,7 +179,7 @@ Six high-fidelity mobile screens produced by pasting `workflow-stitch-pack.md` p
 - Access to NotebookLM (for stage 08)
 - Access to Google Stitch (for stage 03 design output)
 - A Stitch API key (for MCP bridge between Stitch and Antigravity at Stage 04) — see [codelab](https://codelabs.developers.google.com/design-to-code-with-antigravity-stitch#0)
-- Node.js 24.x (required for Antigravity stages 04–07) — see `install_scripts/` or open [installation-guide.html](installation-guide.html) for the full interactive setup walkthrough
+- Node.js 24.x (required for Antigravity stages 04–07) — see `install_scripts/` or open the [interactive setup guide](https://indranildchandra.github.io/google-agentic-product-harness/installation-guide.html) for the full walkthrough
 
 ### Step-by-step
 
@@ -262,9 +262,9 @@ install_scripts/                    # Node.js 24.x setup for Antigravity session
   setup-node-linux-mac.sh           # macOS / Linux: installs nvm + Node 24, patches PATH
   setup-node-win.ps1                # Windows: installs Node 24 LTS MSI, refreshes env vars
 
-installation-guide.html             # Interactive setup guide (open in browser) — covers Antigravity
-                                    #   install, Node.js setup via scripts, Firebase project creation,
-                                    #   Firebase CLI login, firebase init, build and deploy to Hosting
+docs/                               # GitHub Pages source — https://indranildchandra.github.io/google-agentic-product-harness/
+  installation-guide.html           # Interactive setup guide — Antigravity install, Node.js,
+                                    #   Firebase project, CLI login, firebase init, build and deploy
 
 demo/                               # End-to-end worked example — HamroStay AI
   demo_problem_statement.md         # Raw startup idea fed into Stage 01
