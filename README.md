@@ -284,9 +284,7 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 
 ### Demo walkthrough
 
-<video src="demo/hamrostay-ai-demo.mp4" controls width="100%">
-  <a href="demo/hamrostay-ai-demo.mp4">Demo video</a>
-</video>
+<img src="demo/demo_artifacts/hamrostay-ai-demo.gif" alt="HamroStay AI — demo walkthrough" width="100%"/>
 
 > Desktop browser only — the app is a web-first demonstration and is not yet responsive on mobile.
 
@@ -316,9 +314,8 @@ docs/                               # GitHub Pages source — https://indranildc
 demo/                               # End-to-end worked example — HamroStay AI
   demo_problem_statement.md         # Raw startup idea fed into Stage 01
   geminichat-log.md                 # Gemini chat response transcript for stages 01–03
-  hamrostay-ai-demo.mp4             # Screen recording of the live web app
 
-  demo_artifacts/                   # Desktop web app screenshots
+  demo_artifacts/                   # Desktop web app screenshots, demo GIF, and screen recording
 
   product_harness_artifacts/        # Stage 01–03 outputs from the HamroStay AI run
     market-research.md              # Stage 01 output
