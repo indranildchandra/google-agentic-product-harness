@@ -138,16 +138,16 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 
 Six high-fidelity mobile screens produced by pasting `workflow-stitch-pack.md` prompts directly into [Google Stitch](https://stitch.withgoogle.com/projects/9198422885981226206). No manual design work.
 
-<table>
+<table width="100%">
 <tr>
-<td align="center"><b>S01 — Auth Portal</b><br><img src="demo/stitch_mobile_design_artifacts/screen1/screen.png" alt="S01 — Unified Access Portal" width="180"/></td>
-<td align="center"><b>S02 — Dashboard</b><br><img src="demo/stitch_mobile_design_artifacts/screen2/screen.png" alt="S02 — Core Infrastructure Hub" width="180"/></td>
-<td align="center"><b>S03 — Audio Intake</b><br><img src="demo/stitch_mobile_design_artifacts/screen3/screen.png" alt="S03 — Localization Capture Terminal" width="180"/></td>
+<td align="center" width="33%"><b>S01 — Auth Portal</b><br><img src="demo/stitch_mobile_design_artifacts/screen1/screen.png" alt="S01 — Unified Access Portal" width="100%"/></td>
+<td align="center" width="33%"><b>S02 — Dashboard</b><br><img src="demo/stitch_mobile_design_artifacts/screen2/screen.png" alt="S02 — Core Infrastructure Hub" width="100%"/></td>
+<td align="center" width="34%"><b>S03 — Audio Intake</b><br><img src="demo/stitch_mobile_design_artifacts/screen3/screen.png" alt="S03 — Localization Capture Terminal" width="100%"/></td>
 </tr>
 <tr>
-<td align="center"><b>S04 — Processing State</b><br><img src="demo/stitch_mobile_design_artifacts/screen4/screen.png" alt="S04 — Pipeline Execution Monitor" width="180"/></td>
-<td align="center"><b>S05 — Review Hub</b><br><img src="demo/stitch_mobile_design_artifacts/screen5/screen.png" alt="S05 — Semantic Asset Control Center" width="180"/></td>
-<td align="center"><b>S06 — Distribution Status</b><br><img src="demo/stitch_mobile_design_artifacts/screen6/screen.png" alt="S06 — Global Index Integration Panel" width="180"/></td>
+<td align="center" width="33%"><b>S04 — Processing State</b><br><img src="demo/stitch_mobile_design_artifacts/screen4/screen.png" alt="S04 — Pipeline Execution Monitor" width="100%"/></td>
+<td align="center" width="33%"><b>S05 — Review Hub</b><br><img src="demo/stitch_mobile_design_artifacts/screen5/screen.png" alt="S05 — Semantic Asset Control Center" width="100%"/></td>
+<td align="center" width="34%"><b>S06 — Distribution Status</b><br><img src="demo/stitch_mobile_design_artifacts/screen6/screen.png" alt="S06 — Global Index Integration Panel" width="100%"/></td>
 </tr>
 </table>
 
@@ -248,7 +248,7 @@ Stage 03 produces `workflow-stitch-pack.md` — a set of frame prompts you paste
 ## Repository structure
 
 ```text
-prompts/                        # The eight prompt templates
+prompts/                            # The eight prompt templates
   01-market-researcher.md
   02-idea-validator.md
   03-workflow-generator.md
@@ -258,51 +258,51 @@ prompts/                        # The eight prompt templates
   07-build-reviewer.md
   08-pitch-deck-generator.md
 
-install_scripts/                # Node.js 24.x setup for Antigravity sessions
-  setup-node-linux-mac.sh       # macOS / Linux: installs nvm + Node 24, patches PATH
-  setup-node-win.ps1            # Windows: installs Node 24 LTS MSI, refreshes env vars
+install_scripts/                    # Node.js 24.x setup for Antigravity sessions
+  setup-node-linux-mac.sh           # macOS / Linux: installs nvm + Node 24, patches PATH
+  setup-node-win.ps1                # Windows: installs Node 24 LTS MSI, refreshes env vars
 
-installation-guide.html         # Interactive setup guide (open in browser) — covers Antigravity
-                                #   install, Node.js setup via scripts, Firebase project creation,
-                                #   Firebase CLI login, firebase init, build and deploy to Hosting
+installation-guide.html             # Interactive setup guide (open in browser) — covers Antigravity
+                                    #   install, Node.js setup via scripts, Firebase project creation,
+                                    #   Firebase CLI login, firebase init, build and deploy to Hosting
 
-demo/                           # End-to-end worked example — HamroStay AI
-  demo_problem_statement.md     # Raw startup idea fed into Stage 01
+demo/                               # End-to-end worked example — HamroStay AI
+  demo_problem_statement.md         # Raw startup idea fed into Stage 01
 
-  geminichat-log.md             # Gemini chat response transcript for stages 01–03
-  product_harness_artifacts/    # Stage 01–03 outputs from the HamroStay AI run
-    market-research.md          # Stage 01 output
-    idea-validation.md          # Stage 02 output
-    workflow-system.md          # Stage 03 output — product persona, screen inventory, journeys
-    workflow-stitch-pack.md     # Stage 03 output — six Stitch frame prompts
-    assumptions.md              # Running assumption log (A01–A08 across stages 01–03)
+  geminichat-log.md                 # Gemini chat response transcript for stages 01–03
+  product_harness_artifacts/        # Stage 01–03 outputs from the HamroStay AI run
+    market-research.md              # Stage 01 output
+    idea-validation.md              # Stage 02 output
+    workflow-system.md              # Stage 03 output — product persona, screen inventory, journeys
+    workflow-stitch-pack.md         # Stage 03 output — six Stitch frame prompts
+    assumptions.md                  # Running assumption log (A01–A08 across stages 01–03)
 
-  stitch_mobile_design_artifacts/  # Google Stitch output — six generated mobile screens
-    screen1/ … screen6/            # Per-screen folder: screen.png, code.html, DESIGN.md
-    technical_grounding/           # Design DNA reference image, DESIGN.md
+  stitch_mobile_design_artifacts/   # Google Stitch output — six generated mobile screens
+    screen1/ … screen6/             # Per-screen folder: screen.png, code.html, DESIGN.md
+    technical_grounding/            # Design DNA reference image, DESIGN.md
 
-  example_project/              # React + Vite + TypeScript app scaffolded from the harness output
-    src/                        # Pages, components, context, types
-    public/                     # Static assets
+  example_project/                  # React + Vite + TypeScript app scaffolded from the harness output
+    src/                            # Pages, components, context, types
+    public/                         # Static assets
     package.json / vite.config.ts / tsconfig.json
 
-  notebooklm_artifacts/         # Stage 08 outputs from NotebookLM
-    HamroStay AI - Deck.pdf     # 10-slide investor pitch deck (Sequoia template)
-    HamroStay AI - Mind Map.png # Auto-generated concept map from all harness sources
+  notebooklm_artifacts/             # Stage 08 outputs from NotebookLM
+    HamroStay AI - Deck.pdf         # 10-slide investor pitch deck (Sequoia template)
+    HamroStay AI - Mind Map.png     # Auto-generated concept map from all harness sources
 
-.product-harness/                # Generated at runtime in your own project
-  market-research.md            # Stage 01 output
-  idea-validation.md            # Stage 02 output
-  workflow-system.md            # Stage 03 output
-  workflow-stitch-pack.md       # Stage 03 output
-  architecture.md               # Stage 04 output
-  agents.md                     # Stage 04 output
-  tdd.md                        # Stage 04 output
-  build-plan.md                 # Stage 05 output
-  assumptions.md                # Appended by stages 01–05, read by stage 07
-  changelog.md                  # Appended by stage 06, read by stage 07
-  issues.md                     # Stage 07 output
-  backlog.md                    # Stage 07 output
+.product-harness/                   # Generated at runtime in your own project
+  market-research.md                # Stage 01 output
+  idea-validation.md                # Stage 02 output
+  workflow-system.md                # Stage 03 output
+  workflow-stitch-pack.md           # Stage 03 output
+  architecture.md                   # Stage 04 output
+  agents.md                         # Stage 04 output
+  tdd.md                            # Stage 04 output
+  build-plan.md                     # Stage 05 output
+  assumptions.md                    # Appended by stages 01–05, read by stage 07
+  changelog.md                      # Appended by stage 06, read by stage 07
+  issues.md                         # Stage 07 output
+  backlog.md                        # Stage 07 output
 ```
 
 ---
