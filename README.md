@@ -1,6 +1,10 @@
 # google-agentic-product-harness
 
-A Google-native agentic prompt harness for first-time founders. Eight sequential prompt templates that take you from a raw startup idea to a deployed, tested product — using Gemini 3.1 Pro, Google Antigravity, and NotebookLM.
+A Google-native agentic prompt harness for first-time founders. Eight sequential prompt templates that take you from a raw startup idea to a deployed, tested product — using Gemini, Google Antigravity, and NotebookLM.
+
+> **New here?** Start with the interactive setup guide before running any prompts:
+> **[📋 Installation Guide →](https://indranildchandra.github.io/google-agentic-product-harness/installation-guide.html)**
+> Covers Antigravity installation, Node.js setup, Firebase project creation, and deploy — all in one page.
 
 ---
 
