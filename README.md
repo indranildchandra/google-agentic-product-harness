@@ -127,8 +127,15 @@ Your startup idea
 │ 06  BUILD EXECUTOR   Gemini 3.5 Flash (Antigravity)  │
 │     Phase-by-Phase Build · Verify · changelog.md     │
 └──────────────────┬───────────────────────────────────┘
-                   │
+                   │  built codebase
                    ▼
+     ┌─────────────────────────────────────────────┐
+     │   FIREBASE DEPLOY  (free Spark plan)         │
+     │   firebase build && firebase deploy          │
+     │   → live HTTPS URL                           │
+     └──────────────────┬──────────────────────────┘
+                        │  live URL
+                        ▼
 ┌───────────────────────────────────────────────────────┐
 │ 07  BUILD REVIEWER       Gemini 3.5 Flash + browser   │
 │     Live Audit · issues.md · backlog.md               │
