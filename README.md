@@ -15,6 +15,7 @@
 >
 > **See the harness in action:** **[hamrostay-dist-8239.web.app](https://hamrostay-dist-8239.web.app/)** → 
 > A full end-to-end run of all eight stages against a real startup idea, vibe-coded in ~15 minutes using Antigravity.
+>
 > **Desktop browser only** → the [Stitch project](https://stitch.withgoogle.com/projects/9198422885981226206) produces a mobile design, but the example app is a web version built for demonstration purposes and is not yet responsive.
 
 ---
@@ -287,6 +288,7 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 <img src="demo/demo_artifacts/hamrostay-ai-demo.gif" alt="HamroStay AI — demo walkthrough" width="100%"/>
 
 > GIF quality is reduced for inline preview. For the full-quality recording, download [hamrostay-ai-demo.mp4](demo/demo_artifacts/hamrostay-ai-demo.mp4).
+>
 > Desktop browser only — the app is a web-first demonstration and is not yet responsive on mobile.
 
 ---
