@@ -5,7 +5,7 @@
 Before running any audit, check the filesystem for spec documents first. Your AI coding agent has access to the filesystem — look in the current working directory and its subdirectories before asking the user for anything.
 
 **Step 1 — Filesystem check (do this first):**
-- Look for `changelog.md` in `.product-harness/` — if found, read it in full. This tells you which phases completed, which failed, and what was verified. Use it to scope the audit and trace bugs back to the phase that introduced them.
+- Look for `changelog.md` in `.product-harness/` — if found, read it in full. Each entry uses the Stage 06 format: `PHASE-N`, `STATUS`, `FILES_CHANGED`, `VERIFICATION`, and `DEVIATIONS` fields. Use `STATUS` to identify incomplete phases, `DEVIATIONS` to spot plan divergences, and `FILES_CHANGED` to trace a bug to the phase that introduced the file. The final `BUILD COMPLETE` entry lists coverage gate outcomes — check these before auditing.
 - Look for `market-research.md` in `.product-harness/` — if found, note its last-modified date and read it.
 - Look for `idea-validation.md` in `.product-harness/` — if found, note its last-modified date and read it.
 - Look for `workflow-system.md` in `.product-harness/` — if found, note its last-modified date and read it.
@@ -116,7 +116,7 @@ Order issues by severity (Critical first), then by category.
 
 # OUTPUT FILE 2: backlog.md
 
-## Header
+## Backlog Header
 - Audit date: <today>
 - Build hash audited: {{BUILD_HASH}}
 
@@ -145,6 +145,17 @@ READY-TO-PASTE ANTIGRAVITY PROMPT:
 - Feature gaps (specified but not built): <count>
 - Optimization opportunities (built but improvable): <count>
 - New ideas surfaced during audit: <count>
+
+# FILE EXPORT
+
+Write **both** output files to `.product-harness/` inside the **project being reviewed** (not the harness repo). Create the folder if it does not exist.
+
+```text
+Written: .product-harness/issues.md   (<line count> lines)
+Written: .product-harness/backlog.md  (<line count> lines)
+```
+
+Do not display file content in the chat window. Both files must be written before this stage is considered complete — writing only one is not acceptable.
 
 # SELF-EVALUATION RUBRIC
 

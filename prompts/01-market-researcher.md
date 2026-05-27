@@ -115,11 +115,13 @@ TAM:
 - TAM = 2.8M × ₹3,500 = ₹980 Cr or ~$117M
 - Cross-check: Redseer 2024 pegs gig fintech TAM at $130M. Delta: 10%. Reasonable.
 
+# FILE EXPORT
+
+Produce this stage's output as a downloadable file attachment if your interface supports it (e.g. Gemini's "Save to Drive" or an IDE file-write tool). If attachments are not available, output the content inside a single fenced markdown code block so the user can save it directly — do not display the content as prose separately from the code block. The file must be named `market-research.md`.
+
 # ASSUMPTIONS LOG
 
-After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
-
-Save your output as `.product-harness/market-research.md`.
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Produce the assumptions block as a downloadable file attachment named `assumptions.md` if your interface supports it, or output it inside a fenced markdown code block — do not display it as prose. The user will append this to their `.product-harness/assumptions.md` file. Use this format:
 
 ---
 ## Stage 1 — Market Researcher [date]

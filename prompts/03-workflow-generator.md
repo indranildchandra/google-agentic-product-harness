@@ -127,7 +127,7 @@ For any failure mode marked unhandled, add the handling to the relevant section 
 For each screen in the Screen Inventory, produce a self-contained Stitch prompt under 4500 characters. Format strictly:
 
 ---
-### STITCH PROMPT: <Screen ID> — <Screen Name>
+## STITCH PROMPT: <Screen ID> — <Screen Name>
 
 PLATFORM: <web | mobile | tablet>
 VIEWPORT: <360px mobile | 768px tablet | 1280px desktop>
@@ -171,11 +171,13 @@ Repeat the above block for every screen in the inventory.
 
 # CRITICAL: Each Stitch prompt block must be testable in isolation. A designer should be able to copy any one block, paste it into Stitch, and get a usable frame without context from the others. If a screen requires understanding another screen, that's a coupling problem; restructure.
 
+# FILE EXPORT
+
+Produce each output file as a downloadable file attachment if your interface supports it (e.g. Gemini's "Save to Drive" or an IDE file-write tool). If attachments are not available, output each file in its own fenced markdown code block labeled with the filename — do not display content as prose separately from the code blocks. The files must be named `workflow-system.md` and `workflow-stitch-pack.md`. Both files must be saved before handing off to Stage 04.
+
 # ASSUMPTIONS LOG
 
-After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
-
-Save PART A output as `.product-harness/workflow-system.md` and PART B output as `.product-harness/workflow-stitch-pack.md`.
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Produce the assumptions block as a downloadable file attachment named `assumptions.md` if your interface supports it, or output it inside a fenced markdown code block — do not display it as prose. The user will append this to their `.product-harness/assumptions.md` file. Use this format:
 
 ---
 ## Stage 3 — Workflow Generator [date]

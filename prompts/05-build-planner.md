@@ -160,6 +160,16 @@ When a Browser Verifier or Test Author agent reports failure:
 
 Do not silently skip failing tests. Do not relax assertions to make tests pass. If a test is genuinely wrong, produce an Artifact explaining why and request user approval to update it.
 
+# FILE EXPORT
+
+Write the output file to `.product-harness/` in the current project directory. Create the folder if it does not exist.
+
+```text
+Written: .product-harness/build-plan.md  (<line count> lines)
+```
+
+Do not display file content in the chat window.
+
 # ASSUMPTIONS LOG
 
 After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.

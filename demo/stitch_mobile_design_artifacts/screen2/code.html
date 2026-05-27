@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>HamroStay AI - Infrastructure Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mic-active-glow {
+            box-shadow: 0 0 20px rgba(158, 61, 0, 0.4);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-skeleton {
+            animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#594238",
+                      "tertiary-fixed-dim": "#61de8a",
+                      "on-background": "#111d27",
+                      "secondary-fixed-dim": "#b5c8e0",
+                      "secondary-fixed": "#d1e4fc",
+                      "inverse-primary": "#ffb595",
+                      "surface-container-low": "#ecf4ff",
+                      "on-tertiary-container": "#f6fff4",
+                      "primary": "#9e3d00",
+                      "outline-variant": "#e0c0b2",
+                      "on-surface": "#111d27",
+                      "primary-container": "#c64f00",
+                      "surface": "#f7f9ff",
+                      "outline": "#8c7166",
+                      "on-secondary-fixed-variant": "#36485c",
+                      "surface-container-highest": "#d7e4f3",
+                      "on-tertiary": "#ffffff",
+                      "secondary-container": "#cee1fa",
+                      "surface-bright": "#f7f9ff",
+                      "surface-container-high": "#dde9f9",
+                      "surface-tint": "#a23f00",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#d7e4f3",
+                      "surface-dim": "#cfdbea",
+                      "primary-fixed-dim": "#ffb595",
+                      "surface-container": "#e3effe",
+                      "primary-fixed": "#ffdbcd",
+                      "on-secondary-container": "#526479",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#008645",
+                      "on-secondary-fixed": "#091d2e",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#7efba4",
+                      "inverse-surface": "#26323d",
+                      "secondary": "#4e6074",
+                      "on-tertiary-fixed-variant": "#005228",
+                      "tertiary": "#006a35",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#00210c",
+                      "on-primary-fixed": "#351000",
+                      "on-primary-fixed-variant": "#7c2e00",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#e7f2ff",
+                      "background": "#f7f9ff",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#fffbff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "label-md": ["Plus Jakarta Sans"],
+                      "headline-sm": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "label-md": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-[120px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 h-[64px] bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto left-0 right-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">HamroStay AI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors" data-icon="language">language</button>
+<div class="relative w-10 h-10">
+<img alt="Profile" class="w-full h-full rounded-full object-cover border-2 border-outline-variant" data-alt="A professional portrait of a modern tech entrepreneur in a bright, minimalist studio setting. The lighting is crisp and high-key, reflecting a corporate modern aesthetic with soft shadows. The color palette is dominated by neutral whites and grays, with a subtle high-contrast clarity. The mood is authoritative yet accessible, fitting for a reliable technical hub infrastructure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYKyhfZ7VI0UbtVh7bbnfr1qCthNd8hHD1n99F3PqOR9-Ig04gemHuOgarqC6RFSWZNyHPPwMBf4k0o5C5NUf3GGog5eLIQ_wcPuxMO0UwOrXnGHr4Zd7FDtVJqgNO6Th5s-kKuqr2eWcVO_LmZfoTtoBPxowt7KOC3Z-nLXyPNJLdhZz6yPUQtlr-UyI2kXkDnl1ztUFJRAjciGBQNrnYvpa_HWjzI9wruE9EU1SKvY6Drs8yUOG2G5ZfMzVPnuUgHUn4G9EXtXU"/>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-secondary border-2 border-surface rounded-full"></span>
+</div>
+</div>
+</header>
+<!-- Error Banner (Conditional State) -->
+<div class="mt-[64px] bg-error-container text-on-error-container px-4 py-3 flex items-center justify-between border-b border-error/20 animate-in fade-in slide-in-from-top duration-500" id="error-banner">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" data-icon="sync_problem">sync_problem</span>
+<p class="font-body-md text-body-md font-semibold">Data Synchronization Delayed... Retrying connection.</p>
+</div>
+<button class="material-symbols-outlined text-on-error-container/70" data-icon="close" onclick="this.parentElement.remove()">close</button>
+</div>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop pt-8 pb-12 space-y-8">
+<!-- Optimization Card (Technical Visualizer) -->
+<section class="flex justify-center">
+<div class="w-full max-w-2xl bg-surface border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row items-center gap-6 shadow-sm">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="64" cy="64" fill="transparent" r="56" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="64" cy="64" fill="transparent" r="56" stroke="currentColor" stroke-dasharray="351.8" stroke-dashoffset="98.5" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg text-on-surface">72%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">EFFICIENCY</span>
+</div>
+</div>
+<div class="flex-1 space-y-2 text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-surface">System Performance Hub</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Your technical infrastructure is currently bridging 12 rural nodes. <span class="font-bold text-primary">3 Stays Lack AI Schema Layers</span> which may impact booking logistics.
+                    </p>
+<div class="pt-2">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+                            RESOLVE LAYERS
+                            <span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Managed Properties List -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+                    Managed Properties
+                    <span class="bg-surface-container-high text-on-surface-variant text-[12px] px-2 py-0.5 rounded-full">3 Active</span>
+</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Property Card 1 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-md hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="relative h-48 rounded-lg overflow-hidden mb-4">
+<img alt="Annapurna Base Camp Lodge" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A rugged, beautiful Himalayan homestay nestled among stone walls and terraced fields under a bright, clear blue sky. The architectural lines are precise and mirror traditional masonry, yet the image has a crisp, modern digital clarity. The lighting is bright and natural, highlighting the textures of the stone and the vibrant greenery of the rural landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Hr6o71ajgnkK81W-QimsoL2rrvAPzC0G-X8cm0AlbAiijPGnE7iple72V97X42Te3IjStl2Eb1nAa_KDMMVGBZhhDY4RrNVO_kmZDpZxEyiBs1HUGSeynryLYk9LvB_nBxRTSDrzNfBnY_7Wd_Dv_qy60XTcjYVkYrGcEKP8RpSaS6qc9UZOsbPVCTEtfdeBJGKi3ewG-sLbVhUEbF9f-1xa-W0pHFsPwDE3xcY2p2PUp9cGDaWwN3hh-ERuo9i6gk8pE3_wa3g"/>
+<div class="absolute top-3 right-3 flex gap-2">
+<span class="bg-tertiary/90 text-on-tertiary text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                                ONLINE
+                            </span>
+</div>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Annapurna Base Lodge</h4>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+<span class="text-body-sm font-body-sm">Ghandruk, Zone 4</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] text-on-primary-container" data-icon="hub">hub</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container" data-icon="database">database</span>
+</div>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">SYNCED 2M AGO</span>
+</div>
+</div>
+</div>
+<!-- Property Card 2 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-md hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="relative h-48 rounded-lg overflow-hidden mb-4">
+<img alt="Langtang Valley Stay" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist stone cabin with large windows overlooking a foggy mountain valley in Nepal. The design is sleek and architectural, blending traditional materials with modern structural order. The lighting is soft and diffused, creating an authoritative yet calm mood. The color palette features cool slate blues and warm terracotta accents, maintaining a high-contrast corporate minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN-IrGU5_-DZeAYi4Z9EtmoIMTksl_RfRJcC783ktjPvUi4Z78vD4PUz4gOBo5EUftzczab5J5764PeOfkY5Pm2ltbQEQjhhSQY3f0uDbYG_svfRgrj_UW-idD9WTV9gOg_BP2TMnrB4meXHrLkWsrZk4Pms00jXp6y-RpALxXC9IHITfRYNpYFOhdeRwHu00uoTFpTVDWlhPNoE8wysqYFKkRwhz8jRJP1ujSK0d8bRP7GLyNCuzX3bS3pIrqvNrXdrKpCLlQP3Y"/>
+<div class="absolute top-3 right-3 flex gap-2">
+<span class="bg-error/90 text-on-error text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="warning" data-weight="fill">warning</span>
+                                SCHEMA GAP
+                            </span>
+</div>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Langtang Valley Stay</h4>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+<span class="text-body-sm font-body-sm">Kyanjin Gompa</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-label-md font-label-md text-error">ACTION REQUIRED</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant">PENDING AI</span>
+</div>
+</div>
+</div>
+<!-- Loading Skeleton State -->
+<div class="bg-surface border border-outline-variant rounded-lg p-md animate-skeleton">
+<div class="h-48 bg-surface-container-highest rounded-lg mb-4"></div>
+<div class="space-y-3">
+<div class="h-6 w-3/4 bg-surface-container-highest rounded"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded"></div>
+<div class="pt-4 border-t border-outline-variant flex justify-between">
+<div class="h-4 w-16 bg-surface-container-high rounded"></div>
+<div class="h-4 w-12 bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty State Container (Hidden by default) -->
+<section class="hidden py-16 flex flex-col items-center text-center space-y-4" id="empty-state">
+<div class="w-24 h-24 bg-surface-container-high rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-[48px]" data-icon="foundation">foundation</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">No Homestays Registered</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+                Your AI infrastructure is ready. Use the voice intake to register your first rural property node.
+            </p>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 mt-4">
+                MANUAL REGISTRATION
+                <span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-[64px] bg-surface border-t border-outline-variant flex justify-around items-center px-4 pb-safe shadow-lg">
+<!-- Hub (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="dashboard" data-weight="fill">dashboard</span>
+<span class="font-label-md text-label-md">Hub</span>
+</a>
+<!-- Capture -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="mic">mic</span>
+<span class="font-label-md text-label-md">Capture</span>
+</a>
+<!-- SPACER FOR FAB -->
+<div class="w-16"></div>
+<!-- Review -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="rate_review">rate_review</span>
+<span class="font-label-md text-label-md">Review</span>
+</a>
+<!-- Status -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="cloud_done">cloud_done</span>
+<span class="font-label-md text-label-md">Status</span>
+</a>
+<!-- Floating Action Button -->
+<button class="absolute left-1/2 -translate-x-1/2 -top-7 w-[56px] h-[56px] bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-[60] mic-active-glow" id="mic-fab" onclick="triggerAudioIntake()">
+<span class="material-symbols-outlined text-[28px]" data-icon="mic" data-weight="fill">mic</span>
+</button>
+</nav>
+<script>
+        function triggerAudioIntake() {
+            const fab = document.getElementById('mic-fab');
+            fab.classList.add('animate-ping');
+            
+            // Interaction: Tapping mic button triggers S03-audio-intake
+            setTimeout(() => {
+                fab.classList.remove('animate-ping');
+                alert('Initializing S03-audio-intake: AI listening for property logistics...');
+            }, 600);
+        }
+
+        // Handle navigation states for demo
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                navItems.forEach(i => {
+                    i.classList.remove('bg-primary-container', 'text-on-primary-container', 'scale-90');
+                    i.classList.add('text-on-surface-variant');
+                });
+                item.classList.remove('text-on-surface-variant');
+                item.classList.add('bg-primary-container', 'text-on-primary-container', 'scale-90', 'rounded-xl');
+            });
+        });
+    </script>
+</body></html>

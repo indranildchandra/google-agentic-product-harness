@@ -147,7 +147,7 @@ Adjust the decomposition to fit the actual product. Justify any deviation.
 - End-to-end tests: framework = Playwright. Coverage = every user journey from workflow-system.md Section 3.
 - Accessibility tests: axe-core integrated into Playwright runs.
 
-### Test Inventory
+### E2E Test Inventory
 For each user journey, write a Playwright test in pseudocode:
 
 ---
@@ -158,10 +158,27 @@ THEN: <expected end state, with selectors that confirm>
 ARTIFACT: screenshot at <step N>, browser recording of full flow
 ---
 
-Minimum tests:
-- One happy path E2E test per primary journey from Section 3.
-- One failure-mode test per failure listed in Section 7 of workflow-system.md (slow network, malformed response, deep link without context, etc.).
+Minimum E2E tests:
+- One happy path test per primary journey from workflow-system.md Section 3.
+- One failure-mode test per failure listed in workflow-system.md Section 7 (slow network, malformed response, deep link without context, etc.).
 - One accessibility test per screen with interactive elements.
+
+### Integration Test Inventory
+For each integration point defined in `architecture.md` (APIs, data stores, third-party services), write a Vitest + MSW test in pseudocode:
+
+---
+INTEGRATION TEST: <integration name, e.g., "Auth API — login success">
+SCOPE: <what is being tested at the boundary, e.g., "API client → /auth/login endpoint">
+GIVEN: <MSW handler setup, e.g., "MSW returns 200 with valid JWT">
+WHEN: <the call or action that triggers the integration, e.g., "`loginUser('test@example.com', 'password')` is called">
+THEN: <expected outcome at the component or store level, e.g., "auth store sets user, token stored in localStorage">
+FAILURE CASE: <what the same test looks like when the API returns an error, e.g., "MSW returns 401 → auth store clears, error state set">
+---
+
+Minimum integration tests:
+- One success + one failure case per external API endpoint used in primary user journeys.
+- One test per data store operation (create, read, update, delete) that touches a real schema.
+- One test per failure mode listed in the Integration Points section of `architecture.md` (timeout, rate limit, auth failure).
 
 ### Coverage Gates (must pass before deployment)
 - Unit test coverage: 70% lines, 80% data layer
@@ -177,6 +194,18 @@ The Browser Verifier agent (defined in agents.md) executes the E2E test suite vi
 - Network log capture for failed requests
 
 If any coverage gate fails, the agent does not mark the build complete. It produces a "Coverage Gate Failure" Artifact and escalates.
+
+# FILE EXPORT
+
+Write all three output files to `.product-harness/` in the current project directory. Create the folder if it does not exist.
+
+```text
+Written: .product-harness/architecture.md  (<line count> lines)
+Written: .product-harness/agents.md        (<line count> lines)
+Written: .product-harness/tdd.md           (<line count> lines)
+```
+
+Do not display file content in the chat window. All three files must be written before this stage is considered complete.
 
 # ASSUMPTIONS LOG
 

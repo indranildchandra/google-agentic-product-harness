@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-error-container": "#93000a",
+                  "on-surface-variant": "#594238",
+                  "tertiary-fixed-dim": "#61de8a",
+                  "on-background": "#111d27",
+                  "secondary-fixed-dim": "#b5c8e0",
+                  "secondary-fixed": "#d1e4fc",
+                  "inverse-primary": "#ffb595",
+                  "surface-container-low": "#ecf4ff",
+                  "on-tertiary-container": "#f6fff4",
+                  "primary": "#9e3d00",
+                  "outline-variant": "#e0c0b2",
+                  "on-surface": "#111d27",
+                  "primary-container": "#c64f00",
+                  "surface": "#f7f9ff",
+                  "outline": "#8c7166",
+                  "on-secondary-fixed-variant": "#36485c",
+                  "surface-container-highest": "#d7e4f3",
+                  "on-tertiary": "#ffffff",
+                  "secondary-container": "#cee1fa",
+                  "surface-bright": "#f7f9ff",
+                  "surface-container-high": "#dde9f9",
+                  "surface-tint": "#a23f00",
+                  "on-primary": "#ffffff",
+                  "surface-variant": "#d7e4f3",
+                  "surface-dim": "#cfdbea",
+                  "primary-fixed-dim": "#ffb595",
+                  "surface-container": "#e3effe",
+                  "primary-fixed": "#ffdbcd",
+                  "on-secondary-container": "#526479",
+                  "surface-container-lowest": "#ffffff",
+                  "tertiary-container": "#008645",
+                  "on-secondary-fixed": "#091d2e",
+                  "on-error": "#ffffff",
+                  "tertiary-fixed": "#7efba4",
+                  "inverse-surface": "#26323d",
+                  "secondary": "#4e6074",
+                  "on-tertiary-fixed-variant": "#005228",
+                  "tertiary": "#006a35",
+                  "error": "#ba1a1a",
+                  "on-tertiary-fixed": "#00210c",
+                  "on-primary-fixed": "#351000",
+                  "on-primary-fixed-variant": "#7c2e00",
+                  "on-secondary": "#ffffff",
+                  "inverse-on-surface": "#e7f2ff",
+                  "background": "#f7f9ff",
+                  "error-container": "#ffdad6",
+                  "on-primary-container": "#fffbff"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "margin-mobile": "16px",
+                  "xs": "4px",
+                  "unit": "8px",
+                  "margin-desktop": "40px",
+                  "gutter": "16px",
+                  "xl": "32px",
+                  "sm": "8px",
+                  "lg": "24px",
+                  "md": "16px"
+          },
+          "fontFamily": {
+                  "headline-md": ["Plus Jakarta Sans"],
+                  "headline-lg": ["Plus Jakarta Sans"],
+                  "body-md": ["Plus Jakarta Sans"],
+                  "body-sm": ["Plus Jakarta Sans"],
+                  "label-md": ["Plus Jakarta Sans"],
+                  "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+                  "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                  "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                  "label-md": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                  "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+    }
+    .spinner {
+      animation: rotate 2s linear infinite;
+    }
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .progress-line {
+      position: absolute;
+      left: 11px;
+      top: 24px;
+      bottom: -8px;
+      width: 2px;
+      background-color: #D5DBDB;
+    }
+    .progress-line-active {
+      background-color: #27AE60;
+      transition: height 0.5s ease-in-out;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopAppBar Component (Source: JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 h-[56px] flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">HamroStay AI</h1>
+</div>
+<div class="flex items-center gap-4 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="language">language</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[56px] flex flex-col items-center justify-center p-lg md:p-xl max-w-4xl mx-auto w-full">
+<!-- Status Header Section -->
+<div class="text-center mb-xl w-full">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container mb-md" id="status-badge">
+<span class="font-label-md text-label-md uppercase tracking-widest">Pipeline Active</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-sm" id="main-headline">Executing Infrastructure Logic</h2>
+<p class="text-on-surface-variant font-body-md" id="telemetry-label">Estimated Processing Time Remaining: 2 Seconds</p>
+</div>
+<!-- Central Process Ladder -->
+<div class="w-full max-w-md bg-surface border border-outline-variant rounded-xl p-lg space-y-lg relative shadow-sm">
+<!-- Row 1: Dialect Transcription -->
+<div class="flex items-start gap-md relative" id="row-1">
+<div class="progress-line"></div>
+<div class="relative z-10 w-6 h-6 rounded-full flex items-center justify-center transition-colors duration-300" id="icon-1">
+<span class="material-symbols-outlined text-[#27AE60]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Dialect Transcription</span>
+<span class="text-body-sm text-on-surface-variant">Neural processing of local phonetic structures complete.</span>
+</div>
+</div>
+<!-- Row 2: Human Copy Generation -->
+<div class="flex items-start gap-md relative" id="row-2">
+<div class="progress-line"></div>
+<div class="relative z-10 w-6 h-6 flex items-center justify-center" id="icon-2">
+<span class="material-symbols-outlined text-[#E67E22] spinner" data-icon="progress_activity">progress_activity</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface" id="label-2">Human Copy Generation</span>
+<span class="text-body-sm text-on-surface-variant" id="subtext-2">Synthesizing authoritative yet accessible content...</span>
+</div>
+</div>
+<!-- Row 3: Semantic FAQ Mapping -->
+<div class="flex items-start gap-md relative" id="row-3">
+<div class="progress-line"></div>
+<div class="relative z-10 w-6 h-6 flex items-center justify-center" id="icon-3">
+<span class="material-symbols-outlined text-[#D5DBDB]" data-icon="pending">pending</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">Semantic FAQ Mapping</span>
+<span class="text-body-sm text-on-surface-variant">Awaiting technical clustering.</span>
+</div>
+</div>
+<!-- Row 4: JSON-LD Entity Creation -->
+<div class="flex items-start gap-md relative" id="row-4">
+<div class="relative z-10 w-6 h-6 flex items-center justify-center" id="icon-4">
+<span class="material-symbols-outlined text-[#D5DBDB]" data-icon="pending">pending</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">JSON-LD Entity Creation</span>
+<span class="text-body-sm text-on-surface-variant">Final structural schema validation.</span>
+</div>
+</div>
+</div>
+<!-- Error State Container (Hidden by default) -->
+<div class="hidden mt-lg w-full max-w-md p-md border border-error bg-error-container/20 rounded-lg flex items-center gap-sm" id="error-box">
+<span class="material-symbols-outlined text-error" data-icon="report">report</span>
+<p class="text-on-error-container text-body-md font-semibold">Linguistic Model Exception: Vocabulary out of bounds.</p>
+</div>
+<!-- Success CTA (Hidden by default) -->
+<div class="hidden mt-xl fade-in-up" id="success-cta">
+<button class="bg-[#D35400] text-white px-xl py-md rounded-lg font-headline-sm flex items-center gap-2 hover:bg-[#A04000] transition-all shadow-md active:scale-95">
+        Proceed to Asset Review
+        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Bottom Visualizer Pattern -->
+<div class="fixed bottom-0 left-0 w-full h-1 bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary transition-all duration-1000 ease-in-out" id="visualizer-bar" style="width: 25%"></div>
+</div>
+<script>
+    // Simple state simulation for the UI demonstration
+    const steps = [
+      { id: 1, label: "Dialect Transcription", status: "complete" },
+      { id: 2, label: "Human Copy Generation", status: "loading" },
+      { id: 3, label: "Semantic FAQ Mapping", status: "pending" },
+      { id: 4, label: "JSON-LD Entity Creation", status: "pending" }
+    ];
+
+    let currentStepIndex = 1; // Starting at Row 2 (index 1)
+
+    function updateUI(stepIndex) {
+      const visualizer = document.getElementById('visualizer-bar');
+      const telemetry = document.getElementById('telemetry-label');
+      
+      // Update visualizer width
+      visualizer.style.width = ((stepIndex + 1) / 4 * 100) + '%';
+      
+      // Handle completion logic
+      if (stepIndex === 4) {
+        document.getElementById('status-badge').innerHTML = '<span class="font-label-md text-label-md uppercase tracking-widest">Processing Success</span>';
+        document.getElementById('status-badge').classList.replace('bg-secondary-container', 'bg-tertiary-fixed');
+        document.getElementById('status-badge').classList.replace('text-on-secondary-container', 'text-on-tertiary-fixed-variant');
+        document.getElementById('main-headline').innerText = 'Data Pipeline Finalized';
+        telemetry.innerText = 'Execution Complete: 0 Seconds Remaining';
+        document.getElementById('success-cta').classList.remove('hidden');
+        return;
+      }
+
+      const icon = document.getElementById(`icon-${stepIndex + 1}`);
+      const label = icon.nextElementSibling.querySelector('span:first-child');
+      const subtext = icon.nextElementSibling.querySelector('span:last-child');
+
+      // Set previous step to checkmark
+      if (stepIndex > 0) {
+        const prevIcon = document.getElementById(`icon-${stepIndex}`);
+        prevIcon.innerHTML = `<span class="material-symbols-outlined text-[#27AE60]" style="font-variation-settings: 'FILL' 1;" data-icon="check_circle">check_circle</span>`;
+      }
+
+      // Set current step to spinner
+      icon.innerHTML = `<span class="material-symbols-outlined text-[#E67E22] spinner" data-icon="progress_activity">progress_activity</span>`;
+      label.classList.replace('text-on-surface-variant', 'text-on-surface');
+      subtext.innerText = "Analyzing infrastructure metadata...";
+      
+      telemetry.innerText = `Estimated Processing Time Remaining: ${4 - stepIndex} Seconds`;
+    }
+
+    // Progression simulation
+    const interval = setInterval(() => {
+      currentStepIndex++;
+      if (currentStepIndex <= 4) {
+        updateUI(currentStepIndex - 1);
+      } else {
+        clearInterval(interval);
+        // Simulate "Auto-forward to S05" after a short delay on success
+        setTimeout(() => {
+          console.log("Redirecting to Asset Review S05...");
+        }, 3000);
+      }
+    }, 2000);
+
+    // Error State toggle (for testing/demonstration)
+    function triggerError() {
+      clearInterval(interval);
+      const activeRow = document.getElementById(`row-${currentStepIndex}`);
+      const activeLabel = activeRow.querySelector('span:first-child');
+      const activeIcon = activeRow.querySelector('div.z-10');
+      
+      activeLabel.style.color = '#C0392B';
+      activeIcon.innerHTML = `<span class="material-symbols-outlined text-[#C0392B]" data-icon="error">error</span>`;
+      document.getElementById('error-box').classList.remove('hidden');
+      document.getElementById('telemetry-label').innerText = "System halted due to model exception.";
+    }
+
+    // Optional: Press 'E' to simulate error
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'e' || e.key === 'E') triggerError();
+    });
+
+  </script>
+</body></html>

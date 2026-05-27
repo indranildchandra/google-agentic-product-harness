@@ -112,11 +112,13 @@ Same as Template 1.
 
 Notion's primary moat at Series A was NOT product features. It was integration stickiness. Once a team put their wiki, project tracker, and meeting notes into Notion, switching cost became weeks of migration. Network effect was secondary (templates marketplace). Data flywheel was negligible. This is the kind of crisp moat ranking the memo demands.
 
+# FILE EXPORT
+
+Produce this stage's output as a downloadable file attachment if your interface supports it (e.g. Gemini's "Save to Drive" or an IDE file-write tool). If attachments are not available, output the content inside a single fenced markdown code block so the user can save it directly — do not display the content as prose separately from the code block. The file must be named `idea-validation.md`.
+
 # ASSUMPTIONS LOG
 
-After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Append them to `.product-harness/assumptions.md` using this format. Create the file if it does not exist.
-
-Save your output as `.product-harness/idea-validation.md`.
+After completing the output, extract every [ASSUMPTION: ...] tag from the document you just produced. Produce the assumptions block as a downloadable file attachment named `assumptions.md` if your interface supports it, or output it inside a fenced markdown code block — do not display it as prose. The user will append this to their `.product-harness/assumptions.md` file. Use this format:
 
 ---
 ## Stage 2 — Idea Validator [date]

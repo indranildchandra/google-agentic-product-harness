@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#594238",
+            "tertiary-fixed-dim": "#61de8a",
+            "on-background": "#111d27",
+            "secondary-fixed-dim": "#b5c8e0",
+            "secondary-fixed": "#d1e4fc",
+            "inverse-primary": "#ffb595",
+            "surface-container-low": "#ecf4ff",
+            "on-tertiary-container": "#f6fff4",
+            "primary": "#9e3d00",
+            "outline-variant": "#e0c0b2",
+            "on-surface": "#111d27",
+            "primary-container": "#c64f00",
+            "surface": "#f7f9ff",
+            "outline": "#8c7166",
+            "on-secondary-fixed-variant": "#36485c",
+            "surface-container-highest": "#d7e4f3",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#cee1fa",
+            "surface-bright": "#f7f9ff",
+            "surface-container-high": "#dde9f9",
+            "surface-tint": "#a23f00",
+            "on-primary": "#ffffff",
+            "surface-variant": "#d7e4f3",
+            "surface-dim": "#cfdbea",
+            "primary-fixed-dim": "#ffb595",
+            "surface-container": "#e3effe",
+            "primary-fixed": "#ffdbcd",
+            "on-secondary-container": "#526479",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#008645",
+            "on-secondary-fixed": "#091d2e",
+            "on-error": "#ffffff",
+            "tertiary-fixed": "#7efba4",
+            "inverse-surface": "#26323d",
+            "secondary": "#4e6074",
+            "on-tertiary-fixed-variant": "#005228",
+            "tertiary": "#006a35",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#00210c",
+            "on-primary-fixed": "#351000",
+            "on-primary-fixed-variant": "#7c2e00",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e7f2ff",
+            "background": "#f7f9ff",
+            "error-container": "#ffdad6",
+            "on-primary-container": "#fffbff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "xs": "4px",
+            "unit": "8px",
+            "margin-desktop": "40px",
+            "gutter": "16px",
+            "xl": "32px",
+            "sm": "8px",
+            "lg": "24px",
+            "md": "16px"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "mono": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .syntax-key { color: #9e3d00; }
+    .syntax-string { color: #006a35; }
+    .syntax-bool { color: #4e6074; }
+    .tab-transition { transition: all 50ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .glass-effect { backdrop-filter: blur(8px); background-color: rgba(255, 255, 255, 0.85); }
+    .skeleton { background: linear-gradient(90deg, #ecf4ff 25%, #d7e4f3 50%, #ecf4ff 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 h-[64px] bg-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-full border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Review Hub</h1>
+</div>
+<div class="flex items-center gap-sm">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md text-label-md">98% VALID</span>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full">more_vert</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 mt-[64px] mb-[80px] p-margin-mobile md:p-margin-desktop overflow-hidden flex flex-col gap-lg">
+<!-- Bento Header -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 p-lg bg-surface-container-lowest rounded-xl border border-outline-variant">
+<div class="flex flex-col gap-xs">
+<span class="text-primary font-label-md uppercase tracking-widest">Semantic Control</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Asset Review &amp; Validation</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl">High-integrity logistics data verification for Himalayan homestay deployments. Ensure all marketing strings and JSON schemas align with the AI infrastructure engine.</p>
+</div>
+</div>
+<div class="md:col-span-4 p-lg bg-primary-container text-on-primary-container rounded-xl flex flex-col justify-between">
+<span class="material-symbols-outlined text-[32px]">analytics</span>
+<div>
+<p class="font-label-md opacity-80 uppercase">AI Integrity Score</p>
+<p class="font-headline-md text-headline-md">High Confidence</p>
+</div>
+</div>
+</div>
+<!-- Asset Tabs Navigation -->
+<nav class="flex overflow-x-auto gap-xs pb-1 border-b border-outline-variant no-scrollbar">
+<button class="tab-btn px-lg py-md border-b-2 border-primary text-primary font-bold tab-transition whitespace-nowrap" id="tab-marketing" onclick="switchTab('marketing')">Marketing Copy</button>
+<button class="tab-btn px-lg py-md border-b-2 border-transparent text-on-surface-variant hover:bg-surface-container-high tab-transition whitespace-nowrap" id="tab-faqs" onclick="switchTab('faqs')">FAQs</button>
+<button class="tab-btn px-lg py-md border-b-2 border-transparent text-on-surface-variant hover:bg-surface-container-high tab-transition whitespace-nowrap" id="tab-llm" onclick="switchTab('llm')">LLM Markdown</button>
+<button class="tab-btn px-lg py-md border-b-2 border-transparent text-on-surface-variant hover:bg-surface-container-high tab-transition whitespace-nowrap" id="tab-json" onclick="switchTab('json')">JSON Schema</button>
+</nav>
+<!-- Console Section -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col min-h-[400px]">
+<div class="h-10 border-b border-outline-variant px-md flex items-center justify-between bg-surface-container">
+<div class="flex gap-xs">
+<div class="w-2.5 h-2.5 rounded-full bg-error"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary"></div>
+</div>
+<div class="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest" id="console-label">Console: Marketing_Copy.txt</div>
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant">content_copy</button>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-lg font-mono text-body-sm overflow-auto bg-surface-container-lowest" id="main-console">
+<!-- Default: Marketing Tab Content -->
+<div class="content-view space-y-md" id="content-marketing">
+<p><span class="text-outline"># Welcome Message</span></p>
+<p class="text-on-surface">Experience the raw beauty of Annapurna from the comfort of our AI-managed rustic luxury cabin.</p>
+<p><span class="text-outline"># Logistics Value Proposition</span></p>
+<p class="text-on-surface">HamroStay AI bridges the gap between rugged environments and sophisticated logistics, ensuring your supply chain remains as steady as the mountains.</p>
+</div>
+<!-- Partial Data Placeholder -->
+<div class="content-view hidden flex flex-col items-center justify-center h-full text-center p-xl" id="content-json">
+<span class="material-symbols-outlined text-[48px] text-outline mb-md" style="font-variation-settings: 'FILL' 0">settings_b_roll</span>
+<h3 class="font-headline-sm text-on-surface">Entity Layout Generation Delayed...</h3>
+<p class="font-body-md text-on-surface-variant max-w-sm mt-xs">The underlying LLM schema for this asset is currently being refined by the logistics engine.</p>
+</div>
+<!-- Skeletons (Hidden by default, triggered by script) -->
+<div class="content-view hidden space-y-lg" id="content-loading">
+<div class="h-4 w-3/4 skeleton rounded"></div>
+<div class="h-4 w-1/2 skeleton rounded"></div>
+<div class="h-4 w-2/3 skeleton rounded"></div>
+<div class="h-24 w-full skeleton rounded"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Interaction Bar -->
+<footer class="fixed bottom-0 left-0 w-full h-[80px] bg-surface glass-effect border-t border-outline-variant px-margin-mobile md:px-margin-desktop z-50">
+<div class="h-full flex gap-gutter max-w-[1280px] mx-auto items-center">
+<!-- 30% Split -->
+<div class="w-[30%] hidden md:flex items-center gap-md">
+<button class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+<span class="font-label-md">Edit All</span>
+</button>
+<div class="h-8 w-px bg-outline-variant"></div>
+<button class="flex flex-col items-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+<span class="font-label-md">Discard</span>
+</button>
+</div>
+<!-- 70% Split -->
+<div class="flex-1 md:w-[70%] flex justify-end">
+<button class="w-full md:w-auto px-xl py-lg bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-md" onclick="approveAssets()">
+<span class="material-symbols-outlined">rocket_launch</span>
+          Approve &amp; Broadcast Distribution Assets
+        </button>
+</div>
+</div>
+</footer>
+<!-- Error Modal (Hidden) -->
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center p-md" id="error-modal">
+<div class="absolute inset-0 bg-on-background/60 backdrop-blur-sm" onclick="closeModal()"></div>
+<div class="relative bg-inverse-surface text-inverse-on-surface w-full max-w-md rounded-xl p-xl shadow-2xl border border-outline/20">
+<div class="flex items-center gap-md text-error mb-lg">
+<span class="material-symbols-outlined text-[32px]">report</span>
+<h2 class="font-headline-md text-headline-md">Asset Validation Integrity Failure</h2>
+</div>
+<p class="font-body-md opacity-80 mb-xl">Critical mismatch detected in Semantic Key #402. Broadcast aborted to prevent upstream infrastructure corruption. Please re-validate JSON schema before proceeding.</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full py-md bg-error text-white font-bold rounded-lg uppercase tracking-widest text-label-md" onclick="closeModal()">Initiate Re-Scan</button>
+<button class="w-full py-md text-on-surface-variant hover:text-white transition-colors text-label-md uppercase" onclick="closeModal()">Dismiss Report</button>
+</div>
+</div>
+</div>
+<script>
+    function switchTab(tabId) {
+      // Logic for Instant Switching (50ms)
+      const views = document.querySelectorAll('.content-view');
+      const buttons = document.querySelectorAll('.tab-btn');
+      const consoleLabel = document.getElementById('console-label');
+      
+      // Visual feedback on buttons
+      buttons.forEach(btn => {
+        btn.classList.remove('border-primary', 'text-primary', 'font-bold');
+        btn.classList.add('border-transparent', 'text-on-surface-variant');
+      });
+      document.getElementById('tab-' + tabId).classList.add('border-primary', 'text-primary', 'font-bold');
+      document.getElementById('tab-' + tabId).classList.remove('border-transparent', 'text-on-surface-variant');
+
+      // Update Label
+      const labels = {
+        marketing: "Console: Marketing_Copy.txt",
+        faqs: "Console: Knowledge_Base.md",
+        llm: "Console: Prompt_Refinement.md",
+        json: "Console: Master_Schema.json"
+      };
+      consoleLabel.innerText = labels[tabId];
+
+      // Quick loading state simulation
+      const mainConsole = document.getElementById('main-console');
+      views.forEach(v => v.classList.add('hidden'));
+      document.getElementById('content-loading').classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('content-loading').classList.add('hidden');
+        if(tabId === 'json') {
+          document.getElementById('content-json').classList.remove('hidden');
+        } else if (tabId === 'marketing') {
+          document.getElementById('content-marketing').classList.remove('hidden');
+        } else {
+          // Placeholder for others
+          mainConsole.innerHTML = `<div class="content-view text-on-surface"># Raw output for ${tabId.toUpperCase()} module... <br/><br/> [OK] Buffer validated at 2ms <br/> [OK] Encoding UTF-8 <br/> [INFO] Remote sync successful.</div>`;
+        }
+      }, 50);
+    }
+
+    function approveAssets() {
+      // Mocking error state for demo
+      document.getElementById('error-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('error-modal').classList.add('hidden');
+    }
+  </script>
+</body></html>

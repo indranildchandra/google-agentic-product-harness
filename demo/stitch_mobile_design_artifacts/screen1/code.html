@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HamroStay AI | Unified Access Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#594238",
+                    "tertiary-fixed-dim": "#61de8a",
+                    "on-background": "#111d27",
+                    "secondary-fixed-dim": "#b5c8e0",
+                    "secondary-fixed": "#d1e4fc",
+                    "inverse-primary": "#ffb595",
+                    "surface-container-low": "#ecf4ff",
+                    "on-tertiary-container": "#f6fff4",
+                    "primary": "#9e3d00",
+                    "outline-variant": "#e0c0b2",
+                    "on-surface": "#111d27",
+                    "primary-container": "#c64f00",
+                    "surface": "#f7f9ff",
+                    "outline": "#8c7166",
+                    "on-secondary-fixed-variant": "#36485c",
+                    "surface-container-highest": "#d7e4f3",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#cee1fa",
+                    "surface-bright": "#f7f9ff",
+                    "surface-container-high": "#dde9f9",
+                    "surface-tint": "#a23f00",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d7e4f3",
+                    "surface-dim": "#cfdbea",
+                    "primary-fixed-dim": "#ffb595",
+                    "surface-container": "#e3effe",
+                    "primary-fixed": "#ffdbcd",
+                    "on-secondary-container": "#526479",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#008645",
+                    "on-secondary-fixed": "#091d2e",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#7efba4",
+                    "inverse-surface": "#26323d",
+                    "secondary": "#4e6074",
+                    "on-tertiary-fixed-variant": "#005228",
+                    "tertiary": "#006a35",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#00210c",
+                    "on-primary-fixed": "#351000",
+                    "on-primary-fixed-variant": "#7c2e00",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#e7f2ff",
+                    "background": "#f7f9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#fffbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "unit": "8px",
+                    "margin-desktop": "40px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "label-md": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8F9F9;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .loader {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 h-[56px] bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">HamroStay AI</h1>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest transition-colors min-h-[44px] min-w-[44px] justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="language">language</span>
+<span class="font-label-md text-label-md text-on-surface-variant hidden sm:inline">EN</span>
+</button>
+</header>
+<!-- Main Content: Access Portal -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile pt-[56px] pb-[48px]">
+<div class="w-full max-w-[400px] flex flex-col gap-lg">
+<!-- Branding/Instruction -->
+<div class="text-center space-y-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Unified Access Portal</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Secure authentication for rural hospitality infrastructure</p>
+</div>
+<!-- Auth Form Container -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm transition-all duration-300" id="auth-container">
+<!-- Error State (Hidden by default) -->
+<div class="hidden mb-md p-md bg-error-container border border-error rounded-lg flex items-start gap-sm animate-in fade-in slide-in-from-top-2" id="error-message">
+<span class="material-symbols-outlined text-error" data-icon="error">error</span>
+<p class="font-body-sm text-body-sm text-on-error-container">Invalid Mobile Number Country Code. Please ensure the format includes '+' followed by the country code.</p>
+</div>
+<form class="space-y-lg" id="auth-form" onsubmit="return handleAuth(event)">
+<!-- Input Field -->
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="mobile-number">
+                            Enter Mobile Number
+                        </label>
+<div class="relative">
+<input class="w-full h-[48px] px-md py-3 bg-white border border-outline rounded-lg text-on-surface font-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" id="mobile-number" placeholder="+977 980 0000000" required="" type="tel"/>
+<span class="absolute right-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="smartphone">smartphone</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-[48px] bg-primary text-on-primary font-headline-sm rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px]" id="submit-btn" type="submit">
+<span id="btn-text">Request Verification Code</span>
+<div class="loader hidden" id="btn-loader"></div>
+</button>
+</form>
+<p class="mt-lg text-center font-body-sm text-body-sm text-on-surface-variant">
+                    Standard message and data rates may apply.
+                </p>
+</div>
+<!-- Visual Decorative Anchor (AI Infrastructure Vibe) -->
+<div class="relative h-[120px] rounded-xl overflow-hidden border border-outline-variant">
+<img alt="Infrastructure" class="w-full h-full object-cover opacity-60 grayscale" data-alt="A cinematic, high-contrast photograph of a rugged Himalayan lodge at twilight, with warm glowing lights inside. The visual style is professional and corporate-modern, utilizing a clean light-mode aesthetic. Surrounding the lodge are high-tech, minimalist sensor arrays and AI connectivity modules, symbolizing a bridge between rural architecture and advanced digital infrastructure. The lighting is soft and atmospheric, blending natural dusk with clean, sharp technical lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkzzYp835sRzJcJjprGwbJnlFRecSMrL85zmikE8wInd4LXJdoIzXtlWwk9s_k_f4TkCbJ6Qk_pu9z3vjIa5DrAuYOMsVDDTr6QvyCFi04p0DhmfD1nzHGcOeC4XDDRw896JmdYZFEwd3NZP0WsDFSev3-KAvapBhvMuY0GoMoa3pb4OOxQ8h1Du1y1tnK36f-7ARsBvHQI7_wUm3A02iX33FTT4FZGSroX9PkisElHwhK9pz5GpnZCx3d0CvnXuxxmxdPHWFGNOI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-md left-md flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-label-md text-label-md text-on-surface">Node ID: KTM-042 Ready</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="h-[48px] bg-surface border-t border-outline-variant flex items-center justify-center px-margin-mobile">
+<div class="flex gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center" href="#">PRIVACY POLICY</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center" href="#">TERMS OF SERVICE</a>
+</div>
+</footer>
+<script>
+        function handleAuth(event) {
+            event.preventDefault();
+            const input = document.getElementById('mobile-number');
+            const btn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoader = document.getElementById('btn-loader');
+            const errorMsg = document.getElementById('error-message');
+            const val = input.value;
+
+            // Reset States
+            errorMsg.classList.add('hidden');
+            
+            // Mock Validation Error for demonstration
+            if (!val.startsWith('+')) {
+                errorMsg.classList.remove('hidden');
+                input.classList.add('border-error');
+                return false;
+            }
+
+            input.classList.remove('border-error');
+
+            // Loading State
+            input.disabled = true;
+            input.classList.add('bg-surface-container-low', 'cursor-not-allowed');
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            btnText.innerText = 'Verifying...';
+            btnLoader.classList.remove('hidden');
+
+            // Simulate Network Delay
+            setTimeout(() => {
+                // Return to normal or simulate success
+                btnText.innerText = 'Code Sent';
+                btnLoader.classList.add('hidden');
+                setTimeout(() => {
+                    input.disabled = false;
+                    input.classList.remove('bg-surface-container-low', 'cursor-not-allowed');
+                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    btnText.innerText = 'Request Verification Code';
+                }, 2000);
+            }, 1500);
+
+            return false;
+        }
+
+        // Accessibility: Enter key focus
+        document.getElementById('mobile-number').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleAuth(e);
+            }
+        });
+    </script>
+</body></html>

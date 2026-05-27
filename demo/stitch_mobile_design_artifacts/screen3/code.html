@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .audio-wave-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.15); opacity: 0.2; }
+        }
+        .recording-ring {
+            animation: ring-expand 1.5s linear infinite;
+        }
+        @keyframes ring-expand {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+        .spinning-loader {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#594238",
+                        "tertiary-fixed-dim": "#61de8a",
+                        "on-background": "#111d27",
+                        "secondary-fixed-dim": "#b5c8e0",
+                        "secondary-fixed": "#d1e4fc",
+                        "inverse-primary": "#ffb595",
+                        "surface-container-low": "#ecf4ff",
+                        "on-tertiary-container": "#f6fff4",
+                        "primary": "#9e3d00",
+                        "outline-variant": "#e0c0b2",
+                        "on-surface": "#111d27",
+                        "primary-container": "#c64f00",
+                        "surface": "#f7f9ff",
+                        "outline": "#8c7166",
+                        "on-secondary-fixed-variant": "#36485c",
+                        "surface-container-highest": "#d7e4f3",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#cee1fa",
+                        "surface-bright": "#f7f9ff",
+                        "surface-container-high": "#dde9f9",
+                        "surface-tint": "#a23f00",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d7e4f3",
+                        "surface-dim": "#cfdbea",
+                        "primary-fixed-dim": "#ffb595",
+                        "surface-container": "#e3effe",
+                        "primary-fixed": "#ffdbcd",
+                        "on-secondary-container": "#526479",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#008645",
+                        "on-secondary-fixed": "#091d2e",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#7efba4",
+                        "inverse-surface": "#26323d",
+                        "secondary": "#4e6074",
+                        "on-tertiary-fixed-variant": "#005228",
+                        "tertiary": "#006a35",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#00210c",
+                        "on-primary-fixed": "#351000",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#e7f2ff",
+                        "background": "#f7f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-md": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#1C2833] min-h-screen flex flex-col font-body-md text-[#FFFFFF] overflow-hidden">
+<!-- Header Section -->
+<header class="h-[56px] flex items-center justify-between px-margin-mobile md:px-margin-desktop z-50">
+<button class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">close</span>
+<span class="font-label-md text-label-md">Close</span>
+</button>
+<div class="absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
+<span class="font-label-md text-label-md tracking-[0.2em] uppercase opacity-60">Audio Interface v3.2</span>
+</div>
+<div class="w-[60px]"></div> <!-- Spacer for symmetry -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-margin-mobile">
+<!-- Background Atmosphere Effect -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary blur-[120px] rounded-full"></div>
+</div>
+<!-- Status Messaging -->
+<div class="text-center mb-xl z-10 space-y-2">
+<h1 class="font-headline-lg text-headline-lg text-[#FFFFFF]" id="status-headline">Tap and Speak...</h1>
+<p class="font-body-md text-body-md text-[#D5DBDB] opacity-80" id="status-subtext">Capture rural property details via AI voice</p>
+</div>
+<!-- Central Audio Ingestion Ring -->
+<div class="relative flex items-center justify-center z-10 group cursor-pointer" onclick="toggleState()">
+<!-- Concentric Waves (Hidden by default, shown during Recording) -->
+<div class="absolute inset-0 hidden" id="recording-waves">
+<div class="absolute inset-0 recording-ring border-2 border-primary rounded-full"></div>
+<div class="absolute inset-0 recording-ring border-2 border-primary rounded-full delay-500"></div>
+<div class="absolute inset-0 recording-ring border-2 border-primary rounded-full delay-1000"></div>
+</div>
+<!-- Static Outer Shell -->
+<div class="w-[180px] h-[180px] rounded-full border-2 border-outline/30 flex items-center justify-center transition-all duration-500" id="ring-outer">
+<!-- Core Functional Core (160px) -->
+<div class="w-[160px] h-[160px] bg-[#2E4053] rounded-full flex flex-col items-center justify-center border border-[#5D6D7E] shadow-2xl group-hover:scale-105 transition-transform" id="ring-core">
+<div class="relative" id="icon-container">
+<span class="material-symbols-outlined text-[48px] text-primary" id="main-icon" style="font-variation-settings: 'FILL' 1;">mic</span>
+<!-- Loading Spinner (Hidden) -->
+<span class="material-symbols-outlined text-[48px] text-primary spinning-loader hidden" id="loading-spinner">autorenew</span>
+</div>
+<!-- Real-time Counter -->
+<div class="mt-2 font-label-md text-label-md tracking-widest text-[#FFFFFF] opacity-0 transition-opacity" id="counter">
+                        01:24 / 03:00
+                    </div>
+</div>
+</div>
+</div>
+<!-- Secondary CTA -->
+<div class="mt-xl z-10">
+<button class="px-lg py-md border border-[#5D6D7E] rounded-lg bg-transparent hover:bg-surface-container-highest/10 transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-body-md">keyboard</span>
+<span class="font-label-md text-label-md">Switch to Typing Input Instead</span>
+</button>
+</div>
+</main>
+<!-- Interactive Footer Dock -->
+<footer class="h-[120px] bg-[#17202A] border-t border-[#2C3E50] px-margin-mobile flex items-center justify-between z-50">
+<!-- Visualizer Placeholder (Minimalist Infrastructure Aesthetic) -->
+<div class="hidden md:flex flex-1 items-center gap-1">
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-8 bg-primary/60 rounded-full"></div>
+<div class="w-1 h-6 bg-primary rounded-full"></div>
+<div class="w-1 h-10 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-6 bg-primary/80 rounded-full"></div>
+<div class="w-1 h-2 bg-primary rounded-full"></div>
+<span class="ml-4 font-label-md text-label-md opacity-40">Localization Audio Stream active</span>
+</div>
+<!-- Actions -->
+<div class="flex gap-4 w-full md:w-auto justify-end">
+<button class="flex-1 md:flex-none px-xl py-3 rounded-lg border border-[#5D6D7E] text-[#D5DBDB] font-label-md text-label-md hover:bg-white/5 transition-colors">
+                Cancel
+            </button>
+<button class="flex-1 md:flex-none px-xl py-3 rounded-lg bg-primary text-white font-label-md text-label-md shadow-lg shadow-primary/20 hover:brightness-110 transition-all" id="main-action-btn">
+                Submit Record
+            </button>
+</div>
+</footer>
+<script>
+        let currentState = 'default'; // default, recording, loading, error
+
+        function toggleState() {
+            const headline = document.getElementById('status-headline');
+            const subtext = document.getElementById('status-subtext');
+            const waves = document.getElementById('recording-waves');
+            const counter = document.getElementById('counter');
+            const icon = document.getElementById('main-icon');
+            const spinner = document.getElementById('loading-spinner');
+            const ringOuter = document.getElementById('ring-outer');
+            const ringCore = document.getElementById('ring-core');
+            const mainBtn = document.getElementById('main-action-btn');
+
+            if (currentState === 'default') {
+                // To Recording
+                currentState = 'recording';
+                headline.innerText = 'Listening to Homestay Details...';
+                headline.className = 'font-headline-lg text-headline-lg text-[#FFFFFF]';
+                subtext.innerText = 'AI engine processing Himalayan dialect patterns';
+                waves.classList.remove('hidden');
+                counter.classList.remove('opacity-0');
+                icon.innerText = 'stop';
+                ringOuter.classList.add('border-primary/50');
+                mainBtn.innerText = 'Save Fragment';
+            } else if (currentState === 'recording') {
+                // To Loading
+                currentState = 'loading';
+                headline.innerText = 'Finalizing Audio...';
+                waves.classList.add('hidden');
+                counter.classList.add('opacity-0');
+                icon.classList.add('hidden');
+                spinner.classList.remove('hidden');
+                ringCore.classList.add('opacity-50');
+                mainBtn.disabled = true;
+                mainBtn.classList.add('opacity-50');
+
+                // Simulate finish or error
+                setTimeout(() => {
+                    const fail = Math.random() > 0.8;
+                    if (fail) triggerError();
+                    else resetToDefault();
+                }, 2000);
+            }
+        }
+
+        function triggerError() {
+            const headline = document.getElementById('status-headline');
+            const subtext = document.getElementById('status-subtext');
+            const ringOuter = document.getElementById('ring-outer');
+            const icon = document.getElementById('main-icon');
+            const spinner = document.getElementById('loading-spinner');
+            const ringCore = document.getElementById('ring-core');
+
+            currentState = 'error';
+            headline.innerText = 'Audio Capture Truncated...';
+            headline.className = 'font-headline-lg text-headline-lg text-[#EC7063]';
+            subtext.innerText = 'Environmental interference detected. Please retry.';
+            ringOuter.className = 'w-[180px] h-[180px] rounded-full border-2 border-[#C0392B] flex items-center justify-center';
+            ringCore.className = 'w-[160px] h-[160px] bg-[#C0392B]/10 rounded-full flex flex-col items-center justify-center border border-[#C0392B]';
+            icon.innerText = 'priority_high';
+            icon.classList.remove('hidden');
+            icon.className = 'material-symbols-outlined text-[48px] text-[#C0392B]';
+            spinner.classList.add('hidden');
+            ringCore.classList.remove('opacity-50');
+            
+            setTimeout(resetToDefault, 4000);
+        }
+
+        function resetToDefault() {
+            location.reload(); // Simple reset for demo purposes
+        }
+    </script>
+</body></html>

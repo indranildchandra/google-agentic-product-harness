@@ -53,28 +53,52 @@ You have full filesystem access, a browser tool for live verification, and the a
 
 # CHANGELOG FORMAT
 
-File: `.product-harness/changelog.md`. Append newest entries at the top. Use this format for every entry:
+File: `.product-harness/changelog.md`. Append newest entries at the top (newest first). Use this exact format for every phase entry:
 
 ---
-## [Phase Name] — [COMPLETE | IN PROGRESS | FAILED | BLOCKED]
-**Date:** <ISO date>
-**Build plan phase:** <phase number and name from build-plan.md>
+## PHASE-<N>: <Phase Name>
 
-**What was done:**
-<2–4 sentences describing what was implemented or attempted>
+STATUS: COMPLETE | IN PROGRESS | FAILED | BLOCKED
+DATE: <ISO 8601 date, e.g. 2026-05-27>
+BUILD_PLAN_PHASE: <phase number and name from build-plan.md>
 
-**Files created or modified:**
+SUMMARY:
+<2–4 sentences describing what was implemented or attempted. Be specific — "scaffolded React + Vite project with TypeScript, added Tailwind, configured ESLint" not "set up the project".>
+
+FILES_CHANGED:
 - `<filepath>` — <one-line description of change>
 - `<filepath>` — <one-line description of change>
 
-**Verification:**
-- <how it was verified, e.g., "browser tool opened localhost, screenshot captured, all primary journeys navigable">
-- <test results if applicable, e.g., "Vitest: 42 passed, 0 failed. Coverage: 74% lines">
+VERIFICATION:
+- Method: <how it was verified — "browser tool opened localhost:5173, screenshot captured" or "Vitest run" or "Playwright E2E">
+- Result: <outcome — "all primary journeys navigable" or "42 passed, 0 failed, coverage 74%" or "FAILED: auth route returned 404">
+- Artifact: <Artifact name if produced, e.g., "Scaffold Complete", or "none">
 
-**Status notes:**
-<Any deviations from the build plan, unexpected issues, or decisions made during execution. Leave blank if none.>
+DEVIATIONS:
+<Any departure from the build plan — a phase skipped, a library swapped, an extra step added. Write "None" if execution matched the plan exactly. This field is read by Stage 07 to trace bugs back to plan divergences.>
 
-**Next phase:** <name of next phase to execute, or "Build complete — run Stage 07 Build Reviewer">
+NEXT_PHASE: <name of the next phase to execute, or "Build complete — proceed to Stage 07 Build Reviewer">
+---
+
+Write one block per phase. Do not combine multiple phases into a single entry. Do not omit a phase entry even if it completes trivially.
+
+The final entry when all phases are done uses this format instead:
+
+---
+## BUILD COMPLETE
+
+STATUS: COMPLETE
+DATE: <ISO 8601 date>
+PHASES_COMPLETED: <count>
+PHASES_FAILED_OR_BLOCKED: <count, or "None">
+COVERAGE_GATES:
+- Unit test coverage: <pass % or FAIL>
+- E2E on Chromium: <PASS or FAIL>
+- E2E on Pixel 7 emulation: <PASS or FAIL>
+- axe-core critical violations: <0 or count>
+- Lighthouse performance (slowest screen): <score>
+STAGING_URL: <URL or "not deployed">
+RECOMMENDED_NEXT_STEP: Run Stage 07 — Build Reviewer against the staging URL and this changelog.
 ---
 
 # EXECUTION SEQUENCE
@@ -102,6 +126,14 @@ When all phases in `build-plan.md` are complete and verified, write a final summ
 **Staging URL:** <URL if deployed>
 **Recommended next step:** Run Stage 07 — Build Reviewer against the staging URL and this changelog.
 ---
+
+# FILE EXPORT
+
+After each phase completes, write the phase entry to `.product-harness/changelog.md` in the current project directory. Write phase-by-phase as you go — do not batch all entries at the end. Create the file if it does not exist.
+
+```text
+Appended: .product-harness/changelog.md — PHASE-<N> <STATUS>
+```
 
 # SELF-EVALUATION RUBRIC
 

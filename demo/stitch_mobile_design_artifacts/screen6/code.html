@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Index Integration Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        @keyframes pulse-amber {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-amber {
+            animation: pulse-amber 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#594238",
+                        "tertiary-fixed-dim": "#61de8a",
+                        "on-background": "#111d27",
+                        "secondary-fixed-dim": "#b5c8e0",
+                        "secondary-fixed": "#d1e4fc",
+                        "inverse-primary": "#ffb595",
+                        "surface-container-low": "#ecf4ff",
+                        "on-tertiary-container": "#f6fff4",
+                        "primary": "#9e3d00",
+                        "outline-variant": "#e0c0b2",
+                        "on-surface": "#111d27",
+                        "primary-container": "#c64f00",
+                        "surface": "#f7f9ff",
+                        "outline": "#8c7166",
+                        "on-secondary-fixed-variant": "#36485c",
+                        "surface-container-highest": "#d7e4f3",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#cee1fa",
+                        "surface-bright": "#f7f9ff",
+                        "surface-container-high": "#dde9f9",
+                        "surface-tint": "#a23f00",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d7e4f3",
+                        "surface-dim": "#cfdbea",
+                        "primary-fixed-dim": "#ffb595",
+                        "surface-container": "#e3effe",
+                        "primary-fixed": "#ffdbcd",
+                        "on-secondary-container": "#526479",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#008645",
+                        "on-secondary-fixed": "#091d2e",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#7efba4",
+                        "inverse-surface": "#26323d",
+                        "secondary": "#4e6074",
+                        "on-tertiary-fixed-variant": "#005228",
+                        "tertiary": "#006a35",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#00210c",
+                        "on-primary-fixed": "#351000",
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#e7f2ff",
+                        "background": "#f7f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-md": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 h-[56px] bg-surface border-b border-outline-variant flex items-center px-margin-mobile md:px-margin-desktop justify-between max-w-[1280px] mx-auto left-0 right-0">
+<div class="flex items-center gap-4">
+<button aria-label="Close" class="p-2 -ml-2 hover:bg-surface-container-high rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">HamroStay AI</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+</div>
+</header>
+<main class="pt-[56px] pb-[80px] min-h-screen px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<!-- Sync Status Banner -->
+<section class="mt-lg">
+<div class="bg-tertiary-container text-on-tertiary-container p-md rounded-xl flex items-center gap-3 border border-tertiary/20 shadow-sm">
+<span class="material-symbols-outlined filled-icon">check_circle</span>
+<span class="font-headline-sm text-headline-sm">Synchronization Active across 4 Systems</span>
+</div>
+</section>
+<!-- Connectivity Visualizer Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mt-lg">
+<!-- Google Knowledge Graph Node -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col gap-4 hover:border-primary transition-all group">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<span class="bg-tertiary text-on-tertiary text-label-md font-label-md px-2 py-1 rounded-sm">Indexed &amp; Live</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Google Knowledge Graph Node</h3>
+<p class="text-body-sm text-on-surface-variant">Entity recognition mapped for Himalayan region coordinates.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm text-on-surface-variant">Last ping: 2m ago</span>
+<span class="material-symbols-outlined text-body-sm text-tertiary filled-icon">bolt</span>
+</div>
+</div>
+<!-- Perplexity Travel Crawl Target -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col gap-4 hover:border-primary transition-all group">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">search_insights</span>
+</div>
+<span class="bg-tertiary text-on-tertiary text-label-md font-label-md px-2 py-1 rounded-sm">Indexed &amp; Live</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Perplexity Travel Crawl Target</h3>
+<p class="text-body-sm text-on-surface-variant">Real-time inventory availability streaming to AI search agents.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm text-on-surface-variant">Uptime: 99.9%</span>
+<span class="material-symbols-outlined text-body-sm text-tertiary filled-icon">bolt</span>
+</div>
+</div>
+<!-- OpenAI Travel Dataset Index -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col gap-4 hover:border-primary transition-all group relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<span class="bg-[#F39C12] text-white text-label-md font-label-md px-2 py-1 rounded-sm animate-pulse-amber">Updating...</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">OpenAI Travel Dataset Index</h3>
+<p class="text-body-sm text-on-surface-variant">Synchronizing local seasonal metadata with global LLM contexts.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm text-on-surface-variant italic">Progress: 68%</span>
+<span class="material-symbols-outlined text-body-sm text-[#F39C12] animate-spin" style="animation-duration: 3s;">sync</span>
+</div>
+</div>
+<!-- WhatsApp API Direct Channel -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col gap-4 border-error/30 bg-error-container/10">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<span class="bg-error text-on-error text-label-md font-label-md px-2 py-1 rounded-sm">Crawl Timeout</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">WhatsApp API Direct Channel</h3>
+<p class="text-body-sm text-on-surface-variant">Direct booking bridge. Connection interrupted by peer endpoint.</p>
+</div>
+<div class="bg-error-container p-sm rounded-lg text-on-error-container text-body-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>System retrying in 45s...</span>
+</div>
+</div>
+</div>
+<!-- Infrastructure Visual Section (Technical Engine Aesthetic) -->
+<section class="mt-xl grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<div class="lg:col-span-2 bg-inverse-surface text-on-tertiary-container rounded-2xl overflow-hidden relative min-h-[300px] flex items-end p-lg">
+<img alt="Technical data visualization" class="absolute inset-0 w-full h-full object-cover opacity-30 grayscale" data-alt="A sophisticated digital data visualization map of the Himalayan mountain ranges, overlayed with glowing geometric nodes and pulsating connection lines in emerald green and terracotta orange. The image has a dark, professional tech-noir aesthetic with high-contrast UI elements, showing data flowing through rugged terrain. The mood is authoritative and stable, representing complex logistical infrastructure bridging rural gaps." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO2FsPde--LbU285L12WmAcDPgR_xapme5sNDU65a68vcR23Uugw7mBf8qkGjCDINmBTxWNQJJ1Vbt6SGIbEnWsx-q5mPoWsvF9LlbOd_M5X3SOjTCBM5nNcyAt-zTpnj6gG-CxGd0pXWH9jY2g8VITWKBnD1P2HRDHt-_PdOBZKNyOf57d9zqihQ0cNrU6GPt5Vrm9rWEYpdSE6agn5OcHFHi996yxhGLVcLoEInpVsmetYHXqV3VuJjgzZWJ3l-kDBhTpLmrmMk"/>
+<div class="relative z-10 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-surface-variant">Global Sync Stream</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-white max-w-md">Rugged Infrastructure, Refined Intelligence.</h2>
+</div>
+<div class="absolute top-lg right-lg p-md bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
+<div class="text-on-tertiary text-label-md font-label-md mb-2">Network Health</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-2 bg-tertiary h-8"></div>
+<div class="w-2 bg-tertiary h-10"></div>
+<div class="w-2 bg-tertiary h-6"></div>
+<div class="w-2 bg-tertiary h-11"></div>
+<div class="w-2 bg-tertiary h-9"></div>
+<div class="w-2 bg-error h-4"></div>
+<div class="w-2 bg-tertiary h-10"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-lg rounded-2xl border border-outline-variant flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Integration Stats</h3>
+<ul class="space-y-4">
+<li class="flex items-center justify-between">
+<span class="text-on-surface-variant">Daily Queries</span>
+<span class="font-bold">12.4k</span>
+</li>
+<li class="flex items-center justify-between">
+<span class="text-on-surface-variant">Sync Latency</span>
+<span class="font-bold">142ms</span>
+</li>
+<li class="flex items-center justify-between">
+<span class="text-on-surface-variant">Cache Hit Rate</span>
+<span class="font-bold">94.2%</span>
+</li>
+</ul>
+</div>
+<div class="mt-lg">
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<div class="mt-2 text-label-md font-label-md text-on-surface-variant">RESOURCE ALLOCATION: 75%</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Sticky Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 h-[80px] bg-surface-container-low border-t border-outline-variant flex items-center px-margin-mobile md:px-margin-desktop justify-center">
+<div class="w-full max-w-[1280px] flex items-center justify-center">
+<button class="w-full md:w-auto md:min-w-[280px] h-[48px] bg-[#2E4053] text-white rounded-lg font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-[#1C2833] transition-all active:scale-95 shadow-lg" onclick="window.location.href='#'">
+<span class="material-symbols-outlined">dashboard</span>
+                Return to Main Dashboard
+            </button>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for return button
+        document.querySelector('button[onclick]').addEventListener('click', (e) => {
+            console.log('Routing to S02-dashboard...');
+            // Simulating a navigation delay for visual feedback
+            const btn = e.currentTarget;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Loading Dashboard...';
+            setTimeout(() => {
+                // In a real app, window.location would change here
+                alert('Navigating to Dashboard (S02-dashboard)');
+                btn.innerHTML = '<span class="material-symbols-outlined">dashboard</span> Return to Main Dashboard';
+            }, 800);
+        });
+
+        // Toggle mobile/desktop responsive behaviors
+        const handleResize = () => {
+            const isMobile = window.innerWidth < 768;
+            // Additional logic for layout shifts if needed beyond Tailwind
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    </script>
+</body></html>
