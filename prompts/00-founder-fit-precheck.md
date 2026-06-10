@@ -4,22 +4,74 @@
 >
 > **What this stage is not.** It does not produce market research. It does not validate your idea. It does not feed any of the eight pipeline stages. It produces exactly one artifact — `founder-fit.md` — and it answers exactly one question: *does this founder, with this idea, in this market, at this moment, have the structural foundation to justify the bet?*
 >
-> **How long it takes.** 20–40 minutes. Answer with real evidence — names, dates, numbers. Vague answers score the same as no answer.
+> **How long it takes.** Interrogation mode: 20–40 minutes. Batch mode: 10–15 minutes. Answer with real evidence — names, dates, numbers. Vague answers score the same as no answer.
 
 ---
 
 ## INPUT COLLECTION
 
-Before beginning the interrogation, ask the user the following two questions. Wait for both answers before proceeding.
+Before beginning, ask the user the following three questions. Wait for all three answers before proceeding.
 
 **Question 1 (Required):** What is your startup idea? Describe it in 2–4 sentences: what it does, who it's for, and what problem it solves.
 
 **Question 2 (Required):** What is your target geography and primary target audience?
 
-Once both answers are received, confirm with:
+**Question 3 (Required):** Choose your session format:
+- **A — Interrogation mode** (recommended): the model asks one probe question at a time, round by round. Full back-and-forth. A sharpening challenge fires on vague answers.
+- **B — Batch mode**: paste all your answers at once using a provided template. Faster. The model flags evidence gaps before scoring — no follow-up questions.
+
+---
+
+**If the founder chooses A (Interrogation mode):** confirm with:
 > "Understood. The interrogation begins now. Answer each question with specifics — names, numbers, dates. Vague answers score the same as no answer. There are seven rounds."
 
 Then proceed directly to Round 1 without any further preamble.
+
+---
+
+**If the founder chooses B (Batch mode):** confirm with:
+> "Understood. Copy the template below, fill in every probe answer, and paste it back in one message. Leave a probe blank only if it genuinely does not apply — blank answers score 0."
+
+Then output the following template exactly, with no additions or modifications:
+
+```
+ROUND 1 — PAIN DEPTH
+P1: [The last time someone complained about this problem unprompted — who, where, their exact words]
+P2: [Monthly cost of the problem in money or hours — specific numbers, not ranges]
+P3: [Anyone currently paying for a workaround — name them and state what they pay]
+
+ROUND 2 — SUBSTITUTION RESISTANCE
+P1: [Every step your ideal customer takes tomorrow if your product disappears — name each tool, person, or workaround]
+P2: [The closest substitute to what you are building and why they keep using it despite its limitations]
+P3: [Whether you have directly observed the workaround in use — what you saw or heard]
+
+ROUND 3 — TIMING LOCK
+P1: [3 behaviours your target customer already performs today — for each: platform, frequency, purpose]
+P2: [A specific change in the last 24 months — technology, regulation, or behaviour shift — that makes this viable now but would have caused failure before]
+P3: [A company that attempted something similar 3+ years ago and underperformed — what was structurally different then]
+
+ROUND 4 — ASYMMETRIC FOUNDER ADVANTAGE
+P1: [Every structural advantage you hold that significant capital and 6 months cannot buy — explain why each cannot be replicated]
+P2: [The first ten customers you will acquire — for each, why they would choose you over a better-funded entrant]
+P3: [Directly relevant work from the last 5 years — project name, outcome, and the specific skill or relationship it produced]
+
+ROUND 5 — MARKET CEILING
+P1: [Fermi estimate — market size in your geography × realistic reach % × annual price = Year 5 ceiling. Show every step.]
+P2: [The adjacent market you enter in Year 3 — name it, name one existing incumbent, explain your entry advantage]
+P3: [A comparable company that built to scale from a similar niche — and the specific mechanism of their expansion]
+
+ROUND 6 — FIELD EVIDENCE
+P1: [3 non-affiliated strangers spoken to in the last 60 days — first names and the most sceptical thing any of them said]
+P2: [The single most important assumption you held before talking to customers that turned out to be wrong — and what replaced it]
+P3: [A finding from those conversations that almost made you decide not to pursue this — what it was and how you resolved it]
+
+ROUND 7 — OBSESSION RESILIENCE
+P1: [The specific moment you felt angry about this problem — not interested, not curious, angry. Describe it.]
+P2: [What you have already given up or deprioritised to work on this before external validation — specific trade-off and date]
+P3: [The version of failure in 3 years you would tell your family and still be proud of — name the specific actions, not outcomes]
+```
+
+Wait for the founder to paste their completed answers. Then proceed to the BATCH MODE SCORING section.
 
 ---
 
@@ -65,6 +117,31 @@ Evidence: [one sentence summarising what earned this score]
 6. Move immediately to the next round. No commentary, no transition.
 
 **Sharpening Challenge (exact wording):** *"Can you give me a specific name, number, or date? Vague answers score the same as no answer."*
+
+---
+
+## BATCH MODE SCORING
+
+Apply this protocol only when the founder submitted answers in Batch Mode (Question 3 = B).
+
+**Step 1 — Flag evidence gaps.** Before scoring any round, read all submitted answers. For every answer that lacks a specific name, number, or date, output:
+
+```
+EVIDENCE GAP [Round N, Probe X]: [one sentence describing what is missing]
+```
+
+List all gaps at the top, before any round scoring begins. Do not ask the founder to clarify — gaps are reflected in the score.
+
+**Step 2 — Score all seven rounds.** Apply each round's rubric to the submitted answers exactly as in interrogation mode. Display the standard scoring block for each round:
+
+```
+ROUND [N] — [DIMENSION NAME]: [SCORE]/20
+Evidence: [one sentence summarising what earned this score]
+```
+
+**Step 3 — Proceed to SCORING AND VERDICT and produce the OUTPUT** exactly as in interrogation mode.
+
+The Sharpening Challenge does not apply in Batch Mode. There is no back-and-forth after the founder submits.
 
 ---
 
@@ -218,12 +295,12 @@ After all seven rounds are complete, calculate the total score and produce the v
 | Band | Score | Designation | Execution order |
 |------|-------|-------------|-----------------|
 | I | 112–140 | EXECUTE | All seven pillars are load-bearing. Quit or transition. Time is the only remaining enemy. |
-| II | 84–111 | PROCEED WITH CONDITIONS | Fewer than three dimensions are failing. Name each failing dimension explicitly. Do not leave your current role until every failing dimension is above 15. |
+| II | 84–111 | PROCEED WITH CONDITIONS | Fewer than three dimensions are failing. Name each failing dimension explicitly. Do not leave your current role until every failing dimension is above 10. |
 | III | 56–83 | REFINE BEFORE COMMITTING | At least three dimensions are structurally weak. Identify the two lowest-scoring dimensions. Correct those before spending capital or career equity. |
 | IV | 28–55 | STAND DOWN | More than half the foundation is unstable. The idea may be valid; the founder-problem-timing combination is not ready. Specify precisely what must change. |
 | V | 0–27 | ABORT | This is not your idea, not your timing, or both. Neither conclusion is a failure. Both are more useful than a preventable three-year loss. |
 
-For every dimension that scored below 15, produce a gap action — a specific, concrete action the founder can complete in the next 30 days that would move the score to 15 or above. Vague gap actions (e.g. "do more customer discovery") are not acceptable. Name the method, the target count, and the outcome that would constitute evidence.
+For every dimension that scored below 10, produce a gap action — a specific, concrete action the founder can complete in the next 30 days that would move the score to 10 or above. Vague gap actions (e.g. "do more customer discovery") are not acceptable. Name the method, the target count, and the outcome that would constitute evidence.
 
 ---
 
@@ -237,6 +314,7 @@ Produce the complete `founder-fit.md` artifact with the following sections exact
 - **Startup idea:** [from founder's input — paraphrase for clarity if needed]
 - **Target geography and audience:** [from founder's input]
 - **Date of assessment:** [current date]
+- **Session format:** [Interrogation mode / Batch mode]
 
 ## Interrogation Scorecard
 
@@ -255,19 +333,11 @@ Produce the complete `founder-fit.md` artifact with the following sections exact
 [Band designation (I–V) in bold. One paragraph stating the verdict, the specific dimensions that determined it, and one sentence on what the founder's next decision should be.]
 
 ## Gap Analysis
-[Only present if any dimension scored below 15. For each such dimension:]
+[Only present if any dimension scored below 10. For each such dimension:]
 
 **Dimension:** [name]
 **Score:** [n]/20
-**What would move this to 15 within 30 days:** [specific action — named method, target count or milestone, and the evidence that would confirm improvement]
-
-## Founder Certification
-> *I confirm that every answer given in this interrogation was based on real evidence — specific names, dates, and numbers — not hypothetical scenarios or aspirational beliefs. I understand that this document scores the founder-idea-timing combination, not the idea alone.*
->
-> **Name:**
-> **Date:**
->
-> *(Complete before sharing with a co-founder, investor, or advisor.)*
+**What would move this to 10 within 30 days:** [specific action — named method, target count or milestone, and the evidence that would confirm improvement]
 
 ---
 
