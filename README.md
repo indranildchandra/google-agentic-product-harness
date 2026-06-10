@@ -66,7 +66,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 ### How it works
 
-[Stage 00](prompts/00-founder-fit-precheck.md) is a seven-round structured interrogation run in any capable conversational AI. The model asks behavioural probe questions across seven dimensions. You answer with specific evidence — names, numbers, dates. The model scores each round on a 0–20 rubric based on the quality and specificity of your evidence, not your self-assessment.
+[Stage 00](prompts/00-founder-fit-precheck.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same 0–20 rubric per round based on the quality and specificity of your evidence, not your self-assessment.
 
 | Round | Dimension | The question it answers | Evidence that earns 20 points |
 |-------|-----------|-------------------------|-------------------------------|
@@ -90,7 +90,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 **Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, Google Search off — this stage interrogates the founder, not the market).
 
-**To run:** open [Stage 00](prompts/00-founder-fit-precheck.md), paste it into your AI of choice, answer the two setup questions, then respond to each round with concrete evidence. Total time: 20–40 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
+**To run:** open [Stage 00](prompts/00-founder-fit-precheck.md), paste it into your AI of choice, and answer the three setup questions (idea, geography, and session format). Interrogation mode takes 20–40 minutes; Batch mode takes 10–15 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
 
 ---
 
