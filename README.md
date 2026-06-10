@@ -24,6 +24,7 @@ Eight prompt templates that take a raw startup idea to a deployed, market-ready 
 
 - [Quick start](#quick-start)
 - [What this is](#what-this-is)
+- [Bonus Stage: Founder Fit Pre-Check](#bonus-stage-founder-fit-pre-check)
 - [The eight-stage pipeline](#the-eight-stage-pipeline)
 - [Pipeline overview](#pipeline-overview)
 - [How to run it](#how-to-run-it)
@@ -53,6 +54,42 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 **The artifact chain:** every stage produces one or more `.md` files. Those files are the exact content you paste or upload when the next stage asks for its inputs. Nothing is lost between stages — the chain is self-contained. Stages 01–05 also append any `[ASSUMPTION]` tags they produce to a shared `.product-harness/assumptions.md`, which Stage 07 reads before auditing to surface compounding risk across the full pipeline.
 
 **Who this is for:** stages 01–03 are accessible to any founder — no coding required. Stages 04–07 use Google Antigravity (Google's autonomous multi-agent coding environment) and produce agent definitions, architecture specs, test suites, and a running codebase — you will need a technical co-founder or developer to run and verify those outputs. Stage 08 is back to non-technical: it runs inside NotebookLM.
+
+---
+
+## Bonus Stage: Founder Fit Pre-Check
+
+> **Who this is for.** Founders who are seriously contemplating leaving something good behind — a stable salary, a senior title, or a safe career path — to pursue a startup idea full-time. If you are running this harness as a learning exercise or exploring casually, skip this entirely. It is built for the person standing at the door asking: *is this the bet I make with the next 3–5 years of my life?*
+>
+> **What it is not.** This stage is completely decoupled from the eight-stage pipeline. It does not produce market research. It does not feed Stage 01. It does not talk to Gemini's search tools. It produces one artifact — `founder-fit.md` — and it answers one question: *does this founder, with this idea, in this market, at this moment, have the structural foundation to justify the bet?*
+
+### How it works
+
+[Stage 00](prompts/00-founder-fit-precheck.md) is a seven-round structured interrogation run in any capable conversational AI. The model asks behavioural probe questions across seven dimensions. You answer with specific evidence — names, numbers, dates. The model scores each round on a 0–20 rubric based on the quality and specificity of your evidence, not your self-assessment.
+
+| Round | Dimension | What it interrogates |
+|-------|-----------|----------------------|
+| 1 | Pain Depth | Is the problem causing measurable, recurring loss — money, time, or operational damage — that the founder has directly observed? |
+| 2 | Substitution Resistance | Is the target customer functionally locked into solving this problem, or can they simply stop and lose nothing? |
+| 3 | Timing Lock | Are infrastructure, behaviour, and market conditions aligned for this idea right now — and does the founder know why now specifically? |
+| 4 | Asymmetric Founder Advantage | Does the founder hold structural advantages that a well-resourced competitor cannot replicate by writing a cheque? |
+| 5 | Market Ceiling | Is the addressable market large enough for a venture-scale business, and has the founder done the Fermi arithmetic? |
+| 6 | Field Evidence | Has the founder spoken to ten or more non-affiliated strangers with the problem, and did those conversations change anything materially? |
+| 7 | Obsession Resilience | Is the founder's commitment grounded in specific anger at the status quo and documented prior sacrifice — not enthusiasm or career ambition? |
+
+**Maximum score: 140 points.**
+
+| Band | Score | Verdict |
+|------|-------|---------|
+| I | 112–140 | **EXECUTE** — all seven pillars are load-bearing. Time is the only remaining enemy. |
+| II | 84–111 | **PROCEED WITH CONDITIONS** — fewer than three dimensions are failing. Close those gaps before leaving your current role. |
+| III | 56–83 | **REFINE BEFORE COMMITTING** — at least three dimensions are structurally weak. Fix core issues before spending capital or career equity. |
+| IV | 28–55 | **STAND DOWN** — the founder-problem-timing combination is not ready. The stage produces a specific gap analysis and 30-day action plan. |
+| V | 0–27 | **ABORT** — this is not your idea, not your timing, or both. Neither is a failure. Both are better than a preventable three-year loss. |
+
+**Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, Google Search off — this stage interrogates the founder, not the market).
+
+**To run:** open [Stage 00](prompts/00-founder-fit-precheck.md), paste it into your AI of choice, answer the two setup questions, then respond to each round with concrete evidence. Total time: 20–40 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
 
 ---
 
@@ -302,7 +339,8 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 ## Repository structure
 
 ```text
-prompts/                            # The eight prompt templates
+prompts/                            # Prompt templates
+  00-founder-fit-precheck.md        # Bonus Stage — decoupled founder-fit interrogation (produces founder-fit.md)
   01-market-researcher.md
   02-idea-validator.md
   03-workflow-generator.md
