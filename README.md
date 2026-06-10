@@ -7,6 +7,7 @@ Eight prompt templates that take a raw startup idea to a deployed, market-ready 
 [![Gemini](https://img.shields.io/badge/Gemini-Stages_01–03-4285F4?logo=google)](#model-settings)
 [![Antigravity](https://img.shields.io/badge/Google_Antigravity-Build-EA4335?logo=google)](#how-to-run-it)
 [![NotebookLM](https://img.shields.io/badge/NotebookLM-Pitch_Deck-34A853?logo=google)](#stage-08-outputs--notebooklm)
+[![Founder Fit](https://img.shields.io/badge/Stage_00-Founder_Fit_Pre--Check-blueviolet)](#bonus-stage-founder-fit-pre-check)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-HamroStay_AI_%E2%86%92-orange)](https://hamrostay-dist-8239.web.app/)
 
 > **New here?** Start with the interactive setup guide before running any prompts:
@@ -67,15 +68,15 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 [Stage 00](prompts/00-founder-fit-precheck.md) is a seven-round structured interrogation run in any capable conversational AI. The model asks behavioural probe questions across seven dimensions. You answer with specific evidence — names, numbers, dates. The model scores each round on a 0–20 rubric based on the quality and specificity of your evidence, not your self-assessment.
 
-| Round | Dimension | What it interrogates |
-|-------|-----------|----------------------|
-| 1 | Pain Depth | Is the problem causing measurable, recurring loss — money, time, or operational damage — that the founder has directly observed? |
-| 2 | Substitution Resistance | Is the target customer functionally locked into solving this problem, or can they simply stop and lose nothing? |
-| 3 | Timing Lock | Are infrastructure, behaviour, and market conditions aligned for this idea right now — and does the founder know why now specifically? |
-| 4 | Asymmetric Founder Advantage | Does the founder hold structural advantages that a well-resourced competitor cannot replicate by writing a cheque? |
-| 5 | Market Ceiling | Is the addressable market large enough for a venture-scale business, and has the founder done the Fermi arithmetic? |
-| 6 | Field Evidence | Has the founder spoken to ten or more non-affiliated strangers with the problem, and did those conversations change anything materially? |
-| 7 | Obsession Resilience | Is the founder's commitment grounded in specific anger at the status quo and documented prior sacrifice — not enthusiasm or career ambition? |
+| Round | Dimension | The question it answers | Evidence that earns 20 points |
+|-------|-----------|-------------------------|-------------------------------|
+| 1 | Pain Depth | Is this a bleeding wound or a paper cut — and has the founder seen it bleed directly, not inferred it from a distance? | Named person + unprompted complaint + quantified cost in money or hours + proof of an existing payment for a partial solution |
+| 2 | Substitution Resistance | Is the target customer functionally locked into solving this problem, or can they simply stop and lose nothing? | Specific recurring workaround described step-by-step; founder has directly observed it in use; evidence that abandoning it would cause real operational damage |
+| 3 | Timing Lock | Are infrastructure, behaviour, and market conditions aligned right now — and can the founder name the exact event that opened the window? | Three existing customer behaviours with platform + frequency; a named enabling event in the last 24 months; awareness of a prior timing failure and what is structurally different today |
+| 4 | Asymmetric Founder Advantage | Does the founder hold advantages that a well-resourced competitor cannot replicate by writing a cheque in the next six months? | Two or more un-buyable advantages (lived experience, unique access, named relationships, proprietary data); five or more named early customers with a specific trust reason; named prior work with a verifiable outcome |
+| 5 | Market Ceiling | Is the addressable market large enough to build a venture-scale business — and has the founder run the actual arithmetic, not just asserted the size? | Step-by-step Fermi calculation with a defensible Year 5 ceiling; named Year 3 adjacent market with an existing incumbent; named comparable company with a specific expansion mechanism |
+| 6 | Field Evidence | Has the founder left the building, spoken to non-affiliated strangers, and did those conversations break any prior assumptions? | Three or more named non-affiliated strangers; one materially corrected prior assumption; a near-stop-build objection and the specific reasoning that resolved it |
+| 7 | Obsession Resilience | Is the founder's commitment grounded in specific anger and documented prior sacrifice — not enthusiasm, curiosity, or career ambition? | Specific anger-trigger moment tied to the problem; one hard sacrifice made before external validation existed; a proud-in-failure narrative with named actions, not outcomes |
 
 **Maximum score: 140 points.**
 
