@@ -1,6 +1,6 @@
 # Google Agentic Product Harness
 
-Eight prompt templates that take a raw startup idea to a deployed, market-ready product — using Gemini, Google Antigravity, and NotebookLM.
+Eight prompt templates that take a raw startup idea to a deployed, market-ready product, plus a decoupled Stage 00 founder-fit pre-check — using Gemini, Google Antigravity, and NotebookLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Stages](https://img.shields.io/badge/Stages-8_Stages_Framework-blue)](#the-eight-stage-pipeline)
@@ -66,7 +66,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 ### How it works
 
-[Stage 00](prompts/00-founder-fit-precheck.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same 0–20 rubric per round based on the quality and specificity of your evidence, not your self-assessment.
+[Stage 00](prompts/00-founder-fit-pre-check.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same 0–20 rubric per round based on the quality and specificity of your evidence, not your self-assessment.
 
 | Round | Dimension | The question it answers | Evidence that earns 20 points |
 |-------|-----------|-------------------------|-------------------------------|
@@ -90,7 +90,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 **Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, Google Search off — this stage interrogates the founder, not the market).
 
-**To run:** open [Stage 00](prompts/00-founder-fit-precheck.md), paste it into your AI of choice, and answer the three setup questions (idea, geography, and session format). Interrogation mode takes 20–40 minutes; Batch mode takes 10–15 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
+**To run:** open [Stage 00](prompts/00-founder-fit-pre-check.md), paste it into your AI of choice, and answer the three setup questions (idea, geography, and session format). Interrogation mode takes 20–40 minutes; Batch mode takes 10–15 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
 
 ---
 
@@ -341,7 +341,7 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 
 ```text
 prompts/                            # Prompt templates
-  00-founder-fit-precheck.md        # Bonus Stage — decoupled founder-fit interrogation (produces founder-fit.md)
+  00-founder-fit-pre-check.md       # Bonus Stage — decoupled founder-fit interrogation (produces founder-fit.md)
   01-market-researcher.md
   02-idea-validator.md
   03-workflow-generator.md

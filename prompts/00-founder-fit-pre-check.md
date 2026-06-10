@@ -52,7 +52,7 @@ P3: [A company that attempted something similar 3+ years ago and underperformed 
 
 ROUND 4 — ASYMMETRIC FOUNDER ADVANTAGE
 P1: [Every structural advantage you hold that significant capital and 6 months cannot buy — explain why each cannot be replicated]
-P2: [The first ten customers you will acquire — for each, why they would choose you over a better-funded entrant]
+P2: [At least five of your first customers — for each, why they would choose you over a better-funded entrant]
 P3: [Directly relevant work from the last 5 years — project name, outcome, and the specific skill or relationship it produced]
 
 ROUND 5 — MARKET CEILING
@@ -106,7 +106,7 @@ Conduct each of the seven rounds in strict sequence. Do not skip ahead. Do not p
 1. State the round number and name only — do not reveal what the scoring rubric rewards until after the round closes.
 2. Read the round's context framing silently. Do not share it with the founder.
 3. Ask the three probe questions one at a time. Wait for each answer before asking the next.
-4. If any answer in the round is vague, hypothetical, or lacks a named person, specific number, or concrete date, issue the **Sharpening Challenge** exactly once before scoring. Do not repeat it.
+4. If any answer is vague, hypothetical, or lacks a named person, specific number, or concrete date, issue the **Sharpening Challenge** immediately after that answer — exactly once per round. Then continue to the next probe. Do not repeat it.
 5. After all three probe questions (and the challenge, if triggered) are complete, score the round using the rubric. Display exactly:
 
 ```
@@ -120,7 +120,7 @@ Evidence: [one sentence summarising what earned this score]
 
 ---
 
-## BATCH MODE SCORING
+# BATCH MODE SCORING
 
 Apply this protocol only when the founder submitted answers in Batch Mode (Question 3 = B).
 
@@ -211,7 +211,7 @@ The Sharpening Challenge does not apply in Batch Mode. There is no back-and-fort
 
 **Probe 1:** List every structural advantage you have that someone with significant capital and six months cannot buy. For each one, explain specifically why it cannot be replicated with money or time.
 
-**Probe 2:** Name the first ten customers you will acquire. For each, explain why they would choose you over a better-funded entrant with a comparable product.
+**Probe 2:** Name at least five of your first customers. For each, explain specifically why they would choose you over a better-funded entrant with a comparable product.
 
 **Probe 3:** What have you built, shipped, or run in the last five years that is directly relevant to this problem? Name the project, the outcome, and the specific skill or relationship it produced that applies here.
 
@@ -233,7 +233,7 @@ The Sharpening Challenge does not apply in Batch Mode. There is no back-and-fort
 
 **Probe 2:** What is the adjacent market you enter in Year 3 if the initial wedge succeeds? Name it, name one company already operating there, and explain why your initial wedge creates a defensible entry point into it.
 
-**Probe 3:** Name one company that started in a comparable niche and built to a hundred-crore-rupee equivalent in annual revenue. What was the specific mechanism of their expansion — product, distribution, or geography?
+**Probe 3:** Name one company that started in a comparable niche and built to venture-scale revenue (₹100 crore or the equivalent in your market). What was the specific mechanism of their expansion — product, distribution, or geography?
 
 **Scoring rubric:**
 
@@ -328,6 +328,8 @@ Produce the complete `founder-fit.md` artifact with the following sections exact
 | 6 | Field Evidence | /20 | |
 | 7 | Obsession Resilience | /20 | |
 | | **TOTAL** | **/140** | |
+
+*Fill in the Evidence Summary column with the one-sentence evidence summary produced at the end of each round's scoring display.*
 
 ## Verdict
 [Band designation (I–V) in bold. One paragraph stating the verdict, the specific dimensions that determined it, and one sentence on what the founder's next decision should be.]
