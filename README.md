@@ -1,12 +1,13 @@
 # Google Agentic Product Harness
 
-Eight prompt templates that take a raw startup idea to a deployed, market-ready product — using Gemini, Google Antigravity, and NotebookLM.
+Eight prompt templates that take a raw startup idea to a deployed, market-ready product, plus a decoupled Stage 00 founder-fit pre-check — using Gemini, Google Antigravity, and NotebookLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Stages](https://img.shields.io/badge/Stages-8_Stages_Framework-blue)](#the-eight-stage-pipeline)
 [![Gemini](https://img.shields.io/badge/Gemini-Stages_01–03-4285F4?logo=google)](#model-settings)
 [![Antigravity](https://img.shields.io/badge/Google_Antigravity-Build-EA4335?logo=google)](#how-to-run-it)
 [![NotebookLM](https://img.shields.io/badge/NotebookLM-Pitch_Deck-34A853?logo=google)](#stage-08-outputs--notebooklm)
+[![Founder Fit](https://img.shields.io/badge/Stage_00-Founder_Fit_Pre--Check-blueviolet)](#bonus-stage-founder-fit-pre-check)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-HamroStay_AI_%E2%86%92-orange)](https://hamrostay-dist-8239.web.app/)
 
 > **New here?** Start with the interactive setup guide before running any prompts:
@@ -24,6 +25,7 @@ Eight prompt templates that take a raw startup idea to a deployed, market-ready 
 
 - [Quick start](#quick-start)
 - [What this is](#what-this-is)
+- [Bonus Stage: Founder Fit Pre-Check](#bonus-stage-founder-fit-pre-check)
 - [The eight-stage pipeline](#the-eight-stage-pipeline)
 - [Pipeline overview](#pipeline-overview)
 - [How to run it](#how-to-run-it)
@@ -53,6 +55,44 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 **The artifact chain:** every stage produces one or more `.md` files. Those files are the exact content you paste or upload when the next stage asks for its inputs. Nothing is lost between stages — the chain is self-contained. Stages 01–05 also append any `[ASSUMPTION]` tags they produce to a shared `.product-harness/assumptions.md`, which Stage 07 reads before auditing to surface compounding risk across the full pipeline.
 
 **Who this is for:** stages 01–03 are accessible to any founder — no coding required. Stages 04–07 use Google Antigravity (Google's autonomous multi-agent coding environment) and produce agent definitions, architecture specs, test suites, and a running codebase — you will need a technical co-founder or developer to run and verify those outputs. Stage 08 is back to non-technical: it runs inside NotebookLM.
+
+---
+
+## Bonus Stage: Founder Fit Pre-Check
+
+> **Who this is for.** Founders who are seriously contemplating leaving something good behind — a stable salary, a senior title, or a safe career path — to pursue a startup idea full-time. If you are running this harness as a learning exercise or exploring casually, skip this entirely. It is built for the person standing at the door asking: *is this the bet I make with the next 3–5 years of my life?*
+>
+> **What it is not.** This stage is completely decoupled from the eight-stage pipeline. It does not produce market research. It does not feed Stage 01. It does not talk to Gemini's search tools. It produces one artifact — `founder-fit.md` — and it answers one question: *does this founder, with this idea, in this market, at this moment, have the structural foundation to justify the bet?*
+
+### How it works
+
+[Stage 00](prompts/00-founder-fit-pre-check.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same evidence-quality rubric per round (0–20 points; Round 6 adds a 5-point tier for conversations limited to friends or family). Evidence quality, not self-assessment, determines the score.
+
+| Round | Dimension | The question it answers | Evidence that earns 20 points |
+|-------|-----------|-------------------------|-------------------------------|
+| 1 | Pain Depth | Is this a bleeding wound or a paper cut — and has the founder seen it bleed directly, not inferred it from a distance? | Named person + unprompted complaint + quantified cost in money or hours + proof of an existing payment for a partial solution |
+| 2 | Substitution Resistance | Is the target customer functionally locked into solving this problem, or can they simply stop and lose nothing? | Specific recurring workaround described step-by-step; founder has directly observed it in use; evidence that abandoning it would cause real operational damage |
+| 3 | Timing Lock | Are infrastructure, behaviour, and market conditions aligned right now — and can the founder name the exact event that opened the window? | Three existing customer behaviours with platform + frequency; a named enabling event in the last 24 months; awareness of a prior timing failure and what is structurally different today |
+| 4 | Asymmetric Founder Advantage | Does the founder hold advantages that a well-resourced competitor cannot replicate by writing a cheque in the next six months? | Two or more un-buyable advantages (lived experience, unique access, named relationships, proprietary data); five or more named early customers with a specific trust reason; named prior work with a verifiable outcome |
+| 5 | Market Ceiling | Is the addressable market large enough to build a venture-scale business — and has the founder run the actual arithmetic, not just asserted the size? | Step-by-step Fermi calculation with a defensible Year 5 ceiling; named Year 3 adjacent market with an existing incumbent; named comparable company with a specific expansion mechanism |
+| 6 | Field Evidence | Has the founder spoken to non-affiliated strangers with the problem — by name, not by count — and did those conversations break any prior assumptions? | Three or more named non-affiliated strangers; one materially corrected prior assumption; a near-stop-pursue objection and the specific reasoning that resolved it |
+| 7 | Obsession Resilience | Is the founder's commitment grounded in specific anger and documented prior sacrifice — not enthusiasm, curiosity, or career ambition? | Specific anger-trigger moment tied to the problem; one hard sacrifice made before external validation existed; a proud-in-failure narrative with named actions, not outcomes |
+
+**Maximum score: 140 points.**
+
+| Band | Score | Verdict |
+|------|-------|---------|
+| I | 112–140 | **EXECUTE** — all seven pillars are load-bearing. Time is the only remaining enemy. |
+| II | 84–111 | **PROCEED WITH CONDITIONS** — fewer than three dimensions are failing. Close every failing dimension to above 10 before leaving your current role. |
+| III | 56–83 | **REFINE BEFORE COMMITTING** — at least three dimensions are structurally weak. Correct every dimension below 10, starting with the two lowest, before spending capital or career equity. |
+| IV | 28–55 | **STAND DOWN** — the founder-problem-timing combination is not ready. The stage produces a specific gap analysis and 30-day action plan. |
+| V | 0–27 | **ABORT** — this is not your idea, not your timing, or both. Neither is a failure. Both are better than a preventable three-year loss. |
+
+> **Exception:** A Round 7 score of 0 returns **ABORT (Band V)** regardless of total score. Obsession cannot be learned or hired — it is a disqualification, not a gap to close.
+
+**Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, **Google Search off** — this stage scores what the founder knows, not what Google or the model knows; search on would let the model compensate for evidence gaps the rubric is designed to expose).
+
+**To run:** open [Stage 00](prompts/00-founder-fit-pre-check.md), paste it into your AI of choice, and answer the three setup questions (idea, geography, and session format). Interrogation mode takes 20–40 minutes; Batch mode takes 10–15 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
 
 ---
 
@@ -302,7 +342,8 @@ These are the exact files produced by stages 01–03. Each feeds the next stage 
 ## Repository structure
 
 ```text
-prompts/                            # The eight prompt templates
+prompts/                            # Prompt templates
+  00-founder-fit-pre-check.md       # Bonus Stage — decoupled founder-fit interrogation (produces founder-fit.md)
   01-market-researcher.md
   02-idea-validator.md
   03-workflow-generator.md
