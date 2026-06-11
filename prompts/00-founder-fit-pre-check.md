@@ -56,12 +56,12 @@ P2: [At least five of your first customers — for each, why they would choose y
 P3: [Directly relevant work from the last 5 years — project name, outcome, and the specific skill or relationship it produced]
 
 ROUND 5 — MARKET CEILING
-P1: [Fermi estimate — market size in your geography × realistic reach % × annual price = Year 5 ceiling. Show every step.]
+P1: [Fermi estimate — total addressable population in {{TARGET_GEOGRAPHY}} × realistic Year 3 reach % × annual price = Year 5 ceiling. Show each multiplication step.]
 P2: [The adjacent market you enter in Year 3 — name it, name one existing incumbent, explain your entry advantage]
 P3: [A comparable company that built to scale from a similar niche — and the specific mechanism of their expansion]
 
 ROUND 6 — FIELD EVIDENCE
-P1: [3 non-affiliated strangers spoken to in the last 60 days — first names and the most sceptical thing any of them said]
+P1: [3 non-affiliated strangers in {{TARGET_GEOGRAPHY}} spoken to in the last 60 days — first names and the most sceptical thing any of them said]
 P2: [The single most important assumption you held before talking to customers that turned out to be wrong — and what replaced it]
 P3: [A finding from those conversations that almost made you decide not to pursue this — what it was and how you resolved it]
 
@@ -77,7 +77,7 @@ Wait for the founder to paste their completed answers. Then proceed to the BATCH
 
 # INPUTS
 
-- Startup idea: {{STARTUP_IDEA}}
+- Startup idea: {{RAW_STARTUP_IDEA}}
 - Target geography: {{TARGET_GEOGRAPHY}}
 - Primary target audience: {{TARGET_AUDIENCE}}
 
@@ -249,7 +249,7 @@ The Sharpening Challenge does not apply in Batch Mode. There is no back-and-fort
 
 *What this round measures (do not share):* Whether the founder has tested assumptions against people who actually have the problem — specifically strangers, not allies — and whether those conversations materially changed anything the founder believed.
 
-**Probe 1:** Name three people — not friends, family, or colleagues — who have this problem, that you have spoken with in the last sixty days. What was the most sceptical thing any of them said directly to you?
+**Probe 1:** Name three people — not friends, family, or colleagues — in {{TARGET_GEOGRAPHY}} who have this problem, that you have spoken with in the last sixty days. What was the most sceptical thing any of them said directly to you?
 
 **Probe 2:** What is the single most important assumption you held about this problem before you spoke to non-affiliated customers that turned out to be wrong? What replaced it?
 
@@ -290,6 +290,8 @@ The Sharpening Challenge does not apply in Batch Mode. There is no back-and-fort
 
 After all seven rounds are complete, calculate the total score and produce the verdict.
 
+**Check Round 7 first.** If Round 7 (Obsession Resilience) scored 0, the verdict is **ABORT (Band V)** regardless of the total score — do not consult the band table below. Obsession cannot be learned, hired, or acquired. A zero here is a disqualification, not a gap to close. Produce the ABORT verdict directly and state this veto explicitly.
+
 **Total score: [R1 + R2 + R3 + R4 + R5 + R6 + R7] / 140**
 
 | Band | Score | Designation | Execution order |
@@ -300,15 +302,13 @@ After all seven rounds are complete, calculate the total score and produce the v
 | IV | 28–55 | STAND DOWN | More than half the foundation is unstable. The idea may be valid; the founder-problem-timing combination is not ready. Specify precisely what must change. |
 | V | 0–27 | ABORT | This is not your idea, not your timing, or both. Neither conclusion is a failure. Both are more useful than a preventable three-year loss. |
 
-**Exception — Round 7 veto:** If Round 7 (Obsession Resilience) scores 0, the verdict is **ABORT (Band V)** regardless of the total score. Obsession is the only dimension that cannot be learned, hired, or acquired. A zero here is not a gap to close — it is a disqualification. When this veto applies, do not produce a gap action for Round 7; produce the ABORT verdict directly and state the veto explicitly.
-
-For every dimension that scored below 10, produce a gap action — a specific, concrete action the founder can complete in the next 30 days that would move the score to 10 or above. Vague gap actions (e.g. "do more customer discovery") are not acceptable. Name the method, the target count, and the outcome that would constitute evidence.
+For every dimension that scored below 10 — excluding Round 7 if the veto above applies — produce a gap action: a specific, concrete action the founder can complete in the next 30 days that would move the score to 10 or above. Vague gap actions (e.g. "do more customer discovery") are not acceptable. Name the method, the target count, and the outcome that would constitute evidence.
 
 ---
 
 # OUTPUT: founder-fit.md
 
-Produce the complete `founder-fit.md` artifact with the following sections exactly. Do not abbreviate or summarise — every section must be present.
+Produce the complete `founder-fit.md` artifact with the following sections exactly. Do not abbreviate or summarise — all applicable sections must be present.
 
 Fill in the Evidence Summary column with the one-sentence evidence summary from each round's scoring display.
 

@@ -66,7 +66,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 ### How it works
 
-[Stage 00](prompts/00-founder-fit-pre-check.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same 0–20 rubric per round based on the quality and specificity of your evidence, not your self-assessment.
+[Stage 00](prompts/00-founder-fit-pre-check.md) is a seven-round structured interrogation run in any capable conversational AI. It supports two modes: **Interrogation mode** (the model asks one probe question at a time, with a sharpening challenge on vague answers) and **Batch mode** (paste all your answers at once using a provided template; the model flags evidence gaps before scoring). Both modes apply the same evidence-quality rubric per round (0–20 points; Round 6 adds a 5-point tier for conversations limited to friends or family). Evidence quality, not self-assessment, determines the score.
 
 | Round | Dimension | The question it answers | Evidence that earns 20 points |
 |-------|-----------|-------------------------|-------------------------------|
@@ -84,9 +84,11 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 |------|-------|---------|
 | I | 112–140 | **EXECUTE** — all seven pillars are load-bearing. Time is the only remaining enemy. |
 | II | 84–111 | **PROCEED WITH CONDITIONS** — fewer than three dimensions are failing. Close every failing dimension to above 10 before leaving your current role. |
-| III | 56–83 | **REFINE BEFORE COMMITTING** — at least three dimensions are structurally weak. Fix core issues before spending capital or career equity. |
+| III | 56–83 | **REFINE BEFORE COMMITTING** — at least three dimensions are structurally weak. Correct every dimension below 10, starting with the two lowest, before spending capital or career equity. |
 | IV | 28–55 | **STAND DOWN** — the founder-problem-timing combination is not ready. The stage produces a specific gap analysis and 30-day action plan. |
 | V | 0–27 | **ABORT** — this is not your idea, not your timing, or both. Neither is a failure. Both are better than a preventable three-year loss. |
+
+> **Exception:** A Round 7 score of 0 returns **ABORT (Band V)** regardless of total score. Obsession cannot be learned or hired — it is a disqualification, not a gap to close.
 
 **Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, Google Search off — this stage interrogates the founder, not the market).
 
