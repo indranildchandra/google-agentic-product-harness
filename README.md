@@ -90,7 +90,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 
 > **Exception:** A Round 7 score of 0 returns **ABORT (Band V)** regardless of total score. Obsession cannot be learned or hired — it is a disqualification, not a gap to close.
 
-**Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, Google Search off — this stage interrogates the founder, not the market).
+**Model:** Gemini 3.1 Pro or any capable conversational AI (temperature 0.4, **Google Search off** — this stage scores what the founder knows, not what Google or the model knows; search on would let the model compensate for evidence gaps the rubric is designed to expose).
 
 **To run:** open [Stage 00](prompts/00-founder-fit-pre-check.md), paste it into your AI of choice, and answer the three setup questions (idea, geography, and session format). Interrogation mode takes 20–40 minutes; Batch mode takes 10–15 minutes. Save the output as `founder-fit.md`. It is a private decision instrument — revisit it in 90 days.
 
