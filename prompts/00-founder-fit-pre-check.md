@@ -1,6 +1,6 @@
 # Stage 00 — Founder Fit Pre-Check
 
-> **Who this is for.** Founders who are seriously considering leaving a stable career, salary, or senior position to pursue a startup idea full-time. If you are running this harness as a learning exercise, exploring casually, or already committed — skip this stage entirely. It is designed for the person standing at the door asking: *is this the bet I make with the next 3–5 years of my life?*
+> **Who this is for.** Founders who are seriously considering leaving something good behind — a stable salary, a senior title, or a safe career path — to pursue a startup idea full-time. If you are running this harness as a learning exercise, exploring casually, or already committed — skip this stage entirely. It is designed for the person standing at the door asking: *is this the bet I make with the next 3–5 years of my life?*
 >
 > **What this stage is not.** It does not produce market research. It does not validate your idea. It does not feed any of the eight pipeline stages. It produces exactly one artifact — `founder-fit.md` — and it answers exactly one question: *does this founder, with this idea, in this market, at this moment, have the structural foundation to justify the bet?*
 >
@@ -296,9 +296,11 @@ After all seven rounds are complete, calculate the total score and produce the v
 |------|-------|-------------|-----------------|
 | I | 112–140 | EXECUTE | All seven pillars are load-bearing. Quit or transition. Time is the only remaining enemy. |
 | II | 84–111 | PROCEED WITH CONDITIONS | Fewer than three dimensions are failing. Name each failing dimension explicitly. Do not leave your current role until every failing dimension is above 10. |
-| III | 56–83 | REFINE BEFORE COMMITTING | At least three dimensions are structurally weak. Identify the two lowest-scoring dimensions. Correct those before spending capital or career equity. |
+| III | 56–83 | REFINE BEFORE COMMITTING | At least three dimensions are structurally weak. The gap analysis below covers all failing dimensions. Correct every dimension below 10, starting with the two lowest, before spending capital or career equity. |
 | IV | 28–55 | STAND DOWN | More than half the foundation is unstable. The idea may be valid; the founder-problem-timing combination is not ready. Specify precisely what must change. |
 | V | 0–27 | ABORT | This is not your idea, not your timing, or both. Neither conclusion is a failure. Both are more useful than a preventable three-year loss. |
+
+**Exception — Round 7 veto:** If Round 7 (Obsession Resilience) scores 0, the verdict is **ABORT (Band V)** regardless of the total score. Obsession is the only dimension that cannot be learned, hired, or acquired. A zero here is not a gap to close — it is a disqualification. When this veto applies, do not produce a gap action for Round 7; produce the ABORT verdict directly and state the veto explicitly.
 
 For every dimension that scored below 10, produce a gap action — a specific, concrete action the founder can complete in the next 30 days that would move the score to 10 or above. Vague gap actions (e.g. "do more customer discovery") are not acceptable. Name the method, the target count, and the outcome that would constitute evidence.
 
@@ -307,6 +309,8 @@ For every dimension that scored below 10, produce a gap action — a specific, c
 # OUTPUT: founder-fit.md
 
 Produce the complete `founder-fit.md` artifact with the following sections exactly. Do not abbreviate or summarise — every section must be present.
+
+Fill in the Evidence Summary column with the one-sentence evidence summary from each round's scoring display.
 
 ---
 
@@ -328,8 +332,6 @@ Produce the complete `founder-fit.md` artifact with the following sections exact
 | 6 | Field Evidence | /20 | |
 | 7 | Obsession Resilience | /20 | |
 | | **TOTAL** | **/140** | |
-
-*Fill in the Evidence Summary column with the one-sentence evidence summary produced at the end of each round's scoring display.*
 
 ## Verdict
 [Band designation (I–V) in bold. One paragraph stating the verdict, the specific dimensions that determined it, and one sentence on what the founder's next decision should be.]

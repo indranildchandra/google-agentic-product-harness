@@ -83,7 +83,7 @@ This harness is a structured sequence of prompts, not a codebase. Each prompt is
 | Band | Score | Verdict |
 |------|-------|---------|
 | I | 112–140 | **EXECUTE** — all seven pillars are load-bearing. Time is the only remaining enemy. |
-| II | 84–111 | **PROCEED WITH CONDITIONS** — fewer than three dimensions are failing. Close those gaps before leaving your current role. |
+| II | 84–111 | **PROCEED WITH CONDITIONS** — fewer than three dimensions are failing. Close every failing dimension to above 10 before leaving your current role. |
 | III | 56–83 | **REFINE BEFORE COMMITTING** — at least three dimensions are structurally weak. Fix core issues before spending capital or career equity. |
 | IV | 28–55 | **STAND DOWN** — the founder-problem-timing combination is not ready. The stage produces a specific gap analysis and 30-day action plan. |
 | V | 0–27 | **ABORT** — this is not your idea, not your timing, or both. Neither is a failure. Both are better than a preventable three-year loss. |
