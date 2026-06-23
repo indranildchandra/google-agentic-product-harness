@@ -1,6 +1,6 @@
 # Google Agentic Product Harness
 
-Eight prompt templates that take a raw startup idea to a deployed, market-ready product, plus a decoupled Stage 00 founder-fit pre-check — using Gemini, Google Antigravity, and NotebookLM.
+An 8-stage framework that takes a raw startup idea to a deployed, market-ready product - using Gemini, Stitch, Google Antigravity, and NotebookLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Stages](https://img.shields.io/badge/Stages-8_Stages_Framework-blue)](#the-eight-stage-pipeline)
