@@ -32,9 +32,9 @@ You are not writing a McKinsey deck. You are not writing a blog post. You are pr
 
 # INDIA MARKET ANCHORS
 
-*Apply only when {{TARGET_GEOGRAPHY}} is India, an Indian state, or an Indian city tier. Skip this section for all other geographies.*
+*Apply **only** when {{TARGET_GEOGRAPHY}} is India, an Indian state, or an Indian city tier. If the target geography is anything else, treat all numbers in this section as inapplicable and do not use them in any Fermi chain.*
 
-Use these reference-grade estimates as Fermi chain starting universes. Tag them **[REFERENCE: India Guesstimate 2025]** — they are order-of-magnitude correct and widely used in Indian VC and consulting contexts. Cross-check against published sources where precision matters and upgrade the tag to [VERIFIED] when a source is found.
+Use these reference-grade estimates as Fermi chain starting universes. Tag them **[ASSUMPTION: India Guesstimate 2025 — order-of-magnitude reference figure; cross-check before publishing]** — they are widely used in Indian VC and consulting contexts. When a Google Search confirms or narrows a figure, replace its tag with **[VERIFIED: \<publisher\>, \<year\>]**.
 
 **Five core anchors — start every India Fermi chain from one of these:**
 | Anchor | Value |
@@ -55,8 +55,9 @@ Use these reference-grade estimates as Fermi chain starting universes. Tag them 
 | Low Income | <₹1L | ~15% | ~45M |
 
 **City tiers (use as geographic SAM filters):**
+*(Top 8 metros are a subset of Tier 1 cities — do not add across tiers. Pick one tier level as your SAM filter; do not sum adjacent rows.)*
 - Top 8 metros: ~110M people
-- Tier 1 cities: ~150M
+- Tier 1 cities (includes metros): ~150M
 - Tier 2 cities: ~250M
 - Tier 3+ / rural: ~840M
 
@@ -67,10 +68,13 @@ Use these reference-grade estimates as Fermi chain starting universes. Tag them 
 - 5G users: ~300M+
 
 **Sector reference counts (use as universe for B2B or sector-specific Fermi):**
-- Healthcare: ~1.3M doctors, ~70K hospitals, ~2M beds, ~900K pharmacies, ~100M diabetics
-- Education: ~1.5M schools, ~43M college students, ~1.5M engineering grads/yr, ~300K MBA grads/yr
-- Mobility: ~50M cars, ~250M two-wheelers, ~220M annual air passengers
-- Startup ecosystem: ~180K recognized startups, ~10K active angel investors, ~800+ VC funds, ~120+ unicorns
+
+| Sector | Key figures |
+|--------|-------------|
+| Healthcare | ~1.3M doctors · ~70K hospitals · ~2M beds · ~900K pharmacies · ~100M diabetics |
+| Education | ~1.5M schools · ~43M college students · ~1.5M engineering grads/yr · ~300K MBA grads/yr |
+| Mobility | ~50M cars · ~250M two-wheelers · ~220M annual air passengers |
+| Startup ecosystem | ~180K recognized startups · ~10K active angel investors · ~800+ VC funds · ~120+ unicorns |
 
 ---
 
