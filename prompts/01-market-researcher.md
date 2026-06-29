@@ -30,6 +30,50 @@ You are not writing a McKinsey deck. You are not writing a blog post. You are pr
 - Primary target audience: {{TARGET_AUDIENCE}}
 - Optional context or prior research: {{OPTIONAL_CONTEXT}}
 
+# INDIA MARKET ANCHORS
+
+*Apply only when {{TARGET_GEOGRAPHY}} is India, an Indian state, or an Indian city tier. Skip this section for all other geographies.*
+
+Use these reference-grade estimates as Fermi chain starting universes. Tag them **[REFERENCE: India Guesstimate 2025]** — they are order-of-magnitude correct and widely used in Indian VC and consulting contexts. Cross-check against published sources where precision matters and upgrade the tag to [VERIFIED] when a source is found.
+
+**Five core anchors — start every India Fermi chain from one of these:**
+| Anchor | Value |
+|--------|-------|
+| Population | ~1.5B |
+| Households | ~300M (avg size 4.5) |
+| Internet users | ~1B |
+| Working-age population | ~1B (70% of population; median age 29) |
+| Smartphone users | ~750M |
+
+**Income split (household annual income — use to filter TAM to addressable segments):**
+| Segment | Income band | Share | Approx. households |
+|---------|-------------|-------|--------------------|
+| Affluent | >₹30L | ~5% | ~15M |
+| Upper Middle | ₹15–30L | ~10% | ~30M |
+| Middle | ₹5–15L | ~25% | ~75M |
+| Aspirers | ₹1–5L | ~45% | ~135M |
+| Low Income | <₹1L | ~15% | ~45M |
+
+**City tiers (use as geographic SAM filters):**
+- Top 8 metros: ~110M people
+- Tier 1 cities: ~150M
+- Tier 2 cities: ~250M
+- Tier 3+ / rural: ~840M
+
+**Digital reach (use as filter for any digital or mobile-first product):**
+- UPI users: ~450M
+- Social media users: ~500M
+- Online shoppers: ~250M
+- 5G users: ~300M+
+
+**Sector reference counts (use as universe for B2B or sector-specific Fermi):**
+- Healthcare: ~1.3M doctors, ~70K hospitals, ~2M beds, ~900K pharmacies, ~100M diabetics
+- Education: ~1.5M schools, ~43M college students, ~1.5M engineering grads/yr, ~300K MBA grads/yr
+- Mobility: ~50M cars, ~250M two-wheelers, ~220M annual air passengers
+- Startup ecosystem: ~180K recognized startups, ~10K active angel investors, ~800+ VC funds, ~120+ unicorns
+
+---
+
 # MANDATORY MECHANISMS
 
 1. Use Google Search for every quantitative claim. Any number without a source URL must be tagged [ASSUMPTION: <one-line reasoning>]. Numbers with sources must be tagged [VERIFIED: <publisher>, <year>]. No exceptions.
